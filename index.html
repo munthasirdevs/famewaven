@@ -1,0 +1,1802 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAMEWOVEN — Virtual Talent. Human Direction. | AI Influencer & Creative Agency</title>
+  <meta name="description" content="We create AI influencers and produce campaigns around them. From bespoke brand characters to 100+ creator launch waves, FAMEWOVEN gives brands a consistent virtual presence." />
+  <link rel="canonical" href="https://famewoven.com/" />
+
+  <!-- Google Fonts: Space Grotesk, IBM Plex Mono, Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Outfit:wght@500;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN + Custom Configuration -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: {
+              DEFAULT: '#111311',
+              elevated: '#181B18',
+              card: '#141714'
+            },
+            chalk: {
+              DEFAULT: '#F1EFE8',
+              muted: '#E4E1D6'
+            },
+            weft: {
+              DEFAULT: '#D1F34A',
+              hover: '#DEFF5E'
+            },
+            plum: {
+              DEFAULT: '#291A27',
+              light: '#3D263A'
+            },
+            ash: {
+              DEFAULT: '#A7A59B',
+              dark: '#6E6D64'
+            }
+          },
+          fontFamily: {
+            sans: ['"Space Grotesk"', 'sans-serif'],
+            mono: ['"IBM Plex Mono"', 'monospace'],
+            wordmark: ['"Outfit"', 'sans-serif']
+          },
+          maxWidth: {
+            'container': '1360px'
+          },
+          backgroundImage: {
+            'plum-radial': 'radial-gradient(circle at 50% 35%, rgba(41, 26, 39, 0.85) 0%, rgba(17, 19, 17, 0) 70%)',
+            'weft-glow': 'radial-gradient(circle at 50% 50%, rgba(209, 243, 74, 0.14) 0%, rgba(17, 19, 17, 0) 65%)'
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- GSAP Core & Plugins -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js" defer></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- SEO JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "FAMEWOVEN",
+    "alternateName": "PromptForge LLC",
+    "url": "https://famewoven.com/",
+    "logo": "https://famewoven.com/assets/logos/logo.svg",
+    "description": "Full-stack AI Influencer and Creative Agency synthesizing bespoke virtual brand ambassadors with 100+ creator distribution waves.",
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "telephone": "+1-307-445-3324",
+        "contactType": "sales",
+        "email": "hello@famewoven.com",
+        "availableLanguage": ["English"]
+      },
+      {
+        "@type": "ContactPoint",
+        "email": "support@promptforgestudio.net",
+        "contactType": "customer support"
+      }
+    ],
+    "sameAs": [
+      "https://twitter.com/famewoven",
+      "https://twitter.com/ForgeAIStudio",
+      "https://instagram.com/famewoven"
+    ]
+  }
+  </script>
+</head>
+<body class="bg-ink text-chalk antialiased selection:bg-weft selection:text-ink relative">
+
+  <!-- 2D Magnetic Loupe Cursor -->
+  <div id="fw-cursor" aria-hidden="true">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+  </div>
+
+  <!-- ===================== DIGITAL LOOM PRELOADER ===================== -->
+  <div id="preloader" class="fixed inset-0 z-[9999] bg-ink flex flex-col justify-between p-6 lg:p-12 overflow-hidden pointer-events-auto" aria-label="Loading FAMEWOVEN">
+    <!-- 6 Vertical Loom Warp Columns -->
+    <div class="absolute inset-0 grid grid-cols-6 pointer-events-none" aria-hidden="true">
+      <div class="loom-col bg-ink border-r border-ash/15 h-full w-full"></div>
+      <div class="loom-col bg-ink border-r border-ash/15 h-full w-full"></div>
+      <div class="loom-col bg-ink border-r border-ash/15 h-full w-full"></div>
+      <div class="loom-col bg-ink border-r border-ash/15 h-full w-full"></div>
+      <div class="loom-col bg-ink border-r border-ash/15 h-full w-full"></div>
+      <div class="loom-col bg-ink h-full w-full"></div>
+    </div>
+
+    <!-- Top Preloader Metadata -->
+    <div class="relative z-10 flex justify-between items-center font-mono text-xs text-ash uppercase tracking-widest preloader-meta">
+      <span>FAMEWOVEN // IDENTITY SYSTEM 02</span>
+      <span id="preloader-status" class="text-weft">INITIALIZING WEAVE ENGINE...</span>
+    </div>
+
+    <!-- Center Stage: Geometric F Weave Symbol + Outfit Medium Wordmark -->
+    <div class="relative z-10 flex flex-col items-center justify-center my-auto">
+      <svg id="loom-logo-svg" class="w-16 h-16 mb-5" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <!-- Vertical Warp Threads -->
+        <line class="warp-line" x1="16" y1="8" x2="16" y2="56" stroke="#F1EFE8" stroke-width="6" stroke-dasharray="48" stroke-dashoffset="48" />
+        <line class="warp-line" x1="28" y1="8" x2="28" y2="56" stroke="#A7A59B" stroke-width="2" stroke-dasharray="48" stroke-dashoffset="48" />
+        <!-- Horizontal Weft Signal Bars forming the 'F' -->
+        <line class="weft-line" x1="13" y1="14" x2="52" y2="14" stroke="#D1F34A" stroke-width="6" stroke-dasharray="40" stroke-dashoffset="40" />
+        <line class="weft-line" x1="13" y1="32" x2="42" y2="32" stroke="#D1F34A" stroke-width="6" stroke-dasharray="30" stroke-dashoffset="30" />
+        <!-- Weave Intersection Node -->
+        <rect class="weave-node opacity-0" x="13" y="11" width="6" height="6" fill="#F1EFE8" />
+      </svg>
+      <div class="overflow-hidden">
+        <span id="loom-wordmark" class="block font-wordmark font-medium text-3xl lg:text-4xl text-chalk tracking-tight min-w-[160px] text-center translate-y-full">
+          famewoven
+        </span>
+      </div>
+      <p id="loom-sub" class="font-mono text-[11px] uppercase tracking-[0.2em] text-ash mt-2 opacity-0">
+        Influence, woven.
+      </p>
+    </div>
+
+    <!-- Bottom Preloader Telemetry Counter -->
+    <div class="relative z-10 flex justify-between items-end font-mono text-xs text-ash preloader-meta">
+      <span>VIRTUAL TALENT. HUMAN DIRECTION.</span>
+      <span id="preloader-counter" class="text-2xl lg:text-4xl font-bold text-weft">000%</span>
+    </div>
+  </div>
+
+  <!-- ===================== SECTION 00: TOP UTILITY SIGNAL BAR ===================== -->
+  <aside id="signal-bar" class="w-full bg-weft text-ink py-2 px-4 border-b border-ink/15 z-50 relative" aria-label="Pilot Notification">
+    <div class="max-w-container mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-xs font-mono uppercase tracking-wider">
+      <div class="flex items-center gap-2">
+        <span class="bg-ink text-weft px-2 py-0.5 font-bold">[PILOT COHORT 02 // OPEN]</span>
+        <span class="font-sans font-medium text-ink/90 hidden md:inline">Free Brand Character Concept & 360° Creator Campaign Audit — Built around your brief.</span>
+      </div>
+      <a href="#blueprint-bar" class="font-bold flex items-center gap-1 hover:underline text-ink">
+        Claim Your Audit Blueprint ↗
+      </a>
+    </div>
+  </aside>
+
+  <!-- ===================== SECTION 01: STICKY HEADER & MEGA-MENU ===================== -->
+  <header id="nav" class="sticky top-0 z-40 h-20 bg-ink/90 backdrop-blur-md border-b border-ash/15 transition-all duration-300">
+    <div class="max-w-container mx-auto h-full px-6 flex items-center justify-between">
+      <!-- Logo Lockup: Geometric F Weave Mark (48px) + Outfit Wordmark (min 160px) -->
+      <a href="index.html" class="flex items-center gap-3.5 group min-w-[160px]" aria-label="FAMEWOVEN Home">
+        <svg class="w-10 h-10 transition-transform group-hover:scale-105" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="16" y1="8" x2="16" y2="56" stroke="#F1EFE8" stroke-width="6" />
+          <line x1="28" y1="8" x2="28" y2="56" stroke="#A7A59B" stroke-width="2" />
+          <line x1="13" y1="14" x2="52" y2="14" stroke="#D1F34A" stroke-width="6" />
+          <line x1="13" y1="32" x2="42" y2="32" stroke="#D1F34A" stroke-width="6" />
+          <rect x="13" y="11" width="6" height="6" fill="#F1EFE8" />
+        </svg>
+        <span class="font-wordmark font-medium text-2xl text-chalk tracking-tight">famewoven</span>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-8 text-sm font-sans" aria-label="Main Navigation">
+        <a href="talent.html" class="text-ash hover:text-chalk transition-colors flex items-center gap-1.5">
+          Talent <span class="font-mono text-[10px] text-weft font-bold">100+</span>
+        </a>
+
+        <!-- Services with Mega-Menu Hover Container -->
+        <div class="relative group py-6">
+          <a href="services.html" class="text-ash hover:text-chalk transition-colors flex items-center gap-1">
+            Services <span class="text-xs">▾</span>
+          </a>
+          <!-- 2-Column Mega-Menu & Featured Promo Card -->
+          <div class="absolute top-full left-1/2 -translate-x-1/2 w-[720px] bg-ink-elevated border border-ash/25 p-6 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200 shadow-2xl grid grid-cols-12 gap-6">
+            <div class="col-span-4 border-r border-ash/15 pr-4">
+              <span class="font-mono text-[11px] text-weft uppercase tracking-wider block mb-3">01 // TALENT PILLARS</span>
+              <ul class="space-y-2 text-xs">
+                <li><a href="services.html#fw-01" class="text-chalk hover:text-weft block py-1 font-medium">AI Influencer Creation</a></li>
+                <li><a href="services.html#fw-02" class="text-chalk hover:text-weft block py-1 font-medium">Campaign Production</a></li>
+                <li><a href="services.html#fw-03" class="text-chalk hover:text-weft block py-1 font-medium">Virtual Talent Direction</a></li>
+                <li><a href="services.html#fw-04" class="text-chalk hover:text-weft block py-1 font-medium">Ongoing Continuity</a></li>
+              </ul>
+            </div>
+            <div class="col-span-4 border-r border-ash/15 pr-4">
+              <span class="font-mono text-[11px] text-ash uppercase tracking-wider block mb-3">02 // AMPLIFICATION</span>
+              <ul class="space-y-2 text-xs">
+                <li><a href="services.html#pf-05" class="text-ash hover:text-chalk block py-1">Synchronized 48h Waves</a></li>
+                <li><a href="services.html#pf-07" class="text-ash hover:text-chalk block py-1">10–100+ Creator Waves</a></li>
+                <li><a href="services.html#pf-08" class="text-ash hover:text-chalk block py-1">Executive Digital Twins</a></li>
+                <li><a href="services.html#pf-10" class="text-ash hover:text-chalk block py-1">KPI Performance Flights</a></li>
+              </ul>
+            </div>
+            <div class="col-span-4 bg-plum border border-weft/30 p-4 flex flex-col justify-between">
+              <div>
+                <span class="font-mono text-[10px] text-weft block mb-1">FEATURED CASE STUDY</span>
+                <h4 class="font-bold text-chalk text-sm mb-1">Meet Soraia Velt</h4>
+                <p class="text-[11px] text-ash leading-relaxed">Luxury AI brand ambassador generating 9.4% ER and 40+ deliverables.</p>
+              </div>
+              <a href="campaigns.html" class="font-mono text-xs text-weft hover:underline mt-3 block">View Case Study ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <a href="campaigns.html" class="text-ash hover:text-chalk transition-colors">Campaigns</a>
+        <a href="how-it-works.html" class="text-ash hover:text-chalk transition-colors">How It Works</a>
+        <a href="about.html" class="text-ash hover:text-chalk transition-colors">About</a>
+        <a href="contact.html" class="text-ash hover:text-chalk transition-colors">Contact</a>
+      </nav>
+
+      <!-- Primary Action CTA -->
+      <div class="flex items-center gap-4">
+        <a href="#contact" class="btn-weft px-5 py-3 text-sm font-bold tracking-tight rounded-none">
+          Build a Character ↗
+        </a>
+        <button id="mobile-menu-toggle" class="lg:hidden p-2 text-chalk hover:text-weft" aria-label="Toggle Mobile Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu Container -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-ink-elevated border-b border-ash/20 px-6 py-6 space-y-4 text-sm font-sans">
+      <a href="talent.html" class="block text-chalk py-1 font-medium">Virtual Talent (100+)</a>
+      <a href="services.html" class="block text-chalk py-1 font-medium">Services & Modules</a>
+      <a href="campaigns.html" class="block text-chalk py-1 font-medium">Campaigns & Feeds</a>
+      <a href="how-it-works.html" class="block text-chalk py-1 font-medium">How It Works (8 Steps)</a>
+      <a href="about.html" class="block text-chalk py-1 font-medium">About Agency</a>
+      <a href="contact.html" class="block text-weft py-1 font-bold">Contact & Scoped Brief</a>
+    </div>
+  </header>
+
+  <!-- ===================== SECTION 02: HERO SECTION ===================== -->
+  <section id="top" class="relative min-h-[calc(100vh-5rem)] bg-ink pt-12 pb-20 lg:py-24 overflow-hidden flex items-center">
+    <!-- Interactive 2D Canvas Weave Grid -->
+    <canvas id="weave-canvas" class="absolute inset-0 pointer-events-none" aria-hidden="true"></canvas>
+    
+    <!-- Atmospheric Plum Radial Glow behind right column -->
+    <div class="absolute right-0 top-1/4 w-[600px] h-[600px] bg-plum-radial pointer-events-none opacity-80" aria-hidden="true"></div>
+
+    <div class="max-w-container mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <!-- Left Column: Agency Proposition & Value Anchor -->
+      <div class="lg:col-span-7">
+        <div class="inline-flex items-center gap-2.5 font-mono text-xs uppercase tracking-widest text-weft mb-5">
+          <span class="w-2 h-2 bg-weft rounded-none pulse-weft"></span>
+          <span>01/THE AGENCY // AI INFLUENCER & CREATIVE AGENCY</span>
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight text-chalk leading-[0.98] mb-6">
+          A face for what comes next.
+          <span class="block text-weft mt-2">Virtual talent. Human direction.</span>
+        </h1>
+
+        <p class="text-lg lg:text-xl text-ash max-w-[58ch] leading-relaxed mb-8">
+          We create AI influencers and produce campaigns around them. From the first character to a 100+ creator launch wave, FAMEWOVEN gives brands a consistent virtual presence and measurable timeline velocity.
+        </p>
+
+        <!-- CTA Action Buttons -->
+        <div class="flex flex-wrap items-center gap-4 mb-4">
+          <a href="#contact" class="btn-weft px-7 py-4 text-base font-bold">
+            Let's Build Your Next Character ↗
+          </a>
+          <a href="talent.html" class="btn-ghost px-7 py-4 text-base font-medium">
+            Explore Virtual Talent Roster
+          </a>
+        </div>
+
+        <!-- Value Anchor Note -->
+        <p class="font-mono text-xs text-ash/90 mb-10">
+          ✦ Free 30-min character & campaign architecture call (Worth $500) · Zero-risk escrow on creator waves
+        </p>
+
+        <!-- 3-Item Metadata Metric Strip -->
+        <div class="grid grid-cols-3 gap-4 pt-8 border-t border-ash/20 font-mono text-xs">
+          <div>
+            <span class="text-weft font-bold block text-sm">01</span>
+            <span class="text-chalk font-medium">4 Core Pillars</span>
+            <span class="text-ash block text-[11px]">Character to Feed</span>
+          </div>
+          <div>
+            <span class="text-weft font-bold block text-sm">02</span>
+            <span class="text-chalk font-medium">14 Formats</span>
+            <span class="text-ash block text-[11px]">X, IG & TikTok Waves</span>
+          </div>
+          <div>
+            <span class="text-weft font-bold block text-sm">03</span>
+            <span class="text-chalk font-medium">1 → 100+ Scale</span>
+            <span class="text-ash block text-[11px]">Guaranteed Reach</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: 2D Layered Editorial Dossier Deck -->
+      <div class="lg:col-span-5">
+        <div id="hero-deck" class="relative w-full max-w-[460px] mx-auto bg-ink-elevated border border-ash/25 p-6 fw-card">
+          <!-- Slide Tabs Header -->
+          <div class="flex items-center justify-between border-b border-ash/20 pb-3 mb-5 font-mono text-xs">
+            <button class="deck-tab text-weft font-bold transition-colors" data-tab="0">01 // SORAIA VELT</button>
+            <button class="deck-tab text-ash transition-colors" data-tab="1">02 // HEYGEN LAUNCH</button>
+            <button class="deck-tab text-ash transition-colors" data-tab="2">03 // CONTINUITY</button>
+          </div>
+
+          <!-- Card Content Wrapper -->
+          <div class="relative min-h-[460px]">
+            <!-- Card 01: Soraia Velt Portrait -->
+            <article class="deck-card absolute inset-0 transition-all duration-500 flex flex-col justify-between" data-slide="0">
+              <div class="portrait-frame w-full h-[320px] mb-4 border border-ash/20 relative" data-inspect>
+                <img src="assets/personas/soraia_velt.jpg" alt="Soraia Velt — Virtual Character Concept" class="w-full h-full object-cover object-top" />
+                <span class="absolute top-2.5 left-2.5 bg-ink/90 text-weft font-mono text-[10px] px-2 py-0.5 border border-weft/30">
+                  AI-GENERATED CHARACTER / CONCEPT
+                </span>
+                <span class="absolute bottom-2.5 right-2.5 bg-plum/90 text-chalk font-mono text-[10px] px-2 py-0.5">
+                  WEFT-01 // READY FOR CASTING
+                </span>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-chalk mb-1">Soraia Velt — Brand Persona</h3>
+                <p class="text-xs text-ash leading-relaxed">
+                  "Presence first. Defined light. Natural texture. 100% LoRA identity lock across 40+ campaign deliverables."
+                </p>
+                <div class="mt-3 pt-3 border-t border-ash/15 flex justify-between font-mono text-xs text-weft">
+                  <span>9.4% ER Benchmark</span>
+                  <span class="text-chalk">4K Stills + 9:16 Vertical Video</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 02: HeyGen Video Launch -->
+            <article class="deck-card absolute inset-0 transition-all duration-500 opacity-0 pointer-events-none translate-y-4 flex flex-col justify-between" data-slide="1">
+              <div class="portrait-frame w-full h-[320px] mb-4 border border-ash/20 relative flex items-center justify-center bg-plum" data-inspect>
+                <img src="assets/personas/kaelen_vance.jpg" alt="HeyGen x FAMEWOVEN Launch Campaign" class="w-full h-full object-cover object-center opacity-85" />
+                <div class="absolute inset-0 bg-ink/40 flex items-center justify-center">
+                  <div class="w-14 h-14 bg-weft rounded-none flex items-center justify-center cursor-pointer hover:scale-105 transition-transform">
+                    <svg class="w-6 h-6 text-ink ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                  </div>
+                </div>
+                <span class="absolute top-2.5 left-2.5 bg-ink text-chalk font-mono text-[10px] px-2 py-0.5 border border-ash/30">
+                  CAMPAIGN 02 // HEYGEN × SORAIA
+                </span>
+                <span class="absolute bottom-2.5 left-2.5 bg-weft text-ink font-mono text-[10px] px-2 py-0.5 font-bold">
+                  VERIFIED PARTNER ✓
+                </span>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-chalk mb-1">HeyGen Video Model Launch</h3>
+                <p class="text-xs text-ash leading-relaxed">
+                  "Full-funnel virtual ambassador launch paired with 35 AI & tech creators in a 48-hour synchronized wave."
+                </p>
+                <div class="mt-3 pt-3 border-t border-ash/15 flex justify-between font-mono text-xs text-weft">
+                  <span>412K Views</span>
+                  <span class="text-chalk">3.8x Target ROAS</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 03: Continuity Comparison -->
+            <article class="deck-card absolute inset-0 transition-all duration-500 opacity-0 pointer-events-none translate-y-4 flex flex-col justify-between" data-slide="2">
+              <div class="w-full h-[320px] mb-4 border border-ash/20 bg-ink p-4 flex flex-col justify-between">
+                <span class="font-mono text-[11px] text-weft uppercase tracking-wider">03/CONTINUITY // 500+ CREATORS</span>
+                <div class="space-y-3 my-auto">
+                  <div class="p-2.5 bg-ink-elevated border-l-2 border-ash/40">
+                    <span class="text-xs font-bold text-ash block">Traditional Waste Spend:</span>
+                    <span class="text-[11px] text-ash/80">Drifting AI faces · Generic scripts · Scattered posts</span>
+                  </div>
+                  <div class="p-2.5 bg-plum border-l-2 border-weft">
+                    <span class="text-xs font-bold text-weft block">Win with FAMEWOVEN:</span>
+                    <span class="text-[11px] text-chalk">Locked reference system · Human art review · 20+ posts in 48h</span>
+                  </div>
+                </div>
+                <div class="font-mono text-[11px] text-ash flex justify-between border-t border-ash/15 pt-2">
+                  <span>Same Budget. Opposite Results.</span>
+                  <span class="text-weft">@famewoven</span>
+                </div>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-chalk mb-1">Always-On Continuity Engine</h3>
+                <p class="text-xs text-ash leading-relaxed">
+                  "Bespoke virtual intellectual property paired with ongoing creator retainers that compound timeline authority month after month."
+                </p>
+                <div class="mt-3 pt-3 border-t border-ash/15 flex justify-between font-mono text-xs text-weft">
+                  <span>14 Formats</span>
+                  <span class="text-chalk">Zero-Risk Escrow</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Bottom Progress Bars (5.5s Cycle) -->
+          <div class="grid grid-cols-3 gap-2 mt-5 pt-3 border-t border-ash/15">
+            <div class="h-1 bg-ash/20 w-full overflow-hidden">
+              <div class="deck-progress h-full bg-weft w-0"></div>
+            </div>
+            <div class="h-1 bg-ash/20 w-full overflow-hidden">
+              <div class="deck-progress h-full bg-weft w-0"></div>
+            </div>
+            <div class="h-1 bg-ash/20 w-full overflow-hidden">
+              <div class="deck-progress h-full bg-weft w-0"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 03: INSTANT BLUEPRINT & TRUST STRIP ===================== -->
+  <section id="blueprint-bar" class="w-full bg-ink-elevated border-y border-ash/20 py-10 relative">
+    <div class="max-w-container mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-8">
+        <div class="lg:col-span-5">
+          <span class="font-mono text-xs text-weft uppercase tracking-wider block mb-1.5">// INSTANT CREATIVE DIRECTION PREVIEW</span>
+          <h3 class="text-xl lg:text-2xl font-bold text-chalk">What would a FAMEWOVEN character look like for your brand?</h3>
+        </div>
+        <form class="lg:col-span-7 flex flex-col sm:flex-row gap-3">
+          <input type="url" id="audit-url" placeholder="https://yourbrand.com" class="flex-1 bg-ink border border-ash/30 text-chalk px-4 py-3.5 text-sm font-mono focus:border-weft focus:outline-none" required />
+          <select id="audit-niche" class="bg-ink border border-ash/30 text-chalk px-4 py-3.5 text-sm font-mono focus:border-weft focus:outline-none">
+            <option value="AI & SaaS">AI & SaaS</option>
+            <option value="Fashion & Apparel">Fashion & Apparel</option>
+            <option value="Beauty & Skincare">Beauty & Skincare</option>
+            <option value="Consumer Tech">Consumer Tech</option>
+            <option value="Developer Tools & Web3">Developer Tools & Web3</option>
+          </select>
+          <button type="submit" id="audit-submit" class="btn-weft px-6 py-3.5 text-sm font-bold whitespace-nowrap">
+            Generate Blueprint ↗
+          </button>
+        </form>
+      </div>
+
+      <!-- Trust Strip: Monochrome Logos -->
+      <div class="pt-8 border-t border-ash/15 flex flex-wrap items-center justify-between gap-8">
+        <span class="font-mono text-xs text-ash uppercase tracking-wider">TRUSTED BY AI & GLOBAL TEAMS SHIPPING AT SCALE:</span>
+        <div class="flex flex-wrap items-center gap-8 lg:gap-12 opacity-80 hover:opacity-100 transition-opacity">
+          <img src="assets/logos/heygen.svg" alt="HeyGen" class="h-6 object-contain" />
+          <img src="assets/logos/higgsfield.svg" alt="Higgsfield" class="h-6 object-contain" />
+          <img src="assets/logos/byteplus.svg" alt="BytePlus" class="h-6 object-contain" />
+          <img src="assets/logos/omneky.svg" alt="Omneky" class="h-6 object-contain" />
+        </div>
+        <div class="flex items-center gap-6 font-mono text-xs text-ash/60">
+          <span>FORBES</span>
+          <span>WIRED</span>
+          <span>FINANCIAL TIMES</span>
+          <span>VOGUE</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 04: EDITORIAL WEAVE MANIFESTO (LIGHT SURFACE) ===================== -->
+  <section id="manifesto" class="bg-chalk text-ink py-24 lg:py-32 border-b border-ink/15 weave-bg-grid-chalk">
+    <div class="max-w-container mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-16 border-b border-ink/15 items-start">
+        <div class="lg:col-span-4">
+          <span class="font-mono text-xs text-ink uppercase tracking-widest block font-bold">02/PRIMARY IDENTITY // THE CRAFT</span>
+          <span class="font-mono text-[11px] text-ink/60 mt-1 block">Virtual Human & Creative Architecture</span>
+        </div>
+        <div class="lg:col-span-8">
+          <h2 class="text-4xl lg:text-6xl font-bold tracking-tight text-ink leading-[1.02] mb-6">
+            Fame is the outcome. <span class="text-ink/60 block">The weave is the craft.</span>
+          </h2>
+          <p class="text-lg text-ink/80 max-w-[64ch] leading-relaxed">
+            Most AI imagery looks synthetic because it lacks a point of view. Most influencer campaigns fail because they rent fragmented attention without continuity. FAMEWOVEN solves both: designing bespoke virtual talent with defined light, natural skin texture, and locked visual reference systems—then orchestrating full-scale campaigns across virtual and human creator networks.
+          </p>
+        </div>
+      </div>
+
+      <!-- 3-Stage Framework Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-ink/15 pt-12">
+        <div class="p-6 md:px-8 md:first:pl-0">
+          <span class="inline-block bg-ink text-weft font-mono text-xs px-2.5 py-1 mb-4 font-bold">STAGE 01 // A CHARACTER</span>
+          <h3 class="text-2xl font-bold text-ink mb-3">Presence First</h3>
+          <p class="text-sm text-ink/75 leading-relaxed">
+            Bespoke facial geometry, personality bible, wardrobe rules, and custom LoRA reference locking so your brand character is unmistakable in every frame.
+          </p>
+        </div>
+        <div class="p-6 md:px-8">
+          <span class="inline-block bg-ink text-weft font-mono text-xs px-2.5 py-1 mb-4 font-bold">STAGE 02 // A CAMPAIGN</span>
+          <h3 class="text-2xl font-bold text-ink mb-3">Built to Be Seen</h3>
+          <p class="text-sm text-ink/75 leading-relaxed">
+            Editorial stills, 9:16 vertical motion films, and synchronized 10 to 100+ creator launch waves engineered to dominate feeds within a 48-hour window.
+          </p>
+        </div>
+        <div class="p-6 md:px-8 md:last:pr-0">
+          <span class="inline-block bg-ink text-weft font-mono text-xs px-2.5 py-1 mb-4 font-bold">STAGE 03 // CONTINUITY</span>
+          <h3 class="text-2xl font-bold text-ink mb-3">Recognisable Feed</h3>
+          <p class="text-sm text-ink/75 leading-relaxed">
+            Repeatable creative direction, seasonal wardrobe drops, and ongoing creator partnerships that compound brand equity month after month.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 05: CORE PILLARS — WHAT WE MAKE ===================== -->
+  <section id="what-we-make" class="bg-ink text-chalk py-24 lg:py-32 border-b border-ash/15">
+    <div class="max-w-container mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <!-- Sticky Left Column -->
+      <div class="lg:col-span-4 lg:sticky lg:top-28 self-start">
+        <span class="font-mono text-xs text-weft uppercase tracking-wider block mb-2">08/WHAT WE MAKE</span>
+        <h2 class="text-3xl lg:text-5xl font-bold tracking-tight text-chalk leading-[1.05] mb-4">
+          A character. A campaign. <span class="text-ash block">Continuity.</span>
+        </h2>
+        <p class="text-sm text-ash leading-relaxed mb-6">
+          Four foundational creative disciplines, backed by our Digital Twin and AI Model Stock infrastructure.
+        </p>
+        <a href="#contact" class="btn-weft px-5 py-3 text-xs font-bold">
+          Commission a Pillar ↗
+        </a>
+      </div>
+
+      <!-- Right 4-Row Interactive Dossier Stack -->
+      <div class="lg:col-span-8 space-y-6">
+        <!-- Pillar 01 -->
+        <article class="fw-card bg-ink-elevated border border-ash/20 p-8 hover:border-weft/60 transition-colors">
+          <div class="flex justify-between items-start mb-4">
+            <span class="font-mono text-2xl font-bold text-weft">01</span>
+            <span class="font-mono text-xs text-ash">PILLAR // IDENTITY</span>
+          </div>
+          <h3 class="text-2xl font-bold text-chalk mb-2">AI influencer creation</h3>
+          <p class="text-base text-ash mb-4">"Character design, personality, and a visual reference system."</p>
+          <div class="flex flex-wrap gap-2 pt-4 border-t border-ash/15 font-mono text-[11px] text-chalk">
+            <span class="bg-ink px-2.5 py-1 border border-ash/20">Custom LoRA Training</span>
+            <span class="bg-ink px-2.5 py-1 border border-ash/20">360° Facial Turnaround</span>
+            <span class="bg-ink px-2.5 py-1 border border-ash/20">Voice Bible</span>
+            <span class="bg-ink px-2.5 py-1 border border-ash/20">Executive Digital Twins</span>
+          </div>
+        </article>
+
+        <!-- Pillar 02 -->
+        <article class="fw-card bg-ink-elevated border border-ash/20 p-8 hover:border-weft/60 transition-colors">
+          <div class="flex justify-between items-start mb-4">
+            <span class="font-mono text-2xl font-bold text-weft">02</span>
+            <span class="font-mono text-xs text-ash">PILLAR // PRODUCTION</span>
+          </div>
+          <h3 class="text-2xl font-bold text-chalk mb-2">Campaign production</h3>
+          <p class="text-base text-ash mb-4">"Images and short-form films built around the brand brief."</p>
+          <div class="flex flex-wrap gap-2 pt-4 border-t border-ash/15 font-mono text-[11px] text-chalk">
+            <span class="bg-ink px-2.5 py-1 border border-ash/20">4K Editorial Stills</span>
+            <span class="bg-ink px-2.5 py-1 border border-ash/20">9:16 Vertical Reels/TikToks</span>
+            <span class="bg-ink px-2.5 py-1 border border-ash/20">Mocap & Lip-Sync</span>
+            <span class="bg-ink px-2.5 py-1 border border-ash/20">Product Interaction</span>
+          </div>
+        </article>
+
+        <!-- Pillar 03 -->
+        <article class="fw-card bg-ink-elevated border border-ash/20 p-8 hover:border-weft/60 transition-colors">
+          <div class="flex justify-between items-start mb-4">
+            <span class="font-mono text-2xl font-bold text-weft">03</span>
+            <span class="font-mono text-xs text-ash">PILLAR // CASTING</span>
+          </div>
+          <h3 class="text-2xl font-bold text-chalk mb-2">Virtual talent direction</h3>
+          <p class="text-base text-ash mb-4">"Consistent casting, wardrobe, locations, and performance."</p>
+          <div class="flex flex-wrap gap-2 pt-4 border-t border-ash/15 font-mono text-[11px] text-chalk">
+            <span class="bg-ink px-2.5 py-1 border border-ash/20">100+ Stock Avatar Roster</span>
+            <span class="bg-ink px-2.5 py-1 border border-ash/20">Digital Wardrobe Styling</span>
+            <span class="bg-ink px-2.5 py-1 border border-ash/20">Global Locations</span>
+            <span class="bg-ink px-2.5 py-1 border border-ash/20">Human Art Review</span>
+          </div>
+        </article>
+
+        <!-- Pillar 04 -->
+        <article class="fw-card bg-ink-elevated border border-ash/20 p-8 hover:border-weft/60 transition-colors">
+          <div class="flex justify-between items-start mb-4">
+            <span class="font-mono text-2xl font-bold text-weft">04</span>
+            <span class="font-mono text-xs text-ash">PILLAR // CONTINUITY</span>
+          </div>
+          <h3 class="text-2xl font-bold text-chalk mb-2">Ongoing content</h3>
+          <p class="text-base text-ash mb-4">"A repeatable creative direction for the next release."</p>
+          <div class="flex flex-wrap gap-2 pt-4 border-t border-ash/15 font-mono text-[11px] text-chalk">
+            <span class="bg-ink px-2.5 py-1 border border-ash/20">Monthly Feed Grids</span>
+            <span class="bg-ink px-2.5 py-1 border border-ash/20">Channel-Adapted Crops</span>
+            <span class="bg-ink px-2.5 py-1 border border-ash/20">FTC Disclosure Tagging</span>
+            <span class="bg-ink px-2.5 py-1 border border-ash/20">Iterative A/B Creative</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 06: VIRTUAL TALENT ROSTER ===================== -->
+  <section id="talent-roster" class="bg-ink text-chalk py-24 lg:py-32 border-b border-ash/15">
+    <div class="max-w-container mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
+        <div>
+          <span class="font-mono text-xs text-weft uppercase tracking-wider block mb-2">07/PORTRAIT DIRECTION // VIRTUAL TALENT ROSTER</span>
+          <h2 class="text-3xl lg:text-5xl font-bold tracking-tight text-chalk">
+            Presence first. <span class="text-ash">Meet your next brand character.</span>
+          </h2>
+        </div>
+        <a href="talent.html" class="font-mono text-xs text-weft hover:underline flex items-center gap-1 font-bold">
+          View All 100+ Roster Personas ↗
+        </a>
+      </div>
+
+      <!-- 6-Persona Portrait Grid (4:5 Ratio) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Persona 01: Soraia Velt -->
+        <article class="fw-card bg-ink-elevated border border-ash/20 p-5">
+          <div class="portrait-frame w-full aspect-[4/5] mb-4 relative" data-inspect>
+            <img src="assets/personas/soraia_velt.jpg" alt="Soraia Velt" class="w-full h-full object-cover object-top" />
+            <span class="absolute top-2.5 left-2.5 bg-ink/90 text-weft font-mono text-[9px] px-2 py-0.5 border border-weft/30">
+              AI-GENERATED CHARACTER / CONCEPT
+            </span>
+            <span class="absolute bottom-2.5 right-2.5 bg-plum text-chalk font-mono text-[10px] px-2 py-0.5 font-bold">
+              WEFT-01
+            </span>
+          </div>
+          <div class="flex justify-between items-start mb-2">
+            <div>
+              <h3 class="text-xl font-bold text-chalk">Soraia Velt</h3>
+              <span class="text-xs text-ash">Luxury Minimalist & Creative Director</span>
+            </div>
+            <a href="#contact" class="font-mono text-xs text-weft hover:underline font-bold">Cast ↗</a>
+          </div>
+          <p class="text-xs text-ash/80 mb-3">Sculpted key light, warm skin micro-texture, Paris & Tokyo settings.</p>
+          <div class="pt-3 border-t border-ash/15 flex justify-between font-mono text-[11px] text-chalk">
+            <span>4.8% Avg CTR</span>
+            <span class="text-weft">38 Shoots Completed</span>
+          </div>
+        </article>
+
+        <!-- Persona 02: Kaelen Vance -->
+        <article class="fw-card bg-ink-elevated border border-ash/20 p-5">
+          <div class="portrait-frame w-full aspect-[4/5] mb-4 relative" data-inspect>
+            <img src="assets/personas/kaelen_vance.jpg" alt="Kaelen Vance" class="w-full h-full object-cover object-center" />
+            <span class="absolute top-2.5 left-2.5 bg-ink/90 text-weft font-mono text-[9px] px-2 py-0.5 border border-weft/30">
+              AI-GENERATED CHARACTER / CONCEPT
+            </span>
+            <span class="absolute bottom-2.5 right-2.5 bg-plum text-chalk font-mono text-[10px] px-2 py-0.5 font-bold">
+              INK-04
+            </span>
+          </div>
+          <div class="flex justify-between items-start mb-2">
+            <div>
+              <h3 class="text-xl font-bold text-chalk">Kaelen Vance</h3>
+              <span class="text-xs text-ash">AI Architect & Developer Advocate</span>
+            </div>
+            <a href="#contact" class="font-mono text-xs text-weft hover:underline font-bold">Cast ↗</a>
+          </div>
+          <p class="text-xs text-ash/80 mb-3">High-contrast studio rim light, product demos & tech keynotes.</p>
+          <div class="pt-3 border-t border-ash/15 flex justify-between font-mono text-[11px] text-chalk">
+            <span>6.2% ER Benchmark</span>
+            <span class="text-weft">Lip-Sync & Video Ready</span>
+          </div>
+        </article>
+
+        <!-- Persona 03: Naia Kells -->
+        <article class="fw-card bg-ink-elevated border border-ash/20 p-5">
+          <div class="portrait-frame w-full aspect-[4/5] mb-4 relative" data-inspect>
+            <img src="assets/personas/naia_kells.jpg" alt="Naia Kells" class="w-full h-full object-cover object-center" />
+            <span class="absolute top-2.5 left-2.5 bg-ink/90 text-weft font-mono text-[9px] px-2 py-0.5 border border-weft/30">
+              AI-GENERATED CHARACTER / CONCEPT
+            </span>
+            <span class="absolute bottom-2.5 right-2.5 bg-plum text-chalk font-mono text-[10px] px-2 py-0.5 font-bold">
+              CHALK-09
+            </span>
+          </div>
+          <div class="flex justify-between items-start mb-2">
+            <div>
+              <h3 class="text-xl font-bold text-chalk">Naia Kells</h3>
+              <span class="text-xs text-ash">Clean Skincare & Derm-Aesthetic Muse</span>
+            </div>
+            <a href="#contact" class="font-mono text-xs text-weft hover:underline font-bold">Cast ↗</a>
+          </div>
+          <p class="text-xs text-ash/80 mb-3">Diffused daylight macro pore fidelity, clean beauty and wellness.</p>
+          <div class="pt-3 border-t border-ash/15 flex justify-between font-mono text-[11px] text-chalk">
+            <span>4.2x Ad ROAS</span>
+            <span class="text-weft">UGC & Studio Macro</span>
+          </div>
+        </article>
+
+        <!-- Persona 04: Mikail Ash -->
+        <article class="fw-card bg-ink-elevated border border-ash/20 p-5">
+          <div class="portrait-frame w-full aspect-[4/5] mb-4 relative" data-inspect>
+            <img src="assets/personas/mikail_ash.svg" alt="Mikail Ash" class="w-full h-full object-cover object-center" />
+            <span class="absolute top-2.5 left-2.5 bg-ink/90 text-weft font-mono text-[9px] px-2 py-0.5 border border-weft/30">
+              AI-GENERATED CHARACTER / CONCEPT
+            </span>
+            <span class="absolute bottom-2.5 right-2.5 bg-plum text-chalk font-mono text-[10px] px-2 py-0.5 font-bold">
+              PLUM-12
+            </span>
+          </div>
+          <div class="flex justify-between items-start mb-2">
+            <div>
+              <h3 class="text-xl font-bold text-chalk">Mikail Ash</h3>
+              <span class="text-xs text-ash">Avant-Garde Sportswear & Audio Culture</span>
+            </div>
+            <a href="#contact" class="font-mono text-xs text-weft hover:underline font-bold">Cast ↗</a>
+          </div>
+          <p class="text-xs text-ash/80 mb-3">Nocturnal direct flash & aubergine shadows, motion capture reels.</p>
+          <div class="pt-3 border-t border-ash/15 flex justify-between font-mono text-[11px] text-chalk">
+            <span>High-Contrast Flash</span>
+            <span class="text-weft">Berlin Culture Scene</span>
+          </div>
+        </article>
+
+        <!-- Persona 05: Elena Rostova -->
+        <article class="fw-card bg-ink-elevated border border-ash/20 p-5">
+          <div class="portrait-frame w-full aspect-[4/5] mb-4 relative" data-inspect>
+            <img src="assets/personas/elena_rostova.svg" alt="Elena Rostova-AI" class="w-full h-full object-cover object-center" />
+            <span class="absolute top-2.5 left-2.5 bg-ink/90 text-weft font-mono text-[9px] px-2 py-0.5 border border-weft/30">
+              AI-GENERATED CHARACTER / CONCEPT
+            </span>
+            <span class="absolute bottom-2.5 right-2.5 bg-plum text-chalk font-mono text-[10px] px-2 py-0.5 font-bold">
+              WEFT-07
+            </span>
+          </div>
+          <div class="flex justify-between items-start mb-2">
+            <div>
+              <h3 class="text-xl font-bold text-chalk">Elena Rostova-AI</h3>
+              <span class="text-xs text-ash">Cloud Infrastructure & Enterprise Host</span>
+            </div>
+            <a href="#contact" class="font-mono text-xs text-weft hover:underline font-bold">Cast ↗</a>
+          </div>
+          <p class="text-xs text-ash/80 mb-3">Clean architectural daylight, multilingual enterprise B2B keynote host.</p>
+          <div class="pt-3 border-t border-ash/15 flex justify-between font-mono text-[11px] text-chalk">
+            <span>9.8% ER Benchmark</span>
+            <span class="text-weft">14 Languages Native</span>
+          </div>
+        </article>
+
+        <!-- Persona 06: Dahlia Wren -->
+        <article class="fw-card bg-ink-elevated border border-ash/20 p-5">
+          <div class="portrait-frame w-full aspect-[4/5] mb-4 relative" data-inspect>
+            <img src="assets/personas/dahlia_wren.svg" alt="Dahlia Wren" class="w-full h-full object-cover object-center" />
+            <span class="absolute top-2.5 left-2.5 bg-ink/90 text-weft font-mono text-[9px] px-2 py-0.5 border border-weft/30">
+              AI-GENERATED CHARACTER / CONCEPT
+            </span>
+            <span class="absolute bottom-2.5 right-2.5 bg-plum text-chalk font-mono text-[10px] px-2 py-0.5 font-bold">
+              CHALK-15
+            </span>
+          </div>
+          <div class="flex justify-between items-start mb-2">
+            <div>
+              <h3 class="text-xl font-bold text-chalk">Dahlia Wren</h3>
+              <span class="text-xs text-ash">Sustainable Resort & Lifestyle Muse</span>
+            </div>
+            <a href="#contact" class="font-mono text-xs text-weft hover:underline font-bold">Cast ↗</a>
+          </div>
+          <p class="text-xs text-ash/80 mb-3">Golden-hour directional sunlight, Milan & Barcelona architectural sets.</p>
+          <div class="pt-3 border-t border-ash/15 flex justify-between font-mono text-[11px] text-chalk">
+            <span>Golden-Hour Light</span>
+            <span class="text-weft">8K Print Ready</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 07: FULL-STACK 18 CAPABILITIES MATRIX ===================== -->
+  <section id="services" class="bg-ink-elevated text-chalk py-24 lg:py-32 border-b border-ash/15">
+    <div class="max-w-container mx-auto px-6">
+      <div class="max-w-[760px] mb-12">
+        <span class="font-mono text-xs text-weft uppercase tracking-wider block mb-2">// FULL-STACK CAPABILITIES</span>
+        <h2 class="text-3xl lg:text-5xl font-bold tracking-tight text-chalk leading-tight mb-4">
+          Every asset your brand needs. Every format the timeline rewards.
+          <span class="text-ash block">All woven through one team.</span>
+        </h2>
+        <p class="text-sm text-ash leading-relaxed">
+          Commission a standalone virtual character, produce a seasonal campaign film, or stack multi-creator X and social amplification. Click any service to start a brief with it pre-selected.
+        </p>
+      </div>
+
+      <!-- Capability Category Filter Chips -->
+      <div class="flex flex-wrap gap-2.5 mb-10" role="tablist">
+        <button class="px-4 py-2 text-xs font-mono border border-ash/30 bg-weft text-ink font-bold transition-colors" data-filter="all">All Capabilities [18]</button>
+        <button class="px-4 py-2 text-xs font-mono border border-ash/30 text-ash hover:text-chalk transition-colors" data-filter="virtual">Virtual Talent & Production [4]</button>
+        <button class="px-4 py-2 text-xs font-mono border border-ash/30 text-ash hover:text-chalk transition-colors" data-filter="content">Content Formats [4]</button>
+        <button class="px-4 py-2 text-xs font-mono border border-ash/30 text-ash hover:text-chalk transition-colors" data-filter="campaigns">Campaign Execution [6]</button>
+        <button class="px-4 py-2 text-xs font-mono border border-ash/30 text-ash hover:text-chalk transition-colors" data-filter="growth">Partnerships & Growth [4]</button>
+      </div>
+
+      <!-- 18-Service Capability Dynamic Grid (Populated via script.js) -->
+      <div id="services-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 08: INTERACTIVE CONSOLES (SIMULATOR & FLIGHT) ===================== -->
+  <section id="simulators" class="bg-ink text-chalk py-24 lg:py-32 border-b border-ash/15">
+    <div class="max-w-container mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-10">
+      <!-- Left 7 Columns: Module 08A — Live Casting Simulator -->
+      <div class="lg:col-span-7">
+        <div class="mb-6">
+          <span class="font-mono text-xs text-weft uppercase tracking-wider block mb-1">LIVE CASTING & VETTING SIMULATOR // INTERACTIVE SHORTLIST</span>
+          <h3 class="text-2xl font-bold text-chalk">Build Your Hybrid Talent Shortlist</h3>
+          <p class="text-xs text-ash mt-1">Click cards to mix FAMEWOVEN virtual characters with vetted human tech & lifestyle creators.</p>
+        </div>
+
+        <!-- Filter tabs for simulator -->
+        <div class="flex gap-2 mb-4 text-xs font-mono">
+          <button class="px-3 py-1 bg-weft text-ink font-bold" data-sim-filter="all">All [4]</button>
+          <button class="px-3 py-1 bg-ink-elevated text-ash border border-ash/20" data-sim-filter="virtual">Virtual Characters [2]</button>
+          <button class="px-3 py-1 bg-ink-elevated text-ash border border-ash/20" data-sim-filter="ai">AI & DevTools [1]</button>
+          <button class="px-3 py-1 bg-ink-elevated text-ash border border-ash/20" data-sim-filter="saas">B2B SaaS [1]</button>
+        </div>
+
+        <!-- Selectable 2x2 Grid -->
+        <div id="simulator-cards" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <!-- Dynamically populated & interactive -->
+        </div>
+
+        <!-- Live Telemetry Dashboard -->
+        <div class="bg-plum border border-weft/40 p-5 mt-6 fw-card">
+          <div class="grid grid-cols-3 gap-4 mb-4 text-center">
+            <div class="border-r border-ash/20">
+              <span class="text-[11px] font-mono text-ash block uppercase">Selected Talent</span>
+              <span id="sim-count" class="text-2xl font-mono font-bold text-chalk">2</span>
+            </div>
+            <div class="border-r border-ash/20">
+              <span class="text-[11px] font-mono text-ash block uppercase">Combined Reach</span>
+              <span id="sim-reach" class="text-2xl font-mono font-bold text-weft">620K+</span>
+            </div>
+            <div>
+              <span class="text-[11px] font-mono text-ash block uppercase">Est. Package</span>
+              <span id="sim-cost" class="text-2xl font-mono font-bold text-chalk">$4,450</span>
+            </div>
+          </div>
+          <div class="pt-3 border-t border-ash/20 flex flex-col sm:flex-row justify-between items-center gap-3">
+            <span class="font-mono text-xs text-ash/90 text-center sm:text-left">
+              ✦ $0 due upfront — Pay after asset approval & verified post via zero-risk escrow.
+            </span>
+            <button id="sim-book-btn" class="btn-weft px-5 py-2.5 text-xs font-bold whitespace-nowrap">
+              Lock Shortlist & Simulate Booking ↗
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right 5 Columns: Module 08B — End-to-End Weave Flight Console -->
+      <div class="lg:col-span-5 flex flex-col justify-between bg-ink-elevated border border-ash/25 p-6 fw-card">
+        <div>
+          <!-- Console Top Bar -->
+          <div class="flex justify-between items-center border-b border-ash/20 pb-3 mb-4 font-mono text-xs">
+            <span id="flight-stage-indicator" class="text-weft font-bold">STAGE 01/05</span>
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 bg-weft rounded-none pulse-weft"></span>
+              <span class="text-ash text-[10px]">TURNKEY LIFECYCLE</span>
+              <button id="flight-pause-btn" class="text-[10px] text-ash hover:text-chalk ml-2">PAUSE ❚❚</button>
+            </div>
+          </div>
+
+          <!-- 5 Stage Switcher Pills -->
+          <div class="grid grid-cols-5 gap-1.5 mb-5 font-mono text-[10px] text-center">
+            <button class="py-1 bg-weft text-ink font-bold" data-flight-stage="0">01 Brief</button>
+            <button class="py-1 bg-ink text-ash" data-flight-stage="1">02 Model</button>
+            <button class="py-1 bg-ink text-ash" data-flight-stage="2">03 Shoot</button>
+            <button class="py-1 bg-ink text-ash" data-flight-stage="3">04 Wave</button>
+            <button class="py-1 bg-ink text-ash" data-flight-stage="4">05 Report</button>
+          </div>
+
+          <!-- Active Stage Content Body -->
+          <div class="space-y-4">
+            <div>
+              <span class="font-mono text-[11px] text-ash block uppercase mb-1">CURRENT MILESTONE</span>
+              <h4 id="flight-title" class="text-lg font-bold text-chalk">Campaign Blueprint & Identity Architecture</h4>
+            </div>
+
+            <div class="p-3 bg-ink border border-ash/20">
+              <span class="font-mono text-[10px] text-weft block mb-1">TARGET STATUS LOCKED</span>
+              <p id="flight-goal" class="text-xs text-chalk">Bespoke Brand Character + Multi-Creator Launch</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 font-mono text-xs">
+              <div class="p-2.5 bg-ink border border-ash/20">
+                <span class="text-[10px] text-ash block">OUTPUT METRIC</span>
+                <span id="flight-views" class="text-chalk font-bold">1,500,000+ views</span>
+              </div>
+              <div class="p-2.5 bg-ink border border-ash/20">
+                <span class="text-[10px] text-ash block">CHANNELS</span>
+                <span id="flight-channels" class="text-weft font-bold">IG + X + TikTok</span>
+              </div>
+            </div>
+
+            <div class="p-3 bg-plum border border-weft/30">
+              <span class="font-mono text-[10px] text-weft block mb-1">STAGE-GATE DELIVERABLE</span>
+              <p id="flight-deliverable" class="text-xs text-chalk leading-relaxed">
+                "Full character reference bible & campaign strategy blueprint signed off before spending $1."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Next Milestone Action Button -->
+        <div class="pt-5 mt-5 border-t border-ash/15">
+          <button id="flight-next-btn" class="w-full btn-weft py-3 text-xs font-bold">
+            Simulate Next Milestone →
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 09: CAMPAIGN SCALE SLIDER ===================== -->
+  <section id="campaigns" class="bg-ink-elevated text-chalk py-24 lg:py-32 border-b border-ash/15">
+    <div class="max-w-container mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <!-- Left Column: Slider Controls -->
+      <div class="lg:col-span-6">
+        <span class="font-mono text-xs text-weft uppercase tracking-wider block mb-2">// CAMPAIGN SCALE</span>
+        <h2 class="text-3xl lg:text-5xl font-bold tracking-tight text-chalk leading-tight mb-4">
+          How much presence <span class="text-ash block">do you need?</span>
+        </h2>
+        <p class="text-sm text-ash leading-relaxed mb-8">
+          Drag the slider from 1 bespoke character or post up to a 100+ creator wave to see the exact architecture that fits your launch.
+        </p>
+
+        <!-- Live Number Output -->
+        <div class="flex items-baseline gap-3 mb-6">
+          <span class="font-mono text-xs text-ash uppercase">SCALE DEPLOYMENT:</span>
+          <output id="scale-out" class="text-5xl font-mono font-bold text-weft">15</output>
+          <span class="font-mono text-sm text-ash">Creators / Assets</span>
+        </div>
+
+        <!-- Slider Range Control -->
+        <input type="range" id="scale-range" min="1" max="101" value="15" step="1" class="fw-slider mb-3" aria-label="Campaign Scale Slider" />
+
+        <!-- Scale Ticks -->
+        <div class="flex justify-between font-mono text-[11px] text-ash mb-8">
+          <span>1 Drop</span>
+          <span>10 Seeding</span>
+          <span>25 Launch</span>
+          <span>50 Wave</span>
+          <span>75 Takeover</span>
+          <span>100+ Ecosystem</span>
+        </div>
+
+        <!-- Dynamic Tier Result Card -->
+        <div class="bg-ink border border-ash/25 p-6 fw-card">
+          <span id="scale-tier" class="font-mono text-xs text-weft font-bold block mb-1">TIER 03 // COORDINATED LAUNCH</span>
+          <h3 id="scale-type" class="text-xl font-bold text-chalk mb-2">48-Hour Synchronized Launch Wave</h3>
+          <p id="scale-type-desc" class="text-xs text-ash leading-relaxed mb-4">
+            "20+ creators and virtual ambassadors posting inside the same 48-hour launch window—combining T−0 launch posts, T+1 quote reposts, and T+3 deep-dive threads."
+          </p>
+          <div class="pt-4 border-t border-ash/15 flex justify-between items-center">
+            <span class="font-mono text-xs text-chalk">Full Launch Sequence</span>
+            <a href="#contact" class="font-mono text-xs text-weft font-bold hover:underline">Configure Wave ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: 2D SVG Cluster Node Visualization -->
+      <div class="lg:col-span-6 flex flex-col items-center justify-center">
+        <div class="relative w-full max-w-[420px] aspect-square bg-ink border border-ash/20 p-4 flex items-center justify-center">
+          <svg id="cluster-svg" viewBox="0 0 400 400" class="w-full h-full" aria-hidden="true">
+            <!-- Dynamically populated via script.js -->
+          </svg>
+        </div>
+        <div class="flex items-center gap-6 mt-4 font-mono text-xs text-ash">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 bg-weft inline-block"></span>
+            <span>Virtual Brand Character Node</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 bg-chalk inline-block"></span>
+            <span>Partner Creator Node</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 10: WHY FAMEWOVEN — 7-CARD BENTO GRID ===================== -->
+  <section id="why" class="bg-ink text-chalk py-24 lg:py-32 border-b border-ash/15">
+    <div class="max-w-container mx-auto px-6">
+      <div class="max-w-[720px] mb-12">
+        <span class="font-mono text-xs text-weft uppercase tracking-wider block mb-2">// WHY FAMEWOVEN</span>
+        <h2 class="text-3xl lg:text-5xl font-bold tracking-tight text-chalk leading-tight mb-4">
+          More than an AI studio. More than a creator list.
+          <span class="text-ash block">One team weaves the whole system.</span>
+        </h2>
+      </div>
+
+      <!-- 7-Card Asymmetrical Bento Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6">
+        <!-- Card 01 (Col 7) -->
+        <article class="lg:col-span-7 bg-ink-elevated border border-ash/20 p-8 fw-card flex flex-col justify-between">
+          <div>
+            <span class="font-mono text-xs text-weft block mb-2">01 // CONTINUITY & REACH</span>
+            <h3 class="text-2xl font-bold text-chalk mb-3">3-Layer Continuity + 500+ Vetted Creators</h3>
+            <p class="text-sm text-ash leading-relaxed mb-6">
+              Every engagement is structured across our Identity Layer (locked LoRA character bible), Campaign Layer (brief & approved claims), and Asset Layer (reviewable outputs)—backed by 500+ vetted human creators.
+            </p>
+          </div>
+          <!-- viz-network tags -->
+          <div class="flex flex-wrap gap-2 pt-4 border-t border-ash/15 font-mono text-[11px]">
+            <span class="bg-ink px-3 py-1 border border-weft text-weft">Virtual Talent</span>
+            <span class="bg-ink px-3 py-1 border border-ash/30 text-chalk">LoRA Lock</span>
+            <span class="bg-ink px-3 py-1 border border-ash/30 text-chalk">AI & SaaS</span>
+            <span class="bg-ink px-3 py-1 border border-ash/30 text-chalk">Fashion</span>
+            <span class="bg-ink px-3 py-1 border border-ash/30 text-chalk">Founders</span>
+            <span class="bg-ink px-3 py-1 border border-ash/30 text-chalk">Beauty</span>
+          </div>
+        </article>
+
+        <!-- Card 02 (Col 5) -->
+        <article class="lg:col-span-5 bg-ink-elevated border border-ash/20 p-8 fw-card flex flex-col justify-between">
+          <div>
+            <span class="font-mono text-xs text-weft block mb-2">02 // AUDIENCE PRECISION</span>
+            <h3 class="text-2xl font-bold text-chalk mb-3">Matched by Audience & Point of View</h3>
+            <p class="text-sm text-ash leading-relaxed mb-4">
+              We never cast by vanity follower counts. Virtual characters are art-directed for your exact buyer demographic, and partner creators are vetted across 141 engagement quality criteria.
+            </p>
+          </div>
+          <div class="p-4 bg-ink border border-ash/20 flex items-center justify-between font-mono text-xs">
+            <span class="text-ash">Vetting Criteria:</span>
+            <span class="text-weft font-bold">141 Parameters Passed ✓</span>
+          </div>
+        </article>
+
+        <!-- Card 03 (Col 4) -->
+        <article class="lg:col-span-4 bg-ink-elevated border border-ash/20 p-6 fw-card flex flex-col justify-between">
+          <div>
+            <span class="font-mono text-xs text-weft block mb-2">03 // EDITORIAL CONTROL</span>
+            <h3 class="text-xl font-bold text-chalk mb-2">You Approve Every Frame</h3>
+            <p class="text-xs text-ash leading-relaxed mb-4">
+              You sign off on character geometry, wardrobe tests, creator shortlists, and posting dates before anything goes live. All virtual talent carries clear disclosure labeling.
+            </p>
+          </div>
+          <!-- viz-flow -->
+          <div class="flex items-center gap-1 font-mono text-[10px] pt-3 border-t border-ash/15">
+            <span class="bg-ink px-2 py-1 text-ash border border-ash/20">Concept</span>
+            <span>➔</span>
+            <span class="bg-ink px-2 py-1 text-ash border border-ash/20">Review</span>
+            <span>➔</span>
+            <span class="bg-weft px-2 py-1 text-ink font-bold">Approved ✓</span>
+          </div>
+        </article>
+
+        <!-- Card 04 (Col 8, Plum Focal Card) -->
+        <article class="lg:col-span-8 bg-plum border border-weft/40 p-8 fw-card flex flex-col justify-between">
+          <div>
+            <span class="font-mono text-xs text-weft block mb-2">04 // CHOREOGRAPHY</span>
+            <h3 class="text-2xl font-bold text-chalk mb-3">T−7 to T+3 Launch-Day Choreography</h3>
+            <p class="text-sm text-chalk/90 leading-relaxed mb-6">
+              Character teasers, creator seeding, launch waves, quote reposts, and follow-up threads go out in a planned sequence so your campaign compounds attention past day one.
+            </p>
+          </div>
+          <!-- viz-timeline -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 font-mono text-xs">
+            <div class="p-3 bg-ink/70 border border-ash/20 text-center">
+              <span class="text-ash block text-[10px]">T−7 DAYS</span>
+              <span class="text-chalk font-bold">Seeding Pod</span>
+            </div>
+            <div class="p-3 bg-weft text-ink font-bold text-center">
+              <span class="block text-[10px] text-ink/80">T−0 LAUNCH</span>
+              <span>Wave Drops</span>
+            </div>
+            <div class="p-3 bg-ink/70 border border-ash/20 text-center">
+              <span class="text-ash block text-[10px]">T+1 DAYS</span>
+              <span class="text-chalk font-bold">Quote Reposts</span>
+            </div>
+            <div class="p-3 bg-ink/70 border border-ash/20 text-center">
+              <span class="text-ash block text-[10px]">T+3 DAYS</span>
+              <span class="text-chalk font-bold">Deep Threads</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 05 (Col 4) -->
+        <article class="lg:col-span-4 bg-ink-elevated border border-ash/20 p-6 fw-card flex flex-col justify-between">
+          <div>
+            <span class="font-mono text-xs text-weft block mb-2">05 // ADMINISTRATION</span>
+            <h3 class="text-xl font-bold text-chalk mb-2">Turnkey Production & Admin</h3>
+            <p class="text-xs text-ash leading-relaxed mb-4">
+              Full turnkey management: character modeling & studio rendering, creator outreach & rate negotiation, and zero-risk escrow payments.
+            </p>
+          </div>
+          <ul class="text-xs font-mono space-y-1 text-chalk">
+            <li class="flex items-center gap-1.5"><span class="text-weft">✓</span> Outreach & Zero Escrow</li>
+            <li class="flex items-center gap-1.5"><span class="text-weft">✓</span> LoRA Reference Studio</li>
+            <li class="flex items-center gap-1.5"><span class="text-weft">✓</span> FTC Disclosures Built-In</li>
+          </ul>
+        </article>
+
+        <!-- Card 06 (Col 4) -->
+        <article class="lg:col-span-4 bg-ink-elevated border border-ash/20 p-6 fw-card flex flex-col justify-between">
+          <div>
+            <span class="font-mono text-xs text-weft block mb-2">06 // ATTRIBUTION</span>
+            <h3 class="text-xl font-bold text-chalk mb-2">Transparent Attribution</h3>
+            <p class="text-xs text-ash leading-relaxed mb-4">
+              Reach, views, saves, and conversion metrics for every virtual post and partner creator, delivered in a plain-language executive summary.
+            </p>
+          </div>
+          <!-- viz-bars -->
+          <div class="flex items-end gap-2 h-14 pt-2">
+            <div class="flex-1 bg-ash/30 h-[38%]"></div>
+            <div class="flex-1 bg-ash/30 h-[52%]"></div>
+            <div class="flex-1 bg-ash/30 h-[46%]"></div>
+            <div class="flex-1 bg-weft h-[70%]"></div>
+            <div class="flex-1 bg-weft h-[88%]"></div>
+            <div class="flex-1 bg-weft h-[100%]"></div>
+          </div>
+        </article>
+
+        <!-- Card 07 (Col 4) -->
+        <article class="lg:col-span-4 bg-ink-elevated border border-ash/20 p-6 fw-card flex flex-col justify-between">
+          <div>
+            <span class="font-mono text-xs text-weft block mb-2">07 // NARRATIVE CONTROL</span>
+            <h3 class="text-xl font-bold text-chalk mb-2">Absolute Narrative Control</h3>
+            <p class="text-xs text-ash leading-relaxed mb-4">
+              Virtual talent never misses a shoot, ages out of a campaign, or triggers a PR scandal—delivering 97.8% lower unit post costs than legacy endorsements.
+            </p>
+          </div>
+          <div class="p-3 bg-ink border border-weft/30 text-center font-mono">
+            <span class="text-2xl font-bold text-weft block">-97.8% Unit Cost</span>
+            <span class="text-[10px] text-ash">$1,694 Virtual vs $78,777 Human Benchmark</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 11: GROWTH ECOSYSTEM & COMPARISON (LIGHT SURFACE) ===================== -->
+  <section id="ecosystem" class="bg-chalk text-ink py-24 lg:py-32 border-b border-ink/15 weave-bg-grid-chalk">
+    <div class="max-w-container mx-auto px-6">
+      <!-- Upper: 4-Card Hover-Expand Row -->
+      <div class="mb-20">
+        <span class="font-mono text-xs text-ink uppercase tracking-wider block font-bold mb-2">// THE GROWTH ECOSYSTEM</span>
+        <h2 class="text-3xl lg:text-5xl font-bold tracking-tight text-ink leading-tight mb-8">
+          Scale across the platforms that dictate culture.
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <!-- Card 01: Instagram -->
+          <article class="bg-ink text-chalk p-8 fw-card flex flex-col justify-between">
+            <div>
+              <span class="font-mono text-xs text-weft block mb-2">01 // VISUAL IDENTITY</span>
+              <h3 class="text-2xl font-bold text-chalk mb-2">Instagram & Reels</h3>
+              <p class="text-xs text-ash leading-relaxed mb-4">"The Aesthetic Anchor"</p>
+              <p class="text-xs text-chalk/80 leading-relaxed">
+                9-Grid Portfolio Architecture · 4.8% Avg Virtual Talent ER · Macro Texture & Editorial Stills.
+              </p>
+            </div>
+            <span class="font-mono text-[11px] text-weft mt-6 pt-4 border-t border-ash/20 block">Editorial Authority</span>
+          </article>
+
+          <!-- Card 02: X (Twitter) -->
+          <article class="bg-ink text-chalk p-8 fw-card flex flex-col justify-between">
+            <div>
+              <span class="font-mono text-xs text-weft block mb-2">02 // VIRALITY ENGINE</span>
+              <h3 class="text-2xl font-bold text-chalk mb-2">X (Twitter)</h3>
+              <p class="text-xs text-ash leading-relaxed mb-4">"The Tech & Founder Timeline"</p>
+              <p class="text-xs text-chalk/80 leading-relaxed">
+                500M+ Monthly Users · 12x Viral Quote Multiplier · 73% Tech Exec Presence.
+              </p>
+            </div>
+            <span class="font-mono text-[11px] text-weft mt-6 pt-4 border-t border-ash/20 block">Founder Discourse</span>
+          </article>
+
+          <!-- Card 03: TikTok & Shorts -->
+          <article class="bg-ink text-chalk p-8 fw-card flex flex-col justify-between">
+            <div>
+              <span class="font-mono text-xs text-weft block mb-2">03 // SHORT-FORM MOTION</span>
+              <h3 class="text-2xl font-bold text-chalk mb-2">TikTok & Shorts</h3>
+              <p class="text-xs text-ash leading-relaxed mb-4">"Algorithmic Discovery Loop"</p>
+              <p class="text-xs text-chalk/80 leading-relaxed">
+                5s–30s Vertical Films · Motion Capture & Lip-Sync · AI UGC Product Demos.
+              </p>
+            </div>
+            <span class="font-mono text-[11px] text-weft mt-6 pt-4 border-t border-ash/20 block">Viral Discovery</span>
+          </article>
+
+          <!-- Card 04: LinkedIn -->
+          <article class="bg-ink text-chalk p-8 fw-card flex flex-col justify-between">
+            <div>
+              <span class="font-mono text-xs text-weft block mb-2">04 // B2B PIPELINE</span>
+              <h3 class="text-2xl font-bold text-chalk mb-2">LinkedIn & B2B</h3>
+              <p class="text-xs text-ash leading-relaxed mb-4">"Executive Decision Layer"</p>
+              <p class="text-xs text-chalk/80 leading-relaxed">
+                Founder Digital Twins · B2B SaaS Creator Waves · High-Intent Pipeline Attribution.
+              </p>
+            </div>
+            <span class="font-mono text-[11px] text-weft mt-6 pt-4 border-t border-ash/20 block">Enterprise Revenue</span>
+          </article>
+        </div>
+      </div>
+
+      <!-- Lower: 5-Column Side-by-Side Comparison Matrix -->
+      <div>
+        <div class="max-w-[700px] mb-8">
+          <span class="font-mono text-xs text-ink uppercase tracking-wider block font-bold mb-1">// SIDE-BY-SIDE MATRIX</span>
+          <h3 class="text-2xl lg:text-4xl font-bold text-ink">How FAMEWOVEN Compares</h3>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="border-b-2 border-ink">
+                <th class="p-4 font-mono font-bold text-ink uppercase">Evaluation Dimension</th>
+                <th class="p-4 font-mono font-bold bg-ink text-weft uppercase">FAMEWOVEN (Hybrid Studio + Network)</th>
+                <th class="p-4 font-mono font-bold text-ink/70 uppercase">Traditional Influencer Agencies</th>
+                <th class="p-4 font-mono font-bold text-ink/70 uppercase">In-House Studio Teams</th>
+                <th class="p-4 font-mono font-bold text-ink/70 uppercase">Self-Serve AI Generators</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-ink/15 font-sans">
+              <tr>
+                <td class="p-4 font-bold text-ink">Unit Post Economics</td>
+                <td class="p-4 bg-ink text-chalk font-medium border-x border-weft/40">$1,694 Virtual Benchmark + Optimized Rates</td>
+                <td class="p-4 text-ink/80">$78,777 avg human sponsored post + retainers</td>
+                <td class="p-4 text-ink/80">$25,000+/mo fixed payroll & studio overhead</td>
+                <td class="p-4 text-ink/80">Low subscription, high wasted prompt hours</td>
+              </tr>
+              <tr>
+                <td class="p-4 font-bold text-ink">Time to Launch</td>
+                <td class="p-4 bg-ink text-chalk font-medium border-x border-weft/40">3–5 Days (Roster) · 7–14 Days (Custom IP)</td>
+                <td class="p-4 text-ink/80">3–6 weeks contracting & shoot scheduling</td>
+                <td class="p-4 text-ink/80">8+ weeks hiring & onboarding specialists</td>
+                <td class="p-4 text-ink/80">Immediate generation, weeks of manual fixing</td>
+              </tr>
+              <tr>
+                <td class="p-4 font-bold text-ink">Character Identity Continuity</td>
+                <td class="p-4 bg-ink text-chalk font-medium border-x border-weft/40">100% Locked LoRA Reference System</td>
+                <td class="p-4 text-ink/80">Dependent on human talent availability</td>
+                <td class="p-4 text-ink/80">Requires specialized ComfyUI / ML engineers</td>
+                <td class="p-4 text-ink/80">Faces, hands & lighting drift every frame</td>
+              </tr>
+              <tr>
+                <td class="p-4 font-bold text-ink">100+ Creator Distribution</td>
+                <td class="p-4 bg-ink text-chalk font-medium border-x border-weft/40">Turnkey 1 to 100+ Synchronized Waves</td>
+                <td class="p-4 text-ink/80">Fragmented manual outreach & high fees</td>
+                <td class="p-4 text-ink/80">Manual cold outreach & admin bottleneck</td>
+                <td class="p-4 text-ink/80">Zero distribution or creator network</td>
+              </tr>
+              <tr>
+                <td class="p-4 font-bold text-ink">Risk & Governance</td>
+                <td class="p-4 bg-ink text-chalk font-medium border-x border-weft/40">Upfront KPIs + Zero-Risk Escrow ($0 upfront)</td>
+                <td class="p-4 text-ink/80">Rigid 6–12 month retainers, vanity metrics</td>
+                <td class="p-4 text-ink/80">Sunk salary & equipment costs</td>
+                <td class="p-4 text-ink/80">Zero strategic oversight or attribution</td>
+              </tr>
+              <tr>
+                <td class="p-4 font-bold text-ink">Commercial IP Ownership</td>
+                <td class="p-4 bg-ink text-chalk font-medium border-x border-weft/40">100% Commercial Rights + FTC Compliance</td>
+                <td class="p-4 text-ink/80">Human PR scandal & burnout exposure</td>
+                <td class="p-4 text-ink/80">Full ownership, high production friction</td>
+                <td class="p-4 text-ink/80">Unclear training licenses & copyright risks</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 12: HOW IT WORKS — 6-STEP UNIFIED FRAMEWORK ===================== -->
+  <section id="how" class="bg-ink text-chalk py-24 lg:py-32 border-b border-ash/15">
+    <div class="max-w-container mx-auto px-6">
+      <div class="max-w-[700px] mb-16">
+        <span class="font-mono text-xs text-weft uppercase tracking-wider block mb-2">// PROCESS & METHODOLOGY</span>
+        <h2 class="text-3xl lg:text-5xl font-bold tracking-tight text-chalk leading-tight mb-4">
+          Simple from start to finish. <span class="text-ash block">Engineered for continuity.</span>
+        </h2>
+        <p class="text-sm text-ash leading-relaxed">
+          Six clear milestones from brief to launch wave. Nothing proceeds without your explicit approval.
+        </p>
+      </div>
+
+      <!-- 6-Column Horizontal Timeline Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 relative">
+        <!-- Step 01 -->
+        <article class="p-6 bg-ink-elevated border border-ash/20 fw-card flex flex-col justify-between">
+          <div>
+            <span class="font-mono text-xs text-weft font-bold block mb-2">01 // BRIEF</span>
+            <h3 class="text-lg font-bold text-chalk mb-2">Align on Goals & Character</h3>
+            <p class="text-xs text-ash leading-relaxed">
+              Share your brand brief, target audience, and budget. Decide whether you need a custom AI character or a creator wave.
+            </p>
+          </div>
+          <span class="font-mono text-[10px] text-ash/80 mt-6 pt-3 border-t border-ash/15 block">Day 1 Kickoff</span>
+        </article>
+
+        <!-- Step 02 -->
+        <article class="p-6 bg-ink-elevated border border-ash/20 fw-card flex flex-col justify-between">
+          <div>
+            <span class="font-mono text-xs text-weft font-bold block mb-2">02 // CAST & LOCK</span>
+            <h3 class="text-lg font-bold text-chalk mb-2">Approve Talent & Reference</h3>
+            <p class="text-xs text-ash leading-relaxed">
+              We design your virtual persona's facial geometry and personality bible—or shortlist vetted creators who fit your buyers.
+            </p>
+          </div>
+          <span class="font-mono text-[10px] text-ash/80 mt-6 pt-3 border-t border-ash/15 block">Client Sign-Off</span>
+        </article>
+
+        <!-- Step 03 -->
+        <article class="p-6 bg-ink-elevated border border-ash/20 fw-card flex flex-col justify-between">
+          <div>
+            <span class="font-mono text-xs text-weft font-bold block mb-2">03 // PRODUCE</span>
+            <h3 class="text-lg font-bold text-chalk mb-2">Direct Stills & Films</h3>
+            <p class="text-xs text-ash leading-relaxed">
+              Our creative directors produce 4K campaign imagery, 9:16 vertical motion clips, and creator scripts with defined lighting.
+            </p>
+          </div>
+          <span class="font-mono text-[10px] text-ash/80 mt-6 pt-3 border-t border-ash/15 block">Studio Execution</span>
+        </article>
+
+        <!-- Step 04 -->
+        <article class="p-6 bg-ink-elevated border border-ash/20 fw-card flex flex-col justify-between">
+          <div>
+            <span class="font-mono text-xs text-weft font-bold block mb-2">04 // REVIEW</span>
+            <h3 class="text-lg font-bold text-chalk mb-2">Quality & FTC Check</h3>
+            <p class="text-xs text-ash leading-relaxed">
+              Every frame undergoes human art review, product accuracy verification, and clear virtual-talent disclosure labeling.
+            </p>
+          </div>
+          <span class="font-mono text-[10px] text-ash/80 mt-6 pt-3 border-t border-ash/15 block">Safety & Claims</span>
+        </article>
+
+        <!-- Step 05 -->
+        <article class="p-6 bg-ink-elevated border border-ash/20 fw-card flex flex-col justify-between">
+          <div>
+            <span class="font-mono text-xs text-weft font-bold block mb-2">05 // LAUNCH</span>
+            <h3 class="text-lg font-bold text-chalk mb-2">Synchronized Rollout</h3>
+            <p class="text-xs text-ash leading-relaxed">
+              Virtual character drops, creator seeding, launch posts, quote reposts, and threads go live on a coordinated 48h schedule.
+            </p>
+          </div>
+          <span class="font-mono text-[10px] text-weft font-bold mt-6 pt-3 border-t border-ash/15 block">48h Wave Live</span>
+        </article>
+
+        <!-- Step 06 -->
+        <article class="p-6 bg-ink-elevated border border-ash/20 fw-card flex flex-col justify-between">
+          <div>
+            <span class="font-mono text-xs text-weft font-bold block mb-2">06 // CONTINUITY</span>
+            <h3 class="text-lg font-bold text-chalk mb-2">Report & Next Release</h3>
+            <p class="text-xs text-ash leading-relaxed">
+              You receive a plain-language report on reach, engagement, and conversions—plus locked weights for your next monthly release.
+            </p>
+          </div>
+          <span class="font-mono text-[10px] text-ash/80 mt-6 pt-3 border-t border-ash/15 block">Compound ROI</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 13: WHO WE WORK WITH & PROVEN RESULTS ===================== -->
+  <section id="results" class="bg-ink-elevated text-chalk py-24 lg:py-32 border-b border-ash/15">
+    <div class="max-w-container mx-auto px-6">
+      <!-- Upper: 3 Audience Cards -->
+      <div class="mb-20">
+        <span class="font-mono text-xs text-weft uppercase tracking-wider block mb-2">// AUDIENCE MATRICES</span>
+        <h2 class="text-3xl lg:text-5xl font-bold tracking-tight text-chalk leading-tight mb-8">
+          Who We Work With
+        </h2>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <article class="bg-ink border border-ash/20 p-8 fw-card">
+            <span class="font-mono text-xs text-weft font-bold block mb-2">01 // BRANDS</span>
+            <h3 class="text-2xl font-bold text-chalk mb-2">Consumer & Fashion Brands</h3>
+            <p class="text-xs text-ash leading-relaxed">
+              Fashion, beauty, lifestyle, and consumer tech brands building owned virtual ambassadors, editorial lookbooks, and 4K product interaction shoots.
+            </p>
+          </article>
+          <article class="bg-ink border border-ash/20 p-8 fw-card">
+            <span class="font-mono text-xs text-weft font-bold block mb-2">02 // TECH & SAAS</span>
+            <h3 class="text-2xl font-bold text-chalk mb-2">AI, SaaS & DevTool Scaleups</h3>
+            <p class="text-xs text-ash leading-relaxed">
+              Model launches, agents, copilots, and B2B software teams deploying 48-hour synchronized creator waves and executive founder digital twins.
+            </p>
+          </article>
+          <article class="bg-ink border border-ash/20 p-8 fw-card">
+            <span class="font-mono text-xs text-weft font-bold block mb-2">03 // AGENCIES</span>
+            <h3 class="text-2xl font-bold text-chalk mb-2">Creative & Media Agencies</h3>
+            <p class="text-xs text-ash leading-relaxed">
+              Partner agencies commissioning white-label virtual talent production and turnkey 100+ creator distribution under strict NDA separation.
+            </p>
+          </article>
+        </div>
+      </div>
+
+      <!-- Lower: Verified Client Testimonials -->
+      <div>
+        <h3 class="text-2xl lg:text-4xl font-bold text-chalk mb-8">In their words.</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- HeyGen -->
+          <article class="bg-ink border border-ash/20 p-6 fw-card flex flex-col justify-between">
+            <div>
+              <img src="assets/logos/heygen.svg" alt="HeyGen" class="h-5 object-contain mb-4" />
+              <p class="text-xs text-ash leading-relaxed mb-4">
+                "FAMEWOVEN (formerly PromptForge) found creators who actually make AI video content, so our launch posts read like real recommendations, not ads. Approvals took minutes."
+              </p>
+            </div>
+            <span class="font-mono text-[10px] text-weft block pt-3 border-t border-ash/15 uppercase">AI Video // Creator Wave</span>
+          </article>
+
+          <!-- Higgsfield -->
+          <article class="bg-ink border border-ash/20 p-6 fw-card flex flex-col justify-between">
+            <div>
+              <img src="assets/logos/higgsfield.svg" alt="Higgsfield" class="h-5 object-contain mb-4" />
+              <p class="text-xs text-ash leading-relaxed mb-4">
+                "We needed a lot of creators posting in the same launch window. Their team handled the outreach, the schedule, and follow-ups. Our team only had to approve content."
+              </p>
+            </div>
+            <span class="font-mono text-[10px] text-weft block pt-3 border-t border-ash/15 uppercase">Synchronized 48h Wave</span>
+          </article>
+
+          <!-- BytePlus -->
+          <article class="bg-ink border border-ash/20 p-6 fw-card flex flex-col justify-between">
+            <div>
+              <img src="assets/logos/byteplus.svg" alt="BytePlus" class="h-5 object-contain mb-4" />
+              <p class="text-xs text-ash leading-relaxed mb-4">
+                "They understood a technical product quickly and matched us with creators who reach developers and builders. Reporting was clear and on time."
+              </p>
+            </div>
+            <span class="font-mono text-[10px] text-weft block pt-3 border-t border-ash/15 uppercase">Dev & Cloud Campaign</span>
+          </article>
+
+          <!-- Omneky -->
+          <article class="bg-ink border border-ash/20 p-6 fw-card flex flex-col justify-between">
+            <div>
+              <img src="assets/logos/omneky.svg" alt="Omneky" class="h-5 object-contain mb-4" />
+              <p class="text-xs text-ash leading-relaxed mb-4">
+                "Easy to work with and quick to launch. The creator shortlist fit our audience of marketers and founders exactly."
+              </p>
+            </div>
+            <span class="font-mono text-[10px] text-weft block pt-3 border-t border-ash/15 uppercase">Marketer Targeting</span>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 14: KNOWLEDGE PLAYBOOKS & FAQ ===================== -->
+  <section id="faq" class="bg-ink text-chalk py-24 lg:py-32 border-b border-ash/15">
+    <div class="max-w-container mx-auto px-6">
+      <!-- Upper: 3 Knowledge Hub Playbooks -->
+      <div class="mb-20">
+        <span class="font-mono text-xs text-weft uppercase tracking-wider block mb-2">// KNOWLEDGE HUB</span>
+        <h2 class="text-3xl lg:text-5xl font-bold tracking-tight text-chalk leading-tight mb-8">
+          Insights & Playbooks
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <article class="bg-ink-elevated border border-ash/20 p-6 fw-card">
+            <span class="font-mono text-[11px] text-weft block mb-2">VIRTUAL IP // 6 MIN READ</span>
+            <h3 class="text-lg font-bold text-chalk mb-2">Designing a Brand Character That Converts: From LoRA Lock to Recognisable Feed</h3>
+            <p class="text-xs text-ash leading-relaxed">
+              How luxury and tech brands preserve 100% facial geometry across multi-channel campaigns without drift.
+            </p>
+          </article>
+          <article class="bg-ink-elevated border border-ash/20 p-6 fw-card">
+            <span class="font-mono text-[11px] text-weft block mb-2">LAUNCH PLAYBOOK // 8 MIN READ</span>
+            <h3 class="text-lg font-bold text-chalk mb-2">Same Budget, Opposite Results: The 48-Hour Synchronized Creator Wave</h3>
+            <p class="text-xs text-ash leading-relaxed">
+              Why timing 20+ posts within the same algorithmic window outperforms scattered creator buys by 4x.
+            </p>
+          </article>
+          <article class="bg-ink-elevated border border-ash/20 p-6 fw-card">
+            <span class="font-mono text-[11px] text-weft block mb-2">ECONOMICS & ETHICS // 10 MIN READ</span>
+            <h3 class="text-lg font-bold text-chalk mb-2">The $1,694 vs. $78,777 Equation: Virtual Talent Economics & FTC Disclosure</h3>
+            <p class="text-xs text-ash leading-relaxed">
+              A comprehensive breakdown of production costs, platform-native synthetic tags, and commercial IP rights.
+            </p>
+          </article>
+        </div>
+      </div>
+
+      <!-- Lower: 8-Question FAQ Accordion -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div class="lg:col-span-4">
+          <span class="font-mono text-xs text-weft uppercase tracking-wider block mb-2">// FAQ</span>
+          <h3 class="text-3xl font-bold text-chalk">Questions, answered.</h3>
+          <p class="text-xs text-ash mt-2 leading-relaxed">
+            Everything you need to know about custom AI characters, rights ownership, escrow, and launch timelines.
+          </p>
+        </div>
+
+        <div class="lg:col-span-8 space-y-4">
+          <details class="bg-ink-elevated border border-ash/20 p-5 cursor-pointer group" open>
+            <summary class="font-bold text-chalk text-base list-none flex justify-between items-center">
+              <span>01 // How do you maintain the exact same virtual character face across outfits and videos?</span>
+              <span class="text-weft group-open:rotate-45 transition-transform font-mono">+</span>
+            </summary>
+            <p class="text-xs text-ash leading-relaxed mt-3 pt-3 border-t border-ash/15">
+              Every character is built on our Identity Layer: we generate a 15 to 50-angle studio reference dataset, train a dedicated custom LoRA model, and apply strict prompt anchoring with human post-production direction so facial geometry, age, and natural skin texture remain 100% consistent across stills and 9:16 video.
+            </p>
+          </details>
+
+          <details class="bg-ink-elevated border border-ash/20 p-5 cursor-pointer group">
+            <summary class="font-bold text-chalk text-base list-none flex justify-between items-center">
+              <span>02 // Do we own the commercial rights to a custom AI brand character?</span>
+              <span class="text-weft group-open:rotate-45 transition-transform font-mono">+</span>
+            </summary>
+            <p class="text-xs text-ash leading-relaxed mt-3 pt-3 border-t border-ash/15">
+              Yes. When you commission a bespoke character under Pillar 01 (AI Influencer Creation), full commercial usage rights and optional category exclusivity transfer to your brand. Alternatively, you can license personas from our 100+ Virtual Talent Roster on a campaign or monthly basis.
+            </p>
+          </details>
+
+          <details class="bg-ink-elevated border border-ash/20 p-5 cursor-pointer group">
+            <summary class="font-bold text-chalk text-base list-none flex justify-between items-center">
+              <span>03 // How do you label virtual talent and handle platform compliance?</span>
+              <span class="text-weft group-open:rotate-45 transition-transform font-mono">+</span>
+            </summary>
+            <p class="text-xs text-ash leading-relaxed mt-3 pt-3 border-t border-ash/15">
+              In accordance with our 12/VOICE charter, we label virtual talent clearly and describe what we make. Every deliverable includes compliant AI-GENERATED CHARACTER / CONCEPT metadata, platform-native synthetic media labels (Meta, TikTok, X), and FTC endorsement disclosures.
+            </p>
+          </details>
+
+          <details class="bg-ink-elevated border border-ash/20 p-5 cursor-pointer group">
+            <summary class="font-bold text-chalk text-base list-none flex justify-between items-center">
+              <span>04 // How do you choose human creators for amplification campaigns?</span>
+              <span class="text-weft group-open:rotate-45 transition-transform font-mono">+</span>
+            </summary>
+            <p class="text-xs text-ash leading-relaxed mt-3 pt-3 border-t border-ash/15">
+              We start from who you sell to, never from vanity follower counts. We audit each creator across 141 parameters—including audience demographics, real comment engagement, niche authority (AI, SaaS, fashion, beauty, dev tools), and past sponsored conversion—before you review and approve the shortlist.
+            </p>
+          </details>
+
+          <details class="bg-ink-elevated border border-ash/20 p-5 cursor-pointer group">
+            <summary class="font-bold text-chalk text-base list-none flex justify-between items-center">
+              <span>05 // What is the minimum budget and how does zero-risk escrow work?</span>
+              <span class="text-weft group-open:rotate-45 transition-transform font-mono">+</span>
+            </summary>
+            <p class="text-xs text-ash leading-relaxed mt-3 pt-3 border-t border-ash/15">
+              A single sponsored creator post or stock avatar shoot starts under $2,500, whereas bespoke character systems and 50 to 100+ creator launch waves range from $10,000 to $50,000+. For creator sourcing, your payment is held in zero-risk escrow and released only once posts are verified live.
+            </p>
+          </details>
+
+          <details class="bg-ink-elevated border border-ash/20 p-5 cursor-pointer group">
+            <summary class="font-bold text-chalk text-base list-none flex justify-between items-center">
+              <span>06 // How fast can a character or campaign launch?</span>
+              <span class="text-weft group-open:rotate-45 transition-transform font-mono">+</span>
+            </summary>
+            <p class="text-xs text-ash leading-relaxed mt-3 pt-3 border-t border-ash/15">
+              Single posts and existing roster shoots can go live within 3 to 5 business days of an approved brief. Custom AI character development and coordinated multi-creator launches typically require 7 to 14 days so every asset is reviewed and timed to your launch window.
+            </p>
+          </details>
+
+          <details class="bg-ink-elevated border border-ash/20 p-5 cursor-pointer group">
+            <summary class="font-bold text-chalk text-base list-none flex justify-between items-center">
+              <span>07 // Can we approve every image, video, and creator post before it goes live?</span>
+              <span class="text-weft group-open:rotate-45 transition-transform font-mono">+</span>
+            </summary>
+            <p class="text-xs text-ash leading-relaxed mt-3 pt-3 border-t border-ash/15">
+              Yes. You review and sign off on character turnarounds, wardrobe styling, video drafts, creator scripts, and posting schedules inside our staging workflow before a single post is published.
+            </p>
+          </details>
+
+          <details class="bg-ink-elevated border border-ash/20 p-5 cursor-pointer group">
+            <summary class="font-bold text-chalk text-base list-none flex justify-between items-center">
+              <span>08 // Do you offer ongoing monthly retainers?</span>
+              <span class="text-weft group-open:rotate-45 transition-transform font-mono">+</span>
+            </summary>
+            <p class="text-xs text-ash leading-relaxed mt-3 pt-3 border-t border-ash/15">
+              Yes. Through Pillar 04 (Ongoing Content) and our Long-Term Creator Partnerships, we run monthly releases so your brand character and creator advocates maintain a recognisable, compounding presence on the timeline.
+            </p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 15: SCOPED BRIEF & CONTACT PORTAL ===================== -->
+  <section id="contact" class="bg-ink-elevated text-chalk py-24 lg:py-32 border-t border-ash/20">
+    <div class="max-w-container mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <!-- Left Column: Direct Channels & Guarantee -->
+      <div class="lg:col-span-5">
+        <span class="font-mono text-xs text-weft uppercase tracking-wider block mb-2">12/VOICE // INITIATE PROJECT</span>
+        <h2 class="text-4xl lg:text-5xl font-bold tracking-tight text-chalk leading-tight mb-6">
+          Let's build your <span class="text-weft">next character.</span>
+        </h2>
+        <p class="text-sm text-ash leading-relaxed mb-8">
+          Book a 30-minute creative & strategy call. We will review your brand brief, audience, and budget—and you will leave with a custom character concept and campaign plan you can use, whether or not you work with us.
+        </p>
+
+        <ul class="space-y-3 font-mono text-xs text-chalk mb-10">
+          <li class="flex items-center gap-2"><span class="text-weft font-bold">✦</span> Custom virtual character direction or talent shortlist</li>
+          <li class="flex items-center gap-2"><span class="text-weft font-bold">✦</span> Recommended campaign format, video deliverables & scale</li>
+          <li class="flex items-center gap-2"><span class="text-weft font-bold">✦</span> Transparent timeline and zero-risk escrow breakdown</li>
+        </ul>
+
+        <!-- Direct Contact Endpoints -->
+        <div class="p-6 bg-ink border border-ash/25 space-y-4 font-mono text-xs">
+          <span class="text-weft uppercase block font-bold tracking-wider">// DIRECT DISPATCH</span>
+          <div class="flex items-center justify-between border-b border-ash/15 pb-2">
+            <span class="text-ash">Email</span>
+            <a href="mailto:hello@famewoven.com" class="text-chalk hover:text-weft">hello@famewoven.com</a>
+          </div>
+          <div class="flex items-center justify-between border-b border-ash/15 pb-2">
+            <span class="text-ash">Support (Legacy)</span>
+            <a href="mailto:support@promptforgestudio.net" class="text-chalk hover:text-weft">support@promptforgestudio.net</a>
+          </div>
+          <div class="flex items-center justify-between border-b border-ash/15 pb-2">
+            <span class="text-ash">WhatsApp</span>
+            <a href="https://wa.link/8o6m4z" target="_blank" rel="noopener" class="text-weft hover:underline">Chat on WhatsApp ↗</a>
+          </div>
+          <div class="flex items-center justify-between border-b border-ash/15 pb-2">
+            <span class="text-ash">Direct Phone</span>
+            <span class="text-chalk">+1 (307) 445-3324</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-ash">Social Timeline</span>
+            <span class="text-chalk">@famewoven / @ForgeAIStudio</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Intake Form -->
+      <div class="lg:col-span-7">
+        <form id="contact-form" class="bg-ink border border-ash/25 p-8 lg:p-10 fw-card space-y-5">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
+              <label for="f-name" class="block font-mono text-xs text-ash mb-1.5 uppercase">Your Name *</label>
+              <input type="text" id="f-name" class="w-full bg-ink-elevated border border-ash/30 text-chalk px-4 py-3 text-sm focus:border-weft focus:outline-none" required />
+            </div>
+            <div>
+              <label for="f-company" class="block font-mono text-xs text-ash mb-1.5 uppercase">Brand / Company *</label>
+              <input type="text" id="f-company" class="w-full bg-ink-elevated border border-ash/30 text-chalk px-4 py-3 text-sm focus:border-weft focus:outline-none" required />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
+              <label for="f-email" class="block font-mono text-xs text-ash mb-1.5 uppercase">Work Email *</label>
+              <input type="email" id="f-email" class="w-full bg-ink-elevated border border-ash/30 text-chalk px-4 py-3 text-sm focus:border-weft focus:outline-none" required />
+            </div>
+            <div>
+              <label for="f-url" class="block font-mono text-xs text-ash mb-1.5 uppercase">Website or Social URL</label>
+              <input type="url" id="f-url" placeholder="https://" class="w-full bg-ink-elevated border border-ash/30 text-chalk px-4 py-3 text-sm focus:border-weft focus:outline-none" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
+              <label for="f-track" class="block font-mono text-xs text-ash mb-1.5 uppercase">Primary Track *</label>
+              <select id="f-track" class="w-full bg-ink-elevated border border-ash/30 text-chalk px-4 py-3 text-sm focus:border-weft focus:outline-none">
+                <option value="Virtual Brand Character Creation">Virtual Brand Character Creation</option>
+                <option value="Campaign Production (Stills & Video)">Campaign Production (Stills & Video)</option>
+                <option value="Virtual Talent Casting (Existing Roster)">Virtual Talent Casting (Existing Roster)</option>
+                <option value="Multi-Creator Launch Wave (10–100+)">Multi-Creator Launch Wave (10–100+)</option>
+                <option value="Full-Stack Character + Creator Retainer">Full-Stack Character + Creator Retainer</option>
+              </select>
+            </div>
+            <div>
+              <label for="f-type" class="block font-mono text-xs text-ash mb-1.5 uppercase">Specific Capability *</label>
+              <select id="f-type" class="w-full bg-ink-elevated border border-ash/30 text-chalk px-4 py-3 text-sm focus:border-weft focus:outline-none">
+                <!-- Populated dynamically via script.js -->
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
+              <label for="f-industry" class="block font-mono text-xs text-ash mb-1.5 uppercase">Industry Vertical *</label>
+              <select id="f-industry" class="w-full bg-ink-elevated border border-ash/30 text-chalk px-4 py-3 text-sm focus:border-weft focus:outline-none">
+                <option value="AI & SaaS">AI & SaaS</option>
+                <option value="Fashion & Apparel">Fashion & Apparel</option>
+                <option value="Beauty & Skincare">Beauty & Skincare</option>
+                <option value="Consumer Tech">Consumer Tech</option>
+                <option value="Developer Tools & Web3">Developer Tools & Web3</option>
+                <option value="Agency Partner">Agency Partner (White-Label)</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div>
+              <label for="f-budget" class="block font-mono text-xs text-ash mb-1.5 uppercase">Estimated Budget *</label>
+              <select id="f-budget" class="w-full bg-ink-elevated border border-ash/30 text-chalk px-4 py-3 text-sm focus:border-weft focus:outline-none">
+                <option value="Under $2,500">Under $2,500</option>
+                <option value="$2,500 – $10,000">$2,500 – $10,000</option>
+                <option value="$10,000 – $25,000" selected>$10,000 – $25,000</option>
+                <option value="$25,000 – $50,000">$25,000 – $50,000</option>
+                <option value="$50,000+">$50,000+</option>
+                <option value="Not sure yet">Not sure yet</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label for="f-msg" class="block font-mono text-xs text-ash mb-1.5 uppercase">Brief & Launch Timeline</label>
+            <textarea id="f-msg" rows="4" placeholder="Tell us about your brand, what character or campaign you envision, and target launch dates..." class="w-full bg-ink-elevated border border-ash/30 text-chalk px-4 py-3 text-sm focus:border-weft focus:outline-none"></textarea>
+          </div>
+
+          <button type="submit" class="w-full btn-weft py-4 text-sm font-bold uppercase tracking-wider">
+            Send Brief & Request Concept ↗
+          </button>
+        </form>
+
+        <!-- Form Success State Panel -->
+        <div id="form-success" class="hidden bg-ink border border-weft p-8 text-center fw-card space-y-4">
+          <div class="w-12 h-12 bg-weft text-ink font-bold text-2xl flex items-center justify-center mx-auto">✓</div>
+          <h3 class="text-2xl font-bold text-chalk">Brief Received — The Weave Begins</h3>
+          <p class="text-sm text-ash max-w-[48ch] mx-auto leading-relaxed">
+            Thank you. Our creative directors are reviewing your brand brief. We will send your tailored character concept and 30-min booking calendar within 1 business day.
+          </p>
+          <div class="pt-4 border-t border-ash/15 font-mono text-xs text-weft">
+            Confirmation dispatched to hello@famewoven.com
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 16: MARQUEE, NEWSLETTER & FOOTER ===================== -->
+  <!-- Infinite Marquee -->
+  <div class="w-full bg-weft text-ink py-3 font-mono font-bold text-xs sm:text-sm uppercase tracking-widest overflow-hidden border-y border-ink/20" aria-hidden="true">
+    <div class="animate-marquee whitespace-nowrap">
+      <span>FAMEWOVEN ✦ INFLUENCE, WOVEN ✦ VIRTUAL TALENT. HUMAN DIRECTION. ✦ A FACE FOR WHAT COMES NEXT ✦ FAMEWOVEN.COM ✦ 100+ CREATOR SCALE ✦ ZERO-RISK ESCROW ✦&nbsp;</span>
+      <span>FAMEWOVEN ✦ INFLUENCE, WOVEN ✦ VIRTUAL TALENT. HUMAN DIRECTION. ✦ A FACE FOR WHAT COMES NEXT ✦ FAMEWOVEN.COM ✦ 100+ CREATOR SCALE ✦ ZERO-RISK ESCROW ✦&nbsp;</span>
+    </div>
+  </div>
+
+  <!-- Newsletter Bar -->
+  <div class="bg-plum text-chalk py-12 border-b border-ash/20">
+    <div class="max-w-container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div>
+        <h3 class="text-xl font-bold text-chalk mb-1">Subscribe to The Weft Signal</h3>
+        <p class="text-xs text-ash">Bi-weekly dispatches on virtual talent direction, AI character continuity, and creator launch mechanics. No spam, only signal.</p>
+      </div>
+      <form class="flex w-full md:w-auto gap-2" onsubmit="event.preventDefault(); alert('Subscribed to The Weft Signal.');">
+        <input type="email" placeholder="work@company.com" class="bg-ink border border-ash/30 text-chalk px-4 py-2.5 text-xs font-mono focus:border-weft focus:outline-none w-full sm:w-72" required />
+        <button type="submit" class="btn-weft px-5 py-2.5 text-xs font-bold whitespace-nowrap">Subscribe ↗</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 4-Column Footer -->
+  <footer id="footer" class="bg-ink text-ash pt-16 pb-12 font-sans text-xs border-t border-ash/10">
+    <div class="max-w-container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 mb-12">
+      <!-- Col 1: Brand Wordmark & Tagline -->
+      <div class="lg:col-span-4 space-y-4">
+        <div class="flex items-center gap-3 min-w-[160px]">
+          <svg class="w-8 h-8" viewBox="0 0 64 64" fill="none">
+            <line x1="16" y1="8" x2="16" y2="56" stroke="#F1EFE8" stroke-width="6" />
+            <line x1="28" y1="8" x2="28" y2="56" stroke="#A7A59B" stroke-width="2" />
+            <line x1="13" y1="14" x2="52" y2="14" stroke="#D1F34A" stroke-width="6" />
+            <line x1="13" y1="32" x2="42" y2="32" stroke="#D1F34A" stroke-width="6" />
+          </svg>
+          <span class="font-wordmark font-medium text-2xl text-chalk tracking-tight">famewoven</span>
+        </div>
+        <p class="text-xs text-ash max-w-[34ch] leading-relaxed">
+          Virtual talent. Human direction. We create AI influencers and produce campaigns around them.
+        </p>
+        <span class="font-mono text-[11px] text-weft block">Influence, woven.</span>
+      </div>
+
+      <!-- Col 2: Services & Pillars -->
+      <div class="lg:col-span-3 space-y-2.5 font-mono">
+        <span class="text-chalk font-bold text-xs uppercase block mb-3">01 // CREATIVE PILLARS</span>
+        <a href="services.html#fw-01" class="hover:text-chalk block">AI Influencer Creation</a>
+        <a href="services.html#fw-02" class="hover:text-chalk block">Campaign Production</a>
+        <a href="services.html#fw-03" class="hover:text-chalk block">Virtual Talent Direction</a>
+        <a href="services.html#fw-04" class="hover:text-chalk block">Ongoing Content Retainer</a>
+        <a href="services.html" class="hover:text-chalk block">Digital Executive Twins</a>
+      </div>
+
+      <!-- Col 3: Multi-Page Navigation -->
+      <div class="lg:col-span-2 space-y-2.5 font-mono">
+        <span class="text-chalk font-bold text-xs uppercase block mb-3">02 // PLATFORM</span>
+        <a href="talent.html" class="hover:text-chalk block">Talent Roster (100+)</a>
+        <a href="campaigns.html" class="hover:text-chalk block">Campaigns & Feeds</a>
+        <a href="how-it-works.html" class="hover:text-chalk block">How It Works</a>
+        <a href="about.html" class="hover:text-chalk block">Agency Identity</a>
+        <a href="contact.html" class="hover:text-chalk block">Scoped Intake</a>
+      </div>
+
+      <!-- Col 4: Legal & Direct -->
+      <div class="lg:col-span-3 space-y-2.5 font-mono">
+        <span class="text-chalk font-bold text-xs uppercase block mb-3">03 // DIRECT & COMPLIANCE</span>
+        <p class="text-chalk font-medium">PromptForge LLC dba FAMEWOVEN</p>
+        <p>hello@famewoven.com</p>
+        <p>+1 (307) 445-3324</p>
+        <p class="text-[11px] text-ash/80">Synthetic Media Clearly Labeled.</p>
+        <p class="text-[11px] text-ash/80">Zero-Risk Escrow Guarantee.</p>
+      </div>
+    </div>
+
+    <div class="max-w-container mx-auto px-6 pt-8 border-t border-ash/10 flex flex-col sm:flex-row justify-between items-center gap-4 font-mono text-[11px]">
+      <span>© 2026 FAMEWOVEN (PromptForge LLC). All rights reserved. Virtual talent clearly labeled.</span>
+      <div class="flex gap-4">
+        <a href="about.html" class="hover:text-chalk">Privacy Policy</a>
+        <a href="about.html" class="hover:text-chalk">Terms of Service</a>
+        <a href="how-it-works.html" class="hover:text-chalk">FTC Guidelines</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Master JavaScript Engine -->
+  <script src="script.js"></script>
+</body>
+</html>

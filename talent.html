@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Virtual Talent Roster & Creator Portal — FAMEWOVEN</title>
+  <meta name="description" content="Browse FAMEWOVEN's 100+ curated AI persona roster or apply as a creator or executive digital twin model." />
+  <link rel="canonical" href="https://famewoven.com/talent.html" />
+
+  <!-- Google Fonts: Space Grotesk, IBM Plex Mono, Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Outfit:wght@500;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN + Custom Configuration -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: {
+              DEFAULT: '#111311',
+              elevated: '#181B18',
+              card: '#141714'
+            },
+            chalk: {
+              DEFAULT: '#F1EFE8',
+              muted: '#E4E1D6'
+            },
+            weft: {
+              DEFAULT: '#D1F34A',
+              hover: '#DEFF5E'
+            },
+            plum: {
+              DEFAULT: '#291A27',
+              light: '#3D263A'
+            },
+            ash: {
+              DEFAULT: '#A7A59B',
+              dark: '#6E6D64'
+            }
+          },
+          fontFamily: {
+            sans: ['"Space Grotesk"', 'sans-serif'],
+            mono: ['"IBM Plex Mono"', 'monospace'],
+            wordmark: ['"Outfit"', 'sans-serif']
+          },
+          maxWidth: {
+            'container': '1360px'
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- GSAP Core & Plugins -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js" defer></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-ink text-chalk antialiased selection:bg-weft selection:text-ink relative">
+
+  <!-- 2D Magnetic Loupe Cursor -->
+  <div id="fw-cursor" aria-hidden="true">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+  </div>
+
+  <!-- Global Sticky Header -->
+  <header id="nav" class="sticky top-0 z-40 h-20 bg-ink/90 backdrop-blur-md border-b border-ash/15 transition-all duration-300">
+    <div class="max-w-container mx-auto h-full px-6 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3.5 group min-w-[160px]" aria-label="FAMEWOVEN Home">
+        <svg class="w-10 h-10 transition-transform group-hover:scale-105" viewBox="0 0 64 64" fill="none">
+          <line x1="16" y1="8" x2="16" y2="56" stroke="#F1EFE8" stroke-width="6" />
+          <line x1="28" y1="8" x2="28" y2="56" stroke="#A7A59B" stroke-width="2" />
+          <line x1="13" y1="14" x2="52" y2="14" stroke="#D1F34A" stroke-width="6" />
+          <line x1="13" y1="32" x2="42" y2="32" stroke="#D1F34A" stroke-width="6" />
+          <rect x="13" y="11" width="6" height="6" fill="#F1EFE8" />
+        </svg>
+        <span class="font-wordmark font-medium text-2xl text-chalk tracking-tight">famewoven</span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-8 text-sm font-sans">
+        <a href="talent.html" class="text-weft font-bold flex items-center gap-1.5">
+          Talent <span class="font-mono text-[10px] text-weft font-bold">100+</span>
+        </a>
+        <a href="services.html" class="text-ash hover:text-chalk transition-colors">Services</a>
+        <a href="campaigns.html" class="text-ash hover:text-chalk transition-colors">Campaigns</a>
+        <a href="how-it-works.html" class="text-ash hover:text-chalk transition-colors">How It Works</a>
+        <a href="about.html" class="text-ash hover:text-chalk transition-colors">About</a>
+        <a href="contact.html" class="text-ash hover:text-chalk transition-colors">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-4">
+        <a href="#creator-application" class="btn-weft px-5 py-3 text-sm font-bold tracking-tight">
+          Apply as Talent ↗
+        </a>
+        <button id="mobile-menu-toggle" class="lg:hidden p-2 text-chalk hover:text-weft" aria-label="Toggle Mobile Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden lg:hidden bg-ink-elevated border-b border-ash/20 px-6 py-6 space-y-4 text-sm font-sans">
+      <a href="talent.html" class="block text-weft py-1 font-bold">Virtual Talent (100+)</a>
+      <a href="services.html" class="block text-chalk py-1 font-medium">Services & Modules</a>
+      <a href="campaigns.html" class="block text-chalk py-1 font-medium">Campaigns & Feeds</a>
+      <a href="how-it-works.html" class="block text-chalk py-1 font-medium">How It Works</a>
+      <a href="about.html" class="block text-chalk py-1 font-medium">About Agency</a>
+      <a href="contact.html" class="block text-chalk py-1 font-medium">Contact & Scoped Brief</a>
+    </div>
+  </header>
+
+  <!-- ===================== SECTION 01: HERO & VIEW SWITCHER ===================== -->
+  <section id="talent-hero" class="bg-ink py-20 border-b border-ash/15">
+    <div class="max-w-container mx-auto px-6 text-center max-w-4xl">
+      <span class="font-mono text-xs text-weft uppercase tracking-wider block mb-3">// 02/VIRTUAL TALENT & CREATOR NETWORK</span>
+      <h1 class="text-4xl sm:text-6xl font-bold tracking-tight text-chalk leading-tight mb-6">
+        Virtual talent. <span class="text-weft">Human direction.</span>
+      </h1>
+      <p class="text-base sm:text-lg text-ash leading-relaxed mb-8 max-w-2xl mx-auto">
+        Defined light. Natural texture. Every FAMEWOVEN persona is available for exclusive brand licensing, seasonal campaign casting, or custom look-alike development.
+      </p>
+
+      <!-- Dual Mode Switcher -->
+      <div class="inline-flex p-1.5 bg-ink-elevated border border-ash/25 font-mono text-xs">
+        <a href="#persona-directory" class="px-5 py-2.5 bg-weft text-ink font-bold">
+          [01 // Browse Virtual Talent Roster (100+)]
+        </a>
+        <a href="#creator-application" class="px-5 py-2.5 text-ash hover:text-chalk transition-colors">
+          [02 // Apply as Human Creator or Digital Twin]
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 02: PERSONA DIRECTORY ===================== -->
+  <section id="persona-directory" class="bg-ink py-20 border-b border-ash/15">
+    <div class="max-w-container mx-auto px-6">
+      <!-- Collection Filter Controls -->
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-10 pb-6 border-b border-ash/15 font-mono text-xs">
+        <div class="flex flex-wrap gap-2" id="talent-collection-filters">
+          <button class="px-3.5 py-1.5 bg-weft text-ink font-bold border border-weft" data-series="all">Show All [24]</button>
+          <button class="px-3.5 py-1.5 bg-ink-elevated text-ash hover:text-chalk border border-ash/20" data-series="influencers">01-Influencers [6]</button>
+          <button class="px-3.5 py-1.5 bg-ink-elevated text-ash hover:text-chalk border border-ash/20" data-series="women">02-Women [8]</button>
+          <button class="px-3.5 py-1.5 bg-ink-elevated text-ash hover:text-chalk border border-ash/20" data-series="men">03-Men [5]</button>
+          <button class="px-3.5 py-1.5 bg-ink-elevated text-ash hover:text-chalk border border-ash/20" data-series="tech">04-Tech & B2B [3]</button>
+          <button class="px-3.5 py-1.5 bg-ink-elevated text-ash hover:text-chalk border border-ash/20" data-series="underground">05-Underground [2]</button>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <span class="text-ash">Aesthetic Series:</span>
+          <span class="px-2 py-0.5 bg-ink border border-weft text-weft text-[10px]">WEFT (High-Tech)</span>
+          <span class="px-2 py-0.5 bg-ink border border-ash text-chalk text-[10px]">CHALK (Natural)</span>
+          <span class="px-2 py-0.5 bg-ink border border-plum text-chalk text-[10px]">PLUM (Nocturnal)</span>
+        </div>
+      </div>
+
+      <!-- 12-Card Persona Directory Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="persona-grid">
+        <!-- 01: Soraia Velt -->
+        <article class="fw-card bg-ink-elevated border border-ash/20 p-4" data-series-cat="influencers women">
+          <div class="portrait-frame w-full aspect-[4/5] mb-3 relative" data-inspect>
+            <img src="assets/personas/soraia_velt.jpg" alt="Soraia Velt" class="w-full h-full object-cover object-top" />
+            <span class="absolute top-2 left-2 bg-ink/90 text-weft font-mono text-[8px] px-1.5 py-0.5 border border-weft/30">AI-GENERATED CHARACTER / CONCEPT</span>
+            <span class="absolute bottom-2 right-2 bg-plum text-chalk font-mono text-[9px] px-1.5 py-0.5 font-bold">WEFT-01</span>
+          </div>
+          <h3 class="font-bold text-chalk text-base">Soraia Velt</h3>
+          <p class="text-xs text-ash mb-2">Luxury Minimalist & Editorial Director</p>
+          <div class="pt-2 border-t border-ash/15 flex justify-between font-mono text-[10px] text-weft">
+            <span>9.4% ER</span>
+            <button onclick="openDossier('Soraia Velt', 'WEFT-01', 'assets/personas/soraia_velt.jpg', 'Luxury Minimalist', '4.8% Avg CTR · 38 Shoots · Paris / Tokyo')" class="text-chalk hover:underline">View Dossier ↗</button>
+          </div>
+        </article>
+
+        <!-- 02: Kaelen Vance -->
+        <article class="fw-card bg-ink-elevated border border-ash/20 p-4" data-series-cat="influencers men tech">
+          <div class="portrait-frame w-full aspect-[4/5] mb-3 relative" data-inspect>
+            <img src="assets/personas/kaelen_vance.jpg" alt="Kaelen Vance" class="w-full h-full object-cover object-center" />
+            <span class="absolute top-2 left-2 bg-ink/90 text-weft font-mono text-[8px] px-1.5 py-0.5 border border-weft/30">AI-GENERATED CHARACTER / CONCEPT</span>
+            <span class="absolute bottom-2 right-2 bg-plum text-chalk font-mono text-[9px] px-1.5 py-0.5 font-bold">INK-04</span>
+          </div>
+          <h3 class="font-bold text-chalk text-base">Kaelen Vance</h3>
+          <p class="text-xs text-ash mb-2">AI Architect & Developer Advocate</p>
+          <div class="pt-2 border-t border-ash/15 flex justify-between font-mono text-[10px] text-weft">
+            <span>6.2% ER</span>
+            <button onclick="openDossier('Kaelen Vance', 'INK-04', 'assets/personas/kaelen_vance.jpg', 'AI Architect', '6.2% ER · Product Demos & X Threads · Lip-Sync + Keynotes')" class="text-chalk hover:underline">View Dossier ↗</button>
+          </div>
+        </article>
+
+        <!-- 03: Naia Kells -->
+        <article class="fw-card bg-ink-elevated border border-ash/20 p-4" data-series-cat="women">
+          <div class="portrait-frame w-full aspect-[4/5] mb-3 relative" data-inspect>
+            <img src="assets/personas/naia_kells.jpg" alt="Naia Kells" class="w-full h-full object-cover object-center" />
+            <span class="absolute top-2 left-2 bg-ink/90 text-weft font-mono text-[8px] px-1.5 py-0.5 border border-weft/30">AI-GENERATED CHARACTER / CONCEPT</span>
+            <span class="absolute bottom-2 right-2 bg-plum text-chalk font-mono text-[9px] px-1.5 py-0.5 font-bold">CHALK-09</span>
+          </div>
+          <h3 class="font-bold text-chalk text-base">Naia Kells</h3>
+          <p class="text-xs text-ash mb-2">Clean Skincare & Derm-Aesthetic</p>
+          <div class="pt-2 border-t border-ash/15 flex justify-between font-mono text-[10px] text-weft">
+            <span>4.2x ROAS</span>
+            <button onclick="openDossier('Naia Kells', 'CHALK-09', 'assets/personas/naia_kells.jpg', 'Clean Skincare Muse', '4.2x Ad ROAS · Seoul / London · UGC & Studio Macro')" class="text-chalk hover:underline">View Dossier ↗</button>
+          </div>
+        </article>
+
+        <!-- 04: Mikail Ash -->
+        <article class="fw-card bg-ink-elevated border border-ash/20 p-4" data-series-cat="men underground">
+          <div class="portrait-frame w-full aspect-[4/5] mb-3 relative" data-inspect>
+            <img src="assets/personas/mikail_ash.svg" alt="Mikail Ash" class="w-full h-full object-cover object-center" />
+            <span class="absolute top-2 left-2 bg-ink/90 text-weft font-mono text-[8px] px-1.5 py-0.5 border border-weft/30">AI-GENERATED CHARACTER / CONCEPT</span>
+            <span class="absolute bottom-2 right-2 bg-plum text-chalk font-mono text-[9px] px-1.5 py-0.5 font-bold">PLUM-12</span>
+          </div>
+          <h3 class="font-bold text-chalk text-base">Mikail Ash</h3>
+          <p class="text-xs text-ash mb-2">Avant-Garde Sportswear & Audio</p>
+          <div class="pt-2 border-t border-ash/15 flex justify-between font-mono text-[10px] text-weft">
+            <span>Berlin Scene</span>
+            <button onclick="openDossier('Mikail Ash', 'PLUM-12', 'assets/personas/mikail_ash.svg', 'Underground Audio Muse', 'High-Contrast Flash · Berlin · Motion Capture & Reels')" class="text-chalk hover:underline">View Dossier ↗</button>
+          </div>
+        </article>
+
+        <!-- 05: Elena Rostova-AI -->
+        <article class="fw-card bg-ink-elevated border border-ash/20 p-4" data-series-cat="women tech">
+          <div class="portrait-frame w-full aspect-[4/5] mb-3 relative" data-inspect>
+            <img src="assets/personas/elena_rostova.svg" alt="Elena Rostova-AI" class="w-full h-full object-cover object-center" />
+            <span class="absolute top-2 left-2 bg-ink/90 text-weft font-mono text-[8px] px-1.5 py-0.5 border border-weft/30">AI-GENERATED CHARACTER / CONCEPT</span>
+            <span class="absolute bottom-2 right-2 bg-plum text-chalk font-mono text-[9px] px-1.5 py-0.5 font-bold">WEFT-07</span>
+          </div>
+          <h3 class="font-bold text-chalk text-base">Elena Rostova-AI</h3>
+          <p class="text-xs text-ash mb-2">Enterprise Cloud & Keynote Host</p>
+          <div class="pt-2 border-t border-ash/15 flex justify-between font-mono text-[10px] text-weft">
+            <span>9.8% ER</span>
+            <button onclick="openDossier('Elena Rostova-AI', 'WEFT-07', 'assets/personas/elena_rostova.svg', 'Enterprise Cloud Host', '9.8% ER Benchmark · Multilingual (14 Languages) · Global')" class="text-chalk hover:underline">View Dossier ↗</button>
+          </div>
+        </article>
+
+        <!-- 06: Dahlia Wren -->
+        <article class="fw-card bg-ink-elevated border border-ash/20 p-4" data-series-cat="women influencers">
+          <div class="portrait-frame w-full aspect-[4/5] mb-3 relative" data-inspect>
+            <img src="assets/personas/dahlia_wren.svg" alt="Dahlia Wren" class="w-full h-full object-cover object-center" />
+            <span class="absolute top-2 left-2 bg-ink/90 text-weft font-mono text-[8px] px-1.5 py-0.5 border border-weft/30">AI-GENERATED CHARACTER / CONCEPT</span>
+            <span class="absolute bottom-2 right-2 bg-plum text-chalk font-mono text-[9px] px-1.5 py-0.5 font-bold">CHALK-15</span>
+          </div>
+          <h3 class="font-bold text-chalk text-base">Dahlia Wren</h3>
+          <p class="text-xs text-ash mb-2">Sustainable Resort & Architecture</p>
+          <div class="pt-2 border-t border-ash/15 flex justify-between font-mono text-[10px] text-weft">
+            <span>8K Print</span>
+            <button onclick="openDossier('Dahlia Wren', 'CHALK-15', 'assets/personas/dahlia_wren.svg', 'Sustainable Resort Muse', 'Golden-Hour Light · Barcelona / Milan · 8K Print Ready')" class="text-chalk hover:underline">View Dossier ↗</button>
+          </div>
+        </article>
+
+        <!-- 07: Lian Kest -->
+        <article class="fw-card bg-ink-elevated border border-ash/20 p-4" data-series-cat="men influencers">
+          <div class="portrait-frame w-full aspect-[4/5] mb-3 relative bg-plum flex items-center justify-center text-center p-4">
+            <span class="font-mono text-xs text-weft">WEFT-18 // LIAN KEST<br /><span class="text-ash text-[10px]">Cybernetic Industrial</span></span>
+          </div>
+          <h3 class="font-bold text-chalk text-base">Lian Kest</h3>
+          <p class="text-xs text-ash mb-2">Hardware & Industrial Design Muse</p>
+          <div class="pt-2 border-t border-ash/15 flex justify-between font-mono text-[10px] text-weft">
+            <span>Tokyo Set</span>
+            <span class="text-chalk">Casting Open</span>
+          </div>
+        </article>
+
+        <!-- 08: Blair da Silva -->
+        <article class="fw-card bg-ink-elevated border border-ash/20 p-4" data-series-cat="women">
+          <div class="portrait-frame w-full aspect-[4/5] mb-3 relative bg-plum flex items-center justify-center text-center p-4">
+            <span class="font-mono text-xs text-weft">PLUM-22 // BLAIR DA SILVA<br /><span class="text-ash text-[10px]">High Jewelry & Fine Art</span></span>
+          </div>
+          <h3 class="font-bold text-chalk text-base">Blair da Silva</h3>
+          <p class="text-xs text-ash mb-2">Fine Jewelry & High-Fashion Muse</p>
+          <div class="pt-2 border-t border-ash/15 flex justify-between font-mono text-[10px] text-weft">
+            <span>London Set</span>
+            <span class="text-chalk">Casting Open</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 03: DIGITAL TWIN BANNER ===================== -->
+  <section id="digital-twin-banner" class="bg-chalk text-ink py-20 border-b border-ink/15">
+    <div class="max-w-container mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <div class="lg:col-span-8">
+        <span class="font-mono text-xs text-ink uppercase tracking-wider block font-bold mb-2">// EXECUTIVE & MODEL DIGITAL TWINS</span>
+        <h2 class="text-3xl lg:text-4xl font-bold text-ink mb-4">
+          License your likeness into an AI digital twin. Scale global keynotes without travel.
+        </h2>
+        <p class="text-sm text-ink/80 leading-relaxed max-w-2xl">
+          Trained on 15 to 50 studio camera studies, our digital twin infrastructure enables founders, CEOs, and professional fashion models to produce 4K video keynotes, weekly X and LinkedIn content, and localized multilingual campaigns while preserving absolute rights control.
+        </p>
+      </div>
+      <div class="lg:col-span-4 flex justify-start lg:justify-end">
+        <a href="#creator-application" class="bg-ink text-weft px-7 py-4 font-mono text-xs font-bold uppercase tracking-wider hover:bg-weft hover:text-ink transition-colors">
+          Apply to Create Digital Twin ↗
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 04: CREATOR APPLICATION PORTAL ===================== -->
+  <section id="creator-application" class="bg-ink-elevated text-chalk py-24 border-b border-ash/15">
+    <div class="max-w-container mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <!-- Left Column: Value Pillars -->
+      <div class="lg:col-span-5">
+        <span class="font-mono text-xs text-weft uppercase tracking-wider block mb-2">// CREATOR APPLICATION PORTAL</span>
+        <h2 class="text-3xl lg:text-5xl font-bold tracking-tight text-chalk leading-tight mb-6">
+          Work with brands that fit you.
+        </h2>
+        <p class="text-sm text-ash leading-relaxed mb-8">
+          Join 500+ vetted creators and AI models in the FAMEWOVEN distribution network. Get matched with top AI, SaaS, developer-tool, and luxury brands shipping synchronized launch waves.
+        </p>
+
+        <div class="space-y-4 font-mono text-xs text-chalk">
+          <div class="p-4 bg-ink border border-ash/20">
+            <span class="text-weft font-bold block mb-1">01 // DIRECT BRAND INTRODUCTIONS</span>
+            <p class="text-ash text-[11px]">No cold pitching or platform bidding. We bring pre-cleared briefs with agreed rates directly to you.</p>
+          </div>
+          <div class="p-4 bg-ink border border-ash/20">
+            <span class="text-weft font-bold block mb-1">02 // WE HANDLE NEGOTIATION & ADMIN</span>
+            <p class="text-ash text-[11px]">Contracts, brief revisions, and asset scheduling are handled by our studio team so you focus on content.</p>
+          </div>
+          <div class="p-4 bg-ink border border-ash/20">
+            <span class="text-weft font-bold block mb-1">03 // CLEAR, AGREED TERMS & ZERO ESCROW</span>
+            <p class="text-ash text-[11px]">Guaranteed timely payment via escrow on approved campaign delivery. Never chase unpaid invoices.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: 11-Field Creator Application Form -->
+      <div class="lg:col-span-7">
+        <form id="creator-apply-form" class="bg-ink border border-ash/25 p-8 fw-card space-y-4" onsubmit="event.preventDefault(); document.getElementById('creator-success').classList.remove('hidden'); this.classList.add('hidden');">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block font-mono text-[11px] text-ash mb-1 uppercase">Full Name *</label>
+              <input type="text" class="w-full bg-ink-elevated border border-ash/30 text-chalk px-3.5 py-2.5 text-xs focus:border-weft focus:outline-none" required />
+            </div>
+            <div>
+              <label class="block font-mono text-[11px] text-ash mb-1 uppercase">Email Address *</label>
+              <input type="email" class="w-full bg-ink-elevated border border-ash/30 text-chalk px-3.5 py-2.5 text-xs focus:border-weft focus:outline-none" required />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block font-mono text-[11px] text-ash mb-1 uppercase">Country / City *</label>
+              <input type="text" placeholder="e.g. United States, London" class="w-full bg-ink-elevated border border-ash/30 text-chalk px-3.5 py-2.5 text-xs focus:border-weft focus:outline-none" required />
+            </div>
+            <div>
+              <label class="block font-mono text-[11px] text-ash mb-1 uppercase">Collaboration Track *</label>
+              <select class="w-full bg-ink-elevated border border-ash/30 text-chalk px-3.5 py-2.5 text-xs focus:border-weft focus:outline-none">
+                <option value="Human Creator Amplification">Human Creator Amplification</option>
+                <option value="License Likeness as Digital Twin">License My Likeness as a Digital Twin</option>
+                <option value="Both">Both (Creator + Digital Twin)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block font-mono text-[11px] text-ash mb-1 uppercase">Main Platform *</label>
+              <select class="w-full bg-ink-elevated border border-ash/30 text-chalk px-3.5 py-2.5 text-xs focus:border-weft focus:outline-none">
+                <option value="X / Twitter">X (Twitter)</option>
+                <option value="Instagram">Instagram</option>
+                <option value="YouTube">YouTube</option>
+                <option value="TikTok">TikTok</option>
+                <option value="LinkedIn">LinkedIn</option>
+              </select>
+            </div>
+            <div>
+              <label class="block font-mono text-[11px] text-ash mb-1 uppercase">Profile URL(s) *</label>
+              <input type="url" placeholder="https://x.com/yourhandle" class="w-full bg-ink-elevated border border-ash/30 text-chalk px-3.5 py-2.5 text-xs focus:border-weft focus:outline-none" required />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block font-mono text-[11px] text-ash mb-1 uppercase">Follower Count (Main Platform) *</label>
+              <input type="text" placeholder="e.g. 85,000" class="w-full bg-ink-elevated border border-ash/30 text-chalk px-3.5 py-2.5 text-xs focus:border-weft focus:outline-none" required />
+            </div>
+            <div>
+              <label class="block font-mono text-[11px] text-ash mb-1 uppercase">Typical Rate Per Post ($) *</label>
+              <input type="text" placeholder="e.g. $1,500" class="w-full bg-ink-elevated border border-ash/30 text-chalk px-3.5 py-2.5 text-xs focus:border-weft focus:outline-none" required />
+            </div>
+          </div>
+
+          <div>
+            <label class="block font-mono text-[11px] text-ash mb-1 uppercase">Primary Niche / Category *</label>
+            <div class="flex flex-wrap gap-2 text-xs font-mono">
+              <label class="inline-flex items-center gap-1.5 bg-ink-elevated px-2.5 py-1 border border-ash/30 cursor-pointer">
+                <input type="checkbox" checked /> AI & Tech
+              </label>
+              <label class="inline-flex items-center gap-1.5 bg-ink-elevated px-2.5 py-1 border border-ash/30 cursor-pointer">
+                <input type="checkbox" /> B2B SaaS
+              </label>
+              <label class="inline-flex items-center gap-1.5 bg-ink-elevated px-2.5 py-1 border border-ash/30 cursor-pointer">
+                <input type="checkbox" /> Developer Tools
+              </label>
+              <label class="inline-flex items-center gap-1.5 bg-ink-elevated px-2.5 py-1 border border-ash/30 cursor-pointer">
+                <input type="checkbox" /> Fashion & Style
+              </label>
+              <label class="inline-flex items-center gap-1.5 bg-ink-elevated px-2.5 py-1 border border-ash/30 cursor-pointer">
+                <input type="checkbox" /> Clean Beauty
+              </label>
+            </div>
+          </div>
+
+          <div>
+            <label class="block font-mono text-[11px] text-ash mb-1 uppercase">Audience Location (Top Country)</label>
+            <input type="text" placeholder="e.g. United States (65%), UK (15%)" class="w-full bg-ink-elevated border border-ash/30 text-chalk px-3.5 py-2.5 text-xs focus:border-weft focus:outline-none" />
+          </div>
+
+          <div>
+            <label class="block font-mono text-[11px] text-ash mb-1 uppercase">Portfolio / Notes</label>
+            <textarea rows="3" placeholder="Tell us about recent sponsored work or your content focus..." class="w-full bg-ink-elevated border border-ash/30 text-chalk px-3.5 py-2.5 text-xs focus:border-weft focus:outline-none"></textarea>
+          </div>
+
+          <label class="flex items-start gap-2 font-mono text-[11px] text-ash pt-2 cursor-pointer">
+            <input type="checkbox" required class="mt-0.5" />
+            <span>I agree to FAMEWOVEN creator terms and privacy policy. We never spam.</span>
+          </label>
+
+          <button type="submit" class="w-full btn-weft py-3.5 text-xs font-bold uppercase tracking-wider">
+            Submit Application ↗
+          </button>
+        </form>
+
+        <div id="creator-success" class="hidden bg-ink border border-weft p-8 text-center fw-card space-y-3">
+          <div class="w-10 h-10 bg-weft text-ink font-bold text-xl flex items-center justify-center mx-auto">✓</div>
+          <h3 class="text-xl font-bold text-chalk">Application Received</h3>
+          <p class="text-xs text-ash max-w-[44ch] mx-auto leading-relaxed">
+            Thank you for applying. Our talent curation team reviews creator shortlists weekly. You will receive an invitation when a brand campaign matches your audience.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dossier Modal Component -->
+  <div id="dossier-modal" class="fixed inset-0 z-50 bg-ink/90 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="bg-ink-elevated border border-ash/30 max-w-lg w-full p-6 fw-card relative">
+      <button onclick="closeDossier()" class="absolute top-4 right-4 text-ash hover:text-chalk font-mono text-lg font-bold">✕</button>
+      <div class="flex items-center gap-4 mb-4">
+        <img id="dossier-img" src="" alt="" class="w-20 h-24 object-cover border border-ash/30" />
+        <div>
+          <span id="dossier-code" class="font-mono text-xs text-weft font-bold block"></span>
+          <h3 id="dossier-name" class="text-xl font-bold text-chalk"></h3>
+          <p id="dossier-archetype" class="text-xs text-ash"></p>
+        </div>
+      </div>
+      <div class="p-3 bg-ink border border-ash/20 font-mono text-xs text-chalk mb-4" id="dossier-metrics"></div>
+      <div class="p-3 bg-plum border border-weft/30 text-xs text-chalk mb-6">
+        ✦ 100% Locked LoRA Reference System · 360° Studio Angle Reference Sheet Included.
+      </div>
+      <a href="contact.html" class="w-full btn-weft py-3 text-xs font-bold block text-center">
+        Cast This Persona for Campaign ↗
+      </a>
+    </div>
+  </div>
+
+  <!-- Shared Global Footer -->
+  <footer class="bg-ink text-ash pt-16 pb-12 font-sans text-xs border-t border-ash/10">
+    <div class="max-w-container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+      <div>
+        <span class="font-wordmark font-medium text-2xl text-chalk tracking-tight block mb-2">famewoven</span>
+        <p class="text-xs text-ash">Virtual talent. Human direction. AI Influencer & Creative Agency.</p>
+      </div>
+      <div class="space-y-2 font-mono">
+        <span class="text-chalk font-bold block mb-2 uppercase">Platform</span>
+        <a href="talent.html" class="block text-weft">Virtual Talent</a>
+        <a href="services.html" class="block hover:text-chalk">Services</a>
+        <a href="campaigns.html" class="block hover:text-chalk">Campaigns</a>
+      </div>
+      <div class="space-y-2 font-mono">
+        <span class="text-chalk font-bold block mb-2 uppercase">Methodology</span>
+        <a href="how-it-works.html" class="block hover:text-chalk">How It Works</a>
+        <a href="about.html" class="block hover:text-chalk">About</a>
+        <a href="contact.html" class="block hover:text-chalk">Contact</a>
+      </div>
+      <div class="space-y-2 font-mono">
+        <span class="text-chalk font-bold block mb-2 uppercase">Direct</span>
+        <p>hello@famewoven.com</p>
+        <p>+1 (307) 445-3324</p>
+      </div>
+    </div>
+    <div class="max-w-container mx-auto px-6 pt-6 border-t border-ash/10 text-center font-mono text-[11px]">
+      © 2026 FAMEWOVEN (PromptForge LLC). All rights reserved.
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Talent directory filtering logic
+    const filterBtns = document.querySelectorAll('#talent-collection-filters button');
+    const cards = document.querySelectorAll('#persona-grid article');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => {
+          b.classList.remove('bg-weft', 'text-ink', 'font-bold');
+          b.classList.add('bg-ink-elevated', 'text-ash');
+        });
+        btn.classList.add('bg-weft', 'text-ink', 'font-bold');
+        btn.classList.remove('bg-ink-elevated', 'text-ash');
+
+        const series = btn.dataset.series;
+        cards.forEach(card => {
+          if (series === 'all' || card.dataset.seriesCat.includes(series)) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+
+    function openDossier(name, code, img, archetype, metrics) {
+      document.getElementById('dossier-name').textContent = name;
+      document.getElementById('dossier-code').textContent = code;
+      document.getElementById('dossier-img').src = img;
+      document.getElementById('dossier-archetype').textContent = archetype;
+      document.getElementById('dossier-metrics').textContent = metrics;
+      const modal = document.getElementById('dossier-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeDossier() {
+      const modal = document.getElementById('dossier-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+  </script>
+</body>
+</html>

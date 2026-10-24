@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Full-Stack Services & Digital Identities — FAMEWOVEN</title>
+  <meta name="description" content="Deep-dive into FAMEWOVEN's 4 Virtual Talent Pillars, 5 Digital Identity Archetypes, and 14 Campaign Amplification Formats." />
+  <link rel="canonical" href="https://famewoven.com/services.html" />
+
+  <!-- Google Fonts: Space Grotesk, IBM Plex Mono, Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Outfit:wght@500;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN + Custom Configuration -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: {
+              DEFAULT: '#111311',
+              elevated: '#181B18',
+              card: '#141714'
+            },
+            chalk: {
+              DEFAULT: '#F1EFE8',
+              muted: '#E4E1D6'
+            },
+            weft: {
+              DEFAULT: '#D1F34A',
+              hover: '#DEFF5E'
+            },
+            plum: {
+              DEFAULT: '#291A27',
+              light: '#3D263A'
+            },
+            ash: {
+              DEFAULT: '#A7A59B',
+              dark: '#6E6D64'
+            }
+          },
+          fontFamily: {
+            sans: ['"Space Grotesk"', 'sans-serif'],
+            mono: ['"IBM Plex Mono"', 'monospace'],
+            wordmark: ['"Outfit"', 'sans-serif']
+          },
+          maxWidth: {
+            'container': '1360px'
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- GSAP Core & Plugins -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js" defer></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-ink text-chalk antialiased selection:bg-weft selection:text-ink relative">
+
+  <!-- 2D Magnetic Loupe Cursor -->
+  <div id="fw-cursor" aria-hidden="true">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+  </div>
+
+  <!-- Global Sticky Header -->
+  <header id="nav" class="sticky top-0 z-40 h-20 bg-ink/90 backdrop-blur-md border-b border-ash/15 transition-all duration-300">
+    <div class="max-w-container mx-auto h-full px-6 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3.5 group min-w-[160px]" aria-label="FAMEWOVEN Home">
+        <svg class="w-10 h-10 transition-transform group-hover:scale-105" viewBox="0 0 64 64" fill="none">
+          <line x1="16" y1="8" x2="16" y2="56" stroke="#F1EFE8" stroke-width="6" />
+          <line x1="28" y1="8" x2="28" y2="56" stroke="#A7A59B" stroke-width="2" />
+          <line x1="13" y1="14" x2="52" y2="14" stroke="#D1F34A" stroke-width="6" />
+          <line x1="13" y1="32" x2="42" y2="32" stroke="#D1F34A" stroke-width="6" />
+          <rect x="13" y="11" width="6" height="6" fill="#F1EFE8" />
+        </svg>
+        <span class="font-wordmark font-medium text-2xl text-chalk tracking-tight">famewoven</span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-8 text-sm font-sans">
+        <a href="talent.html" class="text-ash hover:text-chalk transition-colors">Talent <span class="font-mono text-[10px] text-weft font-bold">100+</span></a>
+        <a href="services.html" class="text-weft font-bold">Services</a>
+        <a href="campaigns.html" class="text-ash hover:text-chalk transition-colors">Campaigns</a>
+        <a href="how-it-works.html" class="text-ash hover:text-chalk transition-colors">How It Works</a>
+        <a href="about.html" class="text-ash hover:text-chalk transition-colors">About</a>
+        <a href="contact.html" class="text-ash hover:text-chalk transition-colors">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-4">
+        <a href="contact.html" class="btn-weft px-5 py-3 text-sm font-bold tracking-tight">
+          Commission a Service ↗
+        </a>
+        <button id="mobile-menu-toggle" class="lg:hidden p-2 text-chalk hover:text-weft" aria-label="Toggle Mobile Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden lg:hidden bg-ink-elevated border-b border-ash/20 px-6 py-6 space-y-4 text-sm font-sans">
+      <a href="talent.html" class="block text-chalk py-1 font-medium">Virtual Talent (100+)</a>
+      <a href="services.html" class="block text-weft py-1 font-bold">Services & Modules</a>
+      <a href="campaigns.html" class="block text-chalk py-1 font-medium">Campaigns & Feeds</a>
+      <a href="how-it-works.html" class="block text-chalk py-1 font-medium">How It Works</a>
+      <a href="about.html" class="block text-chalk py-1 font-medium">About Agency</a>
+      <a href="contact.html" class="block text-chalk py-1 font-medium">Contact & Scoped Brief</a>
+    </div>
+  </header>
+
+  <!-- ===================== SECTION 01: SERVICES HERO & FUNNEL STRIP ===================== -->
+  <section id="services-hero" class="bg-ink py-20 border-b border-ash/15">
+    <div class="max-w-container mx-auto px-6 text-center max-w-4xl">
+      <span class="font-mono text-xs text-weft uppercase tracking-wider block mb-3">// 08/WHAT WE MAKE // FULL-STACK ARCHITECTURE</span>
+      <h1 class="text-4xl sm:text-6xl font-bold tracking-tight text-chalk leading-tight mb-6">
+        The right craft. <span class="text-weft">Working together.</span>
+      </h1>
+      <p class="text-base sm:text-lg text-ash leading-relaxed mb-10 max-w-2xl mx-auto">
+        Whether you need a single bespoke brand character, a seasonal campaign shoot, or complete turnkey execution across 100+ creators from brief to attribution.
+      </p>
+
+      <!-- 3-Stage Character ➔ Campaign ➔ Continuity Funnel Strip -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-left p-2 bg-ink-elevated border border-ash/25 font-mono text-xs">
+        <div class="p-4 bg-ink border border-ash/20">
+          <span class="text-weft font-bold block mb-1">01 // A CHARACTER</span>
+          <p class="text-chalk font-sans font-bold">Presence First</p>
+          <span class="text-ash text-[11px] block mt-1">Facial geometry, personality & locked reference system.</span>
+        </div>
+        <div class="p-4 bg-ink border border-ash/20">
+          <span class="text-weft font-bold block mb-1">02 // A CAMPAIGN</span>
+          <p class="text-chalk font-sans font-bold">Built to Be Seen</p>
+          <span class="text-ash text-[11px] block mt-1">4K stills, vertical video & 10 to 100+ creator waves.</span>
+        </div>
+        <div class="p-4 bg-ink border border-ash/20">
+          <span class="text-weft font-bold block mb-1">03 // CONTINUITY</span>
+          <p class="text-chalk font-sans font-bold">Recognisable Feed</p>
+          <span class="text-ash text-[11px] block mt-1">Monthly drops, archived weights & compounding reach.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 02: 5 DIGITAL IDENTITY SOLUTIONS ===================== -->
+  <section id="digital-identity-modules" class="bg-ink-elevated text-chalk py-24 border-b border-ash/15">
+    <div class="max-w-container mx-auto px-6">
+      <div class="max-w-[720px] mb-12">
+        <span class="font-mono text-xs text-weft uppercase tracking-wider block mb-2">// DIGITAL IDENTITY ARCHETYPES</span>
+        <h2 class="text-3xl lg:text-4xl font-bold text-chalk">Five Ways to Deploy Synthetic Influence</h2>
+      </div>
+
+      <div class="space-y-4">
+        <!-- ID-01 -->
+        <article class="p-6 bg-ink border border-ash/20 fw-card flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+          <div class="max-w-2xl">
+            <span class="font-mono text-[11px] text-weft uppercase block mb-1">ID-01 // CREATE A CUSTOM AI AVATAR FOR YOUR BRAND</span>
+            <h3 class="text-xl font-bold text-chalk mb-2">Custom AI Avatar</h3>
+            <p class="text-xs text-ash leading-relaxed">
+              Bespoke digital brand ambassador with custom facial geometry, personality bible, and locked LoRA reference system tailored exclusively to your brand.
+            </p>
+          </div>
+          <a href="contact.html?service=Custom%20AI%20Avatar" class="btn-weft px-6 py-3 text-xs font-bold whitespace-nowrap">
+            Let's Build ↗
+          </a>
+        </article>
+
+        <!-- ID-02 -->
+        <article class="p-6 bg-ink border border-ash/20 fw-card flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+          <div class="max-w-2xl">
+            <span class="font-mono text-[11px] text-weft uppercase block mb-1">ID-02 // LAUNCH ADVERTISING CAMPAIGNS WITH DIGITAL INFLUENCERS</span>
+            <h3 class="text-xl font-bold text-chalk mb-2">AI Influencers</h3>
+            <p class="text-xs text-ash leading-relaxed">
+              Cast established personas from the FAMEWOVEN roster with 100% control over production, narrative, wardrobe, and multi-channel scheduling.
+            </p>
+          </div>
+          <a href="contact.html?service=AI%20Influencers" class="btn-weft px-6 py-3 text-xs font-bold whitespace-nowrap">
+            Let's Build ↗
+          </a>
+        </article>
+
+        <!-- ID-03 -->
+        <article class="p-6 bg-ink border border-ash/20 fw-card flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+          <div class="max-w-2xl">
+            <span class="font-mono text-[11px] text-weft uppercase block mb-1">ID-03 // BUILD A DIGITAL TWIN OF A REAL PERSON</span>
+            <h3 class="text-xl font-bold text-chalk mb-2">Digital Twin</h3>
+            <p class="text-xs text-ash leading-relaxed">
+              Replicate founders, executives, or brand talent to scale multilingual video keynotes, product demos, and social content without studio days.
+            </p>
+          </div>
+          <a href="contact.html?service=Digital%20Twin" class="btn-weft px-6 py-3 text-xs font-bold whitespace-nowrap">
+            Let's Build ↗
+          </a>
+        </article>
+
+        <!-- ID-04 -->
+        <article class="p-6 bg-ink border border-ash/20 fw-card flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+          <div class="max-w-2xl">
+            <span class="font-mono text-[11px] text-weft uppercase block mb-1">ID-04 // CREATE CAMPAIGNS WITH OUR AI MODEL STOCK</span>
+            <h3 class="text-xl font-bold text-chalk mb-2">Stock Models</h3>
+            <p class="text-xs text-ash leading-relaxed">
+              Access 100+ curated virtual models across fashion, beauty, tech, and lifestyle for rapid e-commerce lookbooks and performance ad testing.
+            </p>
+          </div>
+          <a href="contact.html?service=Stock%20Models" class="btn-weft px-6 py-3 text-xs font-bold whitespace-nowrap">
+            Let's Build ↗
+          </a>
+        </article>
+
+        <!-- ID-05 -->
+        <article class="p-6 bg-ink border border-ash/20 fw-card flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+          <div class="max-w-2xl">
+            <span class="font-mono text-[11px] text-weft uppercase block mb-1">ID-05 // SCALE CAMPAIGNS FASTER AND MORE EFFICIENTLY</span>
+            <h3 class="text-xl font-bold text-chalk mb-2">Scalable Production & Amplification</h3>
+            <p class="text-xs text-ash leading-relaxed">
+              Pair AI asset generation and global localization with our 14 human creator campaign formats across X, Instagram, TikTok, and LinkedIn.
+            </p>
+          </div>
+          <a href="contact.html?service=Scalable%20Production" class="btn-weft px-6 py-3 text-xs font-bold whitespace-nowrap">
+            Let's Build ↗
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 03: GOAL-ORIENTED 18-SERVICE GRID ===================== -->
+  <section class="bg-ink text-chalk py-24 border-b border-ash/15">
+    <div class="max-w-container mx-auto px-6">
+      <div class="max-w-[700px] mb-12">
+        <span class="font-mono text-xs text-weft uppercase tracking-wider block mb-2">// COMPLETE SERVICE CATALOGUE</span>
+        <h2 class="text-3xl lg:text-4xl font-bold text-chalk mb-4">All 18 Capabilities Filterable</h2>
+        <p class="text-xs text-ash">Select any capability to start a brief pre-populated with it.</p>
+      </div>
+
+      <div class="flex flex-wrap gap-2 mb-8 font-mono text-xs">
+        <button class="px-3.5 py-1.5 bg-weft text-ink font-bold" data-filter="all">All 18 Services</button>
+        <button class="px-3.5 py-1.5 bg-ink-elevated text-ash border border-ash/20" data-filter="virtual">01 Build Brand Character</button>
+        <button class="px-3.5 py-1.5 bg-ink-elevated text-ash border border-ash/20" data-filter="content">02 Produce Campaign Assets</button>
+        <button class="px-3.5 py-1.5 bg-ink-elevated text-ash border border-ash/20" data-filter="campaigns">03 Amplify on X & Social</button>
+        <button class="px-3.5 py-1.5 bg-ink-elevated text-ash border border-ash/20" data-filter="growth">04 Compound Continuity</button>
+      </div>
+
+      <div id="services-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Rendered via script.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 04: EMBEDDED CONSOLES & PILOT OFFER (LIGHT SURFACE) ===================== -->
+  <section class="bg-chalk text-ink py-24 border-b border-ink/15 weave-bg-grid-chalk">
+    <div class="max-w-container mx-auto px-6">
+      <!-- Founding Cohort Pilot Offer Banner -->
+      <div class="p-8 bg-ink text-chalk border border-weft mb-16 fw-card">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+          <div>
+            <span class="bg-weft text-ink font-mono text-xs px-2.5 py-1 font-bold inline-block mb-3">FOUNDING COHORT 02 // INTRODUCTORY PILOT</span>
+            <h3 class="text-2xl font-bold text-chalk mb-2">Architect Your Character Engine at Pilot Rates</h3>
+            <p class="text-xs text-ash max-w-2xl leading-relaxed">
+              We are onboarding partner brands for Cohort 02. Work directly with our creative directors to architect your character identity, reference locking, and creator engine at introductory pilot terms with $0 upfront escrow.
+            </p>
+          </div>
+          <a href="contact.html" class="btn-weft px-7 py-4 text-xs font-bold whitespace-nowrap">
+            Claim Cohort Spot ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Live Casting Simulator Embedded -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <div class="lg:col-span-7">
+          <span class="font-mono text-xs text-ink font-bold uppercase tracking-wider block mb-2">// INTERACTIVE SIMULATOR</span>
+          <h3 class="text-2xl font-bold text-ink mb-6">Interactive Hybrid Talent Estimator</h3>
+          <div id="simulator-cards" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Populated via script.js -->
+          </div>
+          <div class="bg-ink text-chalk p-5 mt-6 border border-ink">
+            <div class="flex justify-between items-center font-mono text-xs">
+              <span>Combined Reach: <strong id="sim-reach" class="text-weft">620K+</strong></span>
+              <span>Est. Package: <strong id="sim-cost" class="text-chalk">$4,450</strong></span>
+              <button id="sim-book-btn" class="btn-weft px-4 py-2 text-xs font-bold">Book Shortlist ↗</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5-Stage Flight Console Embedded -->
+        <div class="lg:col-span-5 bg-ink text-chalk p-6 border border-ash/25 fw-card">
+          <span class="font-mono text-xs text-weft font-bold block mb-1">TURNKEY LIFECYCLE</span>
+          <h4 id="flight-title" class="text-xl font-bold text-chalk mb-4">5-Stage Flight Lifecycle</h4>
+          <div class="p-3 bg-ink-elevated border border-ash/20 text-xs text-ash mb-4" id="flight-deliverable">
+            Full character reference bible & campaign strategy blueprint signed off before spending $1.
+          </div>
+          <div class="flex justify-between items-center pt-3 border-t border-ash/20 font-mono text-xs">
+            <span id="flight-stage-indicator" class="text-weft font-bold">STAGE 01/05</span>
+            <button id="flight-next-btn" class="btn-weft px-4 py-2 text-xs font-bold">Next Stage →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Shared Global Footer -->
+  <footer class="bg-ink text-ash pt-16 pb-12 font-sans text-xs border-t border-ash/10">
+    <div class="max-w-container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+      <div>
+        <span class="font-wordmark font-medium text-2xl text-chalk tracking-tight block mb-2">famewoven</span>
+        <p class="text-xs text-ash">Virtual talent. Human direction. Full-stack AI Influencer & Creative Agency.</p>
+      </div>
+      <div class="space-y-2 font-mono">
+        <span class="text-chalk font-bold block mb-2 uppercase">Platform</span>
+        <a href="talent.html" class="block hover:text-chalk">Virtual Talent</a>
+        <a href="services.html" class="block text-weft">Services</a>
+        <a href="campaigns.html" class="block hover:text-chalk">Campaigns</a>
+      </div>
+      <div class="space-y-2 font-mono">
+        <span class="text-chalk font-bold block mb-2 uppercase">Methodology</span>
+        <a href="how-it-works.html" class="block hover:text-chalk">How It Works</a>
+        <a href="about.html" class="block hover:text-chalk">About</a>
+        <a href="contact.html" class="block hover:text-chalk">Contact</a>
+      </div>
+      <div class="space-y-2 font-mono">
+        <span class="text-chalk font-bold block mb-2 uppercase">Direct</span>
+        <p>hello@famewoven.com</p>
+        <p>+1 (307) 445-3324</p>
+      </div>
+    </div>
+    <div class="max-w-container mx-auto px-6 pt-6 border-t border-ash/10 text-center font-mono text-[11px]">
+      © 2026 FAMEWOVEN (PromptForge LLC). All rights reserved.
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

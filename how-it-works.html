@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How It Works — 8-Step Technical Pipeline & Governance | FAMEWOVEN</title>
+  <meta name="description" content="Demystifying how FAMEWOVEN builds consistent AI characters and orchestrates 100+ creator launch waves with full legal and FTC compliance." />
+  <link rel="canonical" href="https://famewoven.com/how-it-works.html" />
+
+  <!-- Google Fonts: Space Grotesk, IBM Plex Mono, Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Outfit:wght@500;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN + Custom Configuration -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: {
+              DEFAULT: '#111311',
+              elevated: '#181B18',
+              card: '#141714'
+            },
+            chalk: {
+              DEFAULT: '#F1EFE8',
+              muted: '#E4E1D6'
+            },
+            weft: {
+              DEFAULT: '#D1F34A',
+              hover: '#DEFF5E'
+            },
+            plum: {
+              DEFAULT: '#291A27',
+              light: '#3D263A'
+            },
+            ash: {
+              DEFAULT: '#A7A59B',
+              dark: '#6E6D64'
+            }
+          },
+          fontFamily: {
+            sans: ['"Space Grotesk"', 'sans-serif'],
+            mono: ['"IBM Plex Mono"', 'monospace'],
+            wordmark: ['"Outfit"', 'sans-serif']
+          },
+          maxWidth: {
+            'container': '1360px'
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- GSAP Core & Plugins -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js" defer></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-ink text-chalk antialiased selection:bg-weft selection:text-ink relative">
+
+  <!-- 2D Magnetic Loupe Cursor -->
+  <div id="fw-cursor" aria-hidden="true">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+  </div>
+
+  <!-- Global Sticky Header -->
+  <header id="nav" class="sticky top-0 z-40 h-20 bg-ink/90 backdrop-blur-md border-b border-ash/15 transition-all duration-300">
+    <div class="max-w-container mx-auto h-full px-6 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3.5 group min-w-[160px]" aria-label="FAMEWOVEN Home">
+        <svg class="w-10 h-10 transition-transform group-hover:scale-105" viewBox="0 0 64 64" fill="none">
+          <line x1="16" y1="8" x2="16" y2="56" stroke="#F1EFE8" stroke-width="6" />
+          <line x1="28" y1="8" x2="28" y2="56" stroke="#A7A59B" stroke-width="2" />
+          <line x1="13" y1="14" x2="52" y2="14" stroke="#D1F34A" stroke-width="6" />
+          <line x1="13" y1="32" x2="42" y2="32" stroke="#D1F34A" stroke-width="6" />
+          <rect x="13" y="11" width="6" height="6" fill="#F1EFE8" />
+        </svg>
+        <span class="font-wordmark font-medium text-2xl text-chalk tracking-tight">famewoven</span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-8 text-sm font-sans">
+        <a href="talent.html" class="text-ash hover:text-chalk transition-colors">Talent <span class="font-mono text-[10px] text-weft font-bold">100+</span></a>
+        <a href="services.html" class="text-ash hover:text-chalk transition-colors">Services</a>
+        <a href="campaigns.html" class="text-ash hover:text-chalk transition-colors">Campaigns</a>
+        <a href="how-it-works.html" class="text-weft font-bold">How It Works</a>
+        <a href="about.html" class="text-ash hover:text-chalk transition-colors">About</a>
+        <a href="contact.html" class="text-ash hover:text-chalk transition-colors">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-4">
+        <a href="contact.html" class="btn-weft px-5 py-3 text-sm font-bold tracking-tight">
+          Start Your Flight ↗
+        </a>
+        <button id="mobile-menu-toggle" class="lg:hidden p-2 text-chalk hover:text-weft" aria-label="Toggle Mobile Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden lg:hidden bg-ink-elevated border-b border-ash/20 px-6 py-6 space-y-4 text-sm font-sans">
+      <a href="talent.html" class="block text-chalk py-1 font-medium">Virtual Talent (100+)</a>
+      <a href="services.html" class="block text-chalk py-1 font-medium">Services & Modules</a>
+      <a href="campaigns.html" class="block text-chalk py-1 font-medium">Campaigns & Feeds</a>
+      <a href="how-it-works.html" class="block text-weft py-1 font-bold">How It Works</a>
+      <a href="about.html" class="block text-chalk py-1 font-medium">About Agency</a>
+      <a href="contact.html" class="block text-chalk py-1 font-medium">Contact & Scoped Brief</a>
+    </div>
+  </header>
+
+  <!-- ===================== SECTION 01: HERO ===================== -->
+  <section class="bg-ink py-20 border-b border-ash/15">
+    <div class="max-w-container mx-auto px-6 text-center max-w-4xl">
+      <span class="font-mono text-xs text-weft uppercase tracking-wider block mb-3">// ARCHITECTURAL PIPELINE & GOVERNANCE</span>
+      <h1 class="text-4xl sm:text-6xl font-bold tracking-tight text-chalk leading-tight mb-6">
+        Simple from start to finish. <span class="text-weft">Engineered for continuity.</span>
+      </h1>
+      <p class="text-base sm:text-lg text-ash leading-relaxed mb-8 max-w-2xl mx-auto">
+        Demystifying our 8-step production pipeline: from dataset curation and LoRA reference locking to human disclosure auditing and synchronized 48-hour launch waves.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 02: 8-NODE TECHNICAL PIPELINE ===================== -->
+  <section class="bg-ink-elevated py-24 border-b border-ash/15">
+    <div class="max-w-container mx-auto px-6">
+      <div class="max-w-[700px] mb-16">
+        <span class="font-mono text-xs text-weft uppercase tracking-wider block mb-2">// 8-STEP METHODOLOGY</span>
+        <h2 class="text-3xl lg:text-4xl font-bold text-chalk mb-4">The Complete Production Workflow</h2>
+        <p class="text-xs text-ash">Every stage enforces a dual-approval gate: FAMEWOVEN studio execution paired with client team sign-off before proceeding.</p>
+      </div>
+
+      <div class="space-y-6">
+        <!-- Step 01 -->
+        <article class="p-6 bg-ink border border-ash/20 fw-card grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+          <div class="md:col-span-3 font-mono">
+            <span class="text-2xl font-bold text-weft block">01</span>
+            <span class="text-xs text-ash uppercase">STAGE // IMMERSION</span>
+          </div>
+          <div class="md:col-span-9">
+            <h3 class="text-xl font-bold text-chalk mb-2">Kickoff & Brand Immersion</h3>
+            <p class="text-xs text-ash leading-relaxed">
+              Sets up joint Slack channel, shared Notion workspace, competitor visual audit, and target buyer persona mapping. Aligns on campaign KPIs and budget parameters in a single 30-min call.
+            </p>
+          </div>
+        </article>
+
+        <!-- Step 02 -->
+        <article class="p-6 bg-ink border border-ash/20 fw-card grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+          <div class="md:col-span-3 font-mono">
+            <span class="text-2xl font-bold text-weft block">02</span>
+            <span class="text-xs text-ash uppercase">STAGE // IDENTITY</span>
+          </div>
+          <div class="md:col-span-9">
+            <h3 class="text-xl font-bold text-chalk mb-2">Character Architecture & Persona Bible</h3>
+            <p class="text-xs text-ash leading-relaxed">
+              Designs fictional adult character geometry, apparent age, styling rules, voice tone, and reference sheet (01 AI Influencer Creation). You review and approve the character concept before any model training.
+            </p>
+          </div>
+        </article>
+
+        <!-- Step 03 -->
+        <article class="p-6 bg-ink border border-ash/20 fw-card grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+          <div class="md:col-span-3 font-mono">
+            <span class="text-2xl font-bold text-weft block">03</span>
+            <span class="text-xs text-ash uppercase">STAGE // TRAINING</span>
+          </div>
+          <div class="md:col-span-9">
+            <h3 class="text-xl font-bold text-chalk mb-2">Dataset Curation & LoRA Model Locking</h3>
+            <p class="text-xs text-ash leading-relaxed">
+              Generates 15 to 50 multi-angle studio lighting studies (front, 3/4, profile, macro) and trains dedicated character LoRA weights. Verifies 360-degree facial consistency across expressions and lighting conditions.
+            </p>
+          </div>
+        </article>
+
+        <!-- Step 04 -->
+        <article class="p-6 bg-ink border border-ash/20 fw-card grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+          <div class="md:col-span-3 font-mono">
+            <span class="text-2xl font-bold text-weft block">04</span>
+            <span class="text-xs text-ash uppercase">STAGE // DISTRIBUTION</span>
+          </div>
+          <div class="md:col-span-9">
+            <h3 class="text-xl font-bold text-chalk mb-2">Campaign Brief & Creator Shortlisting</h3>
+            <p class="text-xs text-ash leading-relaxed">
+              Storyboards single-action product moments and audits human amplification creators across 141 engagement parameters. Your team selects preferred creators from the shortlist.
+            </p>
+          </div>
+        </article>
+
+        <!-- Step 05 -->
+        <article class="p-6 bg-ink border border-ash/20 fw-card grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+          <div class="md:col-span-3 font-mono">
+            <span class="text-2xl font-bold text-weft block">05</span>
+            <span class="text-xs text-ash uppercase">STAGE // STUDIO</span>
+          </div>
+          <div class="md:col-span-9">
+            <h3 class="text-xl font-bold text-chalk mb-2">Still & Motion Studio Production</h3>
+            <p class="text-xs text-ash leading-relaxed">
+              Renders 4K editorial stills, product interaction shots, and 5s–30s vertical 9:16 video drafts with motion capture and lip-sync. Reviews take place inside our staging portal.
+            </p>
+          </div>
+        </article>
+
+        <!-- Step 06 -->
+        <article class="p-6 bg-ink border border-ash/20 fw-card grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+          <div class="md:col-span-3 font-mono">
+            <span class="text-2xl font-bold text-weft block">06</span>
+            <span class="text-xs text-ash uppercase">STAGE // COMPLIANCE</span>
+          </div>
+          <div class="md:col-span-9">
+            <h3 class="text-xl font-bold text-chalk mb-2">Human Safety, Claims & Disclosure Audit</h3>
+            <p class="text-xs text-ash leading-relaxed">
+              Performs human retouching, verifies product depiction accuracy, and embeds AI-GENERATED CHARACTER and FTC disclosures. Grants final commercial and legal sign-off.
+            </p>
+          </div>
+        </article>
+
+        <!-- Step 07 -->
+        <article class="p-6 bg-ink border border-ash/20 fw-card grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+          <div class="md:col-span-3 font-mono">
+            <span class="text-2xl font-bold text-weft block">07</span>
+            <span class="text-xs text-ash uppercase">STAGE // WAVE</span>
+          </div>
+          <div class="md:col-span-9">
+            <h3 class="text-xl font-bold text-chalk mb-2">Synchronized Launch Wave (T−7 to T+3)</h3>
+            <p class="text-xs text-ash leading-relaxed">
+              Coordinates T−7 creator seeding, T−0 launch wave posts, T+1 quote reposts, and T+3 deep-dive threads in a 48h window. Monitors live rollout velocity via real-time telemetry.
+            </p>
+          </div>
+        </article>
+
+        <!-- Step 08 -->
+        <article class="p-6 bg-ink border border-ash/20 fw-card grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+          <div class="md:col-span-3 font-mono">
+            <span class="text-2xl font-bold text-weft block">08</span>
+            <span class="text-xs text-ash uppercase">STAGE // ATTRIBUTION</span>
+          </div>
+          <div class="md:col-span-9">
+            <h3 class="text-xl font-bold text-chalk mb-2">Attribution Report & Continuity Archive</h3>
+            <p class="text-xs text-ash leading-relaxed">
+              Compiles plain-language reach, impression, CTR, and conversion reports; archives character weights for the next release (04 Ongoing Content). Locks the roadmap for next month.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 03: RESPONSIBILITIES MATRIX (LIGHT SURFACE) ===================== -->
+  <section class="bg-chalk text-ink py-24 border-b border-ink/15 weave-bg-grid-chalk">
+    <div class="max-w-container mx-auto px-6">
+      <div class="max-w-[700px] mb-12">
+        <span class="font-mono text-xs text-ink font-bold uppercase tracking-wider block mb-2">// DIVISION OF RESPONSIBILITY</span>
+        <h2 class="text-3xl lg:text-4xl font-bold text-ink mb-4">Clear Ownership at Every Milestone</h2>
+        <p class="text-xs text-ink/80">Our studio team does the heavy technical and creative lifting. Your team maintains absolute approval control.</p>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse text-xs">
+          <thead>
+            <tr class="border-b-2 border-ink">
+              <th class="p-4 font-mono font-bold uppercase text-ink">Pipeline Step</th>
+              <th class="p-4 font-mono font-bold uppercase bg-ink text-weft">FAMEWOVEN Studio Execution</th>
+              <th class="p-4 font-mono font-bold uppercase text-ink/80">Client Team Control Gate</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-ink/15 font-sans">
+            <tr>
+              <td class="p-4 font-bold font-mono">01 Kickoff</td>
+              <td class="p-4 bg-ink text-chalk border-x border-weft/30">Sets up Slack, Notion, competitor audit & buyer mapping.</td>
+              <td class="p-4 text-ink">Aligns on KPIs, timeline, and budget parameters (30 min).</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-bold font-mono">02 Character</td>
+              <td class="p-4 bg-ink text-chalk border-x border-weft/30">Designs facial geometry, styling rules, and reference bible.</td>
+              <td class="p-4 text-ink">Reviews and approves character concept before training.</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-bold font-mono">03 LoRA Lock</td>
+              <td class="p-4 bg-ink text-chalk border-x border-weft/30">Generates 15–50 angle dataset & trains dedicated LoRA weights.</td>
+              <td class="p-4 text-ink">Verifies 360° consistency across expressions & lighting.</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-bold font-mono">04 Creators</td>
+              <td class="p-4 bg-ink text-chalk border-x border-weft/30">Storyboards moments & audits creators on 141 parameters.</td>
+              <td class="p-4 text-ink">Approves storyboard and selects creators from shortlist.</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-bold font-mono">05 Production</td>
+              <td class="p-4 bg-ink text-chalk border-x border-weft/30">Renders 4K stills, vertical video drafts, and mocap animations.</td>
+              <td class="p-4 text-ink">Reviews high-res stills and video drafts in staging portal.</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-bold font-mono">06 Compliance</td>
+              <td class="p-4 bg-ink text-chalk border-x border-weft/30">Retouching, product fidelity check, and FTC label embedding.</td>
+              <td class="p-4 text-ink">Grants final commercial and brand-claim sign-off.</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-bold font-mono">07 Launch Wave</td>
+              <td class="p-4 bg-ink text-chalk border-x border-weft/30">Executes T−7 seeding, T−0 launch, T+1 quotes, T+3 threads.</td>
+              <td class="p-4 text-ink">Monitors live rollout velocity via real-time dashboard.</td>
+            </tr>
+            <tr>
+              <td class="p-4 font-bold font-mono">08 Attribution</td>
+              <td class="p-4 bg-ink text-chalk border-x border-weft/30">Plain-language reporting; archives character weights for next drop.</td>
+              <td class="p-4 text-ink">Reviews ROI attribution and locks roadmap for next release.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 04: GOVERNANCE & FTC COMPLIANCE ===================== -->
+  <section class="bg-ink text-chalk py-24 border-b border-ash/15">
+    <div class="max-w-container mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-6">
+        <span class="font-mono text-xs text-weft uppercase tracking-wider block mb-2">// GOVERNANCE & ETHICS</span>
+        <h2 class="text-3xl lg:text-4xl font-bold text-chalk mb-4">Synthetic Media Labeling & FTC Compliance</h2>
+        <p class="text-xs text-ash leading-relaxed mb-6">
+          In accordance with our 12/VOICE charter, FAMEWOVEN operates under strict ethical disclosure guidelines. We believe radical transparency builds higher consumer trust and lifetime brand equity.
+        </p>
+
+        <ul class="space-y-3 font-mono text-xs text-chalk">
+          <li class="flex items-center gap-2"><span class="text-weft font-bold">✦</span> Universal watermark tag: <code>AI-GENERATED CHARACTER / CONCEPT</code></li>
+          <li class="flex items-center gap-2"><span class="text-weft font-bold">✦</span> Platform-native synthetic media labels (Instagram, TikTok, X, YouTube)</li>
+          <li class="flex items-center gap-2"><span class="text-weft font-bold">✦</span> FTC endorsement disclosures (#ad, #sponsored) on creator amplification</li>
+          <li class="flex items-center gap-2"><span class="text-weft font-bold">✦</span> 100% commercial usage rights & model releases transferred to brand</li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-6 bg-ink-elevated border border-ash/25 p-8 fw-card font-mono text-xs">
+        <span class="text-weft font-bold block mb-3 uppercase tracking-wider">SAMPLE FTC & PLATFORM METADATA SPEC</span>
+        <div class="p-4 bg-ink border border-ash/20 space-y-2 text-ash text-[11px]">
+          <div><span class="text-chalk">Format:</span> 9:16 Vertical Reel + 4K Still</div>
+          <div><span class="text-chalk">Disclosure Tag:</span> #FAMEWOVENPartner #AICharacter #PaidPartnership</div>
+          <div><span class="text-chalk">C2PA Content Credentials:</span> Cryptographically embedded in image header</div>
+          <div><span class="text-chalk">Platform Tag:</span> "AI info" toggle enabled on Instagram & TikTok</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Shared Global Footer -->
+  <footer class="bg-ink text-ash pt-16 pb-12 font-sans text-xs border-t border-ash/10">
+    <div class="max-w-container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+      <div>
+        <span class="font-wordmark font-medium text-2xl text-chalk tracking-tight block mb-2">famewoven</span>
+        <p class="text-xs text-ash">Virtual talent. Human direction. Full-stack AI Influencer & Creative Agency.</p>
+      </div>
+      <div class="space-y-2 font-mono">
+        <span class="text-chalk font-bold block mb-2 uppercase">Platform</span>
+        <a href="talent.html" class="block hover:text-chalk">Virtual Talent</a>
+        <a href="services.html" class="block hover:text-chalk">Services</a>
+        <a href="campaigns.html" class="block hover:text-chalk">Campaigns</a>
+      </div>
+      <div class="space-y-2 font-mono">
+        <span class="text-chalk font-bold block mb-2 uppercase">Methodology</span>
+        <a href="how-it-works.html" class="block text-weft">How It Works</a>
+        <a href="about.html" class="block hover:text-chalk">About</a>
+        <a href="contact.html" class="block hover:text-chalk">Contact</a>
+      </div>
+      <div class="space-y-2 font-mono">
+        <span class="text-chalk font-bold block mb-2 uppercase">Direct</span>
+        <p>hello@famewoven.com</p>
+        <p>+1 (307) 445-3324</p>
+      </div>
+    </div>
+    <div class="max-w-container mx-auto px-6 pt-6 border-t border-ash/10 text-center font-mono text-[11px]">
+      © 2026 FAMEWOVEN (PromptForge LLC). All rights reserved.
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

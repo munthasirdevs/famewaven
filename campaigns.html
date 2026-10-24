@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Campaigns, Case Studies & Social Feeds — FAMEWOVEN</title>
+  <meta name="description" content="Explore verified case studies, interactive 9-grid feed inspector, and Before/After campaign production renders." />
+  <link rel="canonical" href="https://famewoven.com/campaigns.html" />
+
+  <!-- Google Fonts: Space Grotesk, IBM Plex Mono, Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Outfit:wght@500;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN + Custom Configuration -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: {
+              DEFAULT: '#111311',
+              elevated: '#181B18',
+              card: '#141714'
+            },
+            chalk: {
+              DEFAULT: '#F1EFE8',
+              muted: '#E4E1D6'
+            },
+            weft: {
+              DEFAULT: '#D1F34A',
+              hover: '#DEFF5E'
+            },
+            plum: {
+              DEFAULT: '#291A27',
+              light: '#3D263A'
+            },
+            ash: {
+              DEFAULT: '#A7A59B',
+              dark: '#6E6D64'
+            }
+          },
+          fontFamily: {
+            sans: ['"Space Grotesk"', 'sans-serif'],
+            mono: ['"IBM Plex Mono"', 'monospace'],
+            wordmark: ['"Outfit"', 'sans-serif']
+          },
+          maxWidth: {
+            'container': '1360px'
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- GSAP Core & Plugins -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js" defer></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-ink text-chalk antialiased selection:bg-weft selection:text-ink relative">
+
+  <!-- 2D Magnetic Loupe Cursor -->
+  <div id="fw-cursor" aria-hidden="true">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+  </div>
+
+  <!-- Global Sticky Header -->
+  <header id="nav" class="sticky top-0 z-40 h-20 bg-ink/90 backdrop-blur-md border-b border-ash/15 transition-all duration-300">
+    <div class="max-w-container mx-auto h-full px-6 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3.5 group min-w-[160px]" aria-label="FAMEWOVEN Home">
+        <svg class="w-10 h-10 transition-transform group-hover:scale-105" viewBox="0 0 64 64" fill="none">
+          <line x1="16" y1="8" x2="16" y2="56" stroke="#F1EFE8" stroke-width="6" />
+          <line x1="28" y1="8" x2="28" y2="56" stroke="#A7A59B" stroke-width="2" />
+          <line x1="13" y1="14" x2="52" y2="14" stroke="#D1F34A" stroke-width="6" />
+          <line x1="13" y1="32" x2="42" y2="32" stroke="#D1F34A" stroke-width="6" />
+          <rect x="13" y="11" width="6" height="6" fill="#F1EFE8" />
+        </svg>
+        <span class="font-wordmark font-medium text-2xl text-chalk tracking-tight">famewoven</span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-8 text-sm font-sans">
+        <a href="talent.html" class="text-ash hover:text-chalk transition-colors">Talent <span class="font-mono text-[10px] text-weft font-bold">100+</span></a>
+        <a href="services.html" class="text-ash hover:text-chalk transition-colors">Services</a>
+        <a href="campaigns.html" class="text-weft font-bold">Campaigns</a>
+        <a href="how-it-works.html" class="text-ash hover:text-chalk transition-colors">How It Works</a>
+        <a href="about.html" class="text-ash hover:text-chalk transition-colors">About</a>
+        <a href="contact.html" class="text-ash hover:text-chalk transition-colors">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-4">
+        <a href="contact.html" class="btn-weft px-5 py-3 text-sm font-bold tracking-tight">
+          Launch a Campaign ↗
+        </a>
+        <button id="mobile-menu-toggle" class="lg:hidden p-2 text-chalk hover:text-weft" aria-label="Toggle Mobile Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden lg:hidden bg-ink-elevated border-b border-ash/20 px-6 py-6 space-y-4 text-sm font-sans">
+      <a href="talent.html" class="block text-chalk py-1 font-medium">Virtual Talent (100+)</a>
+      <a href="services.html" class="block text-chalk py-1 font-medium">Services & Modules</a>
+      <a href="campaigns.html" class="block text-weft py-1 font-bold">Campaigns & Feeds</a>
+      <a href="how-it-works.html" class="block text-chalk py-1 font-medium">How It Works</a>
+      <a href="about.html" class="block text-chalk py-1 font-medium">About Agency</a>
+      <a href="contact.html" class="block text-chalk py-1 font-medium">Contact & Scoped Brief</a>
+    </div>
+  </header>
+
+  <!-- ===================== SECTION 01: HERO ===================== -->
+  <section id="campaigns-hero" class="bg-ink py-20 border-b border-ash/15">
+    <div class="max-w-container mx-auto px-6 text-center max-w-4xl">
+      <span class="font-mono text-xs text-weft uppercase tracking-wider block mb-3">// 09/SOCIAL APPLICATIONS & PROVEN RESULTS</span>
+      <h1 class="text-4xl sm:text-6xl font-bold tracking-tight text-chalk leading-tight mb-6">
+        Built to be seen. <span class="text-weft">A recognisable feed.</span>
+      </h1>
+      <p class="text-base sm:text-lg text-ash leading-relaxed max-w-2xl mx-auto">
+        Consistency across every crop. See how FAMEWOVEN characters maintain 100% facial geometry and lighting direction across Instagram grids, 9:16 vertical motion, and verified client launch waves.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 02: 9-GRID FEED INSPECTOR ===================== -->
+  <section id="feed-inspector" class="bg-ink-elevated py-24 border-b border-ash/15">
+    <div class="max-w-container mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-10">
+        <div>
+          <span class="font-mono text-xs text-weft uppercase tracking-wider block mb-1.5">// 09/SOCIAL APPLICATIONS</span>
+          <h2 class="text-3xl lg:text-4xl font-bold text-chalk">Interactive 9-Grid Social Feed Inspector</h2>
+          <p class="text-xs text-ash mt-1">Toggle brand worlds to inspect multi-post continuity without identity drift.</p>
+        </div>
+        <div class="flex gap-2 font-mono text-xs" id="feed-world-toggles">
+          <button class="px-4 py-2 bg-weft text-ink font-bold border border-weft" data-world="fashion">01 Luxury Fashion</button>
+          <button class="px-4 py-2 bg-ink text-ash border border-ash/20 hover:text-chalk" data-world="tech">02 AI & DevTools</button>
+          <button class="px-4 py-2 bg-ink text-ash border border-ash/20 hover:text-chalk" data-world="beauty">03 Clean Skincare</button>
+        </div>
+      </div>
+
+      <!-- 9-Grid Layout -->
+      <div class="max-w-4xl mx-auto p-6 bg-ink border border-ash/25 fw-card">
+        <div class="flex items-center justify-between pb-4 mb-4 border-b border-ash/15 font-mono text-xs">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-plum border border-weft flex items-center justify-center font-bold text-weft" id="feed-avatar">SV</div>
+            <div>
+              <span class="font-bold text-chalk block" id="feed-handle">@soraia.fw</span>
+              <span class="text-[10px] text-ash" id="feed-title">Soraia Velt // Verified Brand Ambassador</span>
+            </div>
+          </div>
+          <span class="text-weft font-bold text-xs">100% LoRA Locked</span>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3" id="feed-grid">
+          <!-- Post 1 -->
+          <div class="aspect-square bg-plum border border-ash/20 relative overflow-hidden group">
+            <img src="assets/personas/soraia_velt.jpg" alt="Post 1" class="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+            <span class="absolute bottom-2 left-2 font-mono text-[9px] bg-ink/80 text-weft px-1.5 py-0.5">01 // Editorial Still</span>
+          </div>
+          <!-- Post 2 -->
+          <div class="aspect-square bg-ink-elevated border border-ash/20 relative flex items-center justify-center text-center p-3">
+            <span class="font-mono text-xs text-chalk leading-tight">"Presence is not accidental. It is engineered."<br/><span class="text-weft text-[10px] mt-2 block">@famewoven</span></span>
+          </div>
+          <!-- Post 3 -->
+          <div class="aspect-square bg-plum border border-ash/20 relative overflow-hidden group">
+            <img src="assets/personas/soraia_velt.jpg" alt="Post 3" class="w-full h-full object-cover object-bottom group-hover:scale-105 transition-transform" />
+            <span class="absolute bottom-2 left-2 font-mono text-[9px] bg-ink/80 text-weft px-1.5 py-0.5">03 // Detail Macro</span>
+          </div>
+          <!-- Post 4 -->
+          <div class="aspect-square bg-ink border border-ash/20 relative flex flex-col justify-between p-3 font-mono text-[11px]">
+            <span class="text-weft">04 // REEL TEASER</span>
+            <span class="text-chalk font-bold">Tokyo Runway Night Loop (9:16)</span>
+            <span class="text-ash text-[9px]">412K Views</span>
+          </div>
+          <!-- Post 5 -->
+          <div class="aspect-square bg-plum border border-ash/20 relative overflow-hidden group">
+            <img src="assets/personas/soraia_velt.jpg" alt="Post 5" class="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+            <span class="absolute bottom-2 left-2 font-mono text-[9px] bg-ink/80 text-weft px-1.5 py-0.5">05 // Campaign Film Still</span>
+          </div>
+          <!-- Post 6 -->
+          <div class="aspect-square bg-ink-elevated border border-ash/20 relative flex flex-col justify-between p-3 font-mono text-[11px]">
+            <span class="text-ash">06 // QUOTE REPOST</span>
+            <span class="text-chalk">"The transition to owned virtual ambassadors is happening right now."</span>
+            <span class="text-weft text-[9px]">1.8K Retweets</span>
+          </div>
+          <!-- Post 7 -->
+          <div class="aspect-square bg-plum border border-ash/20 relative overflow-hidden group">
+            <img src="assets/personas/soraia_velt.jpg" alt="Post 7" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform" />
+            <span class="absolute bottom-2 left-2 font-mono text-[9px] bg-ink/80 text-weft px-1.5 py-0.5">07 // Paris Studio</span>
+          </div>
+          <!-- Post 8 -->
+          <div class="aspect-square bg-ink-elevated border border-ash/20 relative flex items-center justify-center p-3 text-center">
+            <span class="font-mono text-xs text-weft font-bold">10/PRINT DIRECTION<br/><span class="text-chalk text-[10px]">Tactile Paper Texture Concept</span></span>
+          </div>
+          <!-- Post 9 -->
+          <div class="aspect-square bg-plum border border-ash/20 relative overflow-hidden group">
+            <img src="assets/personas/soraia_velt.jpg" alt="Post 9" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform" />
+            <span class="absolute bottom-2 left-2 font-mono text-[9px] bg-ink/80 text-weft px-1.5 py-0.5">09 // Wardrobe Capsule</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 03: BEFORE/AFTER COMPARISON SLIDER ===================== -->
+  <section class="bg-ink py-24 border-b border-ash/15">
+    <div class="max-w-container mx-auto px-6">
+      <div class="max-w-[700px] mb-12">
+        <span class="font-mono text-xs text-weft uppercase tracking-wider block mb-2">// PRODUCTION REFINEMENT</span>
+        <h2 class="text-3xl lg:text-4xl font-bold text-chalk mb-4">From Raw Brief to Locked Editorial Master</h2>
+        <p class="text-xs text-ash">Drag the slider to see how FAMEWOVEN transforms unpolished concept prompts into high-fashion commercial deliverables with defined rim light.</p>
+      </div>
+
+      <div class="max-w-4xl mx-auto relative h-[480px] bg-ink-elevated border border-ash/25 overflow-hidden fw-card" id="before-after-container">
+        <!-- Before layer -->
+        <div class="absolute inset-0 flex items-center justify-center bg-ink p-8 text-center">
+          <div class="max-w-md space-y-4">
+            <span class="bg-ash/20 text-ash px-3 py-1 font-mono text-xs font-bold uppercase inline-block">RAW CONCEPT BRIEF</span>
+            <h3 class="text-xl font-bold text-ash">Generic AI Generation Without LoRA Reference</h3>
+            <p class="text-xs text-ash/80 leading-relaxed font-mono">
+              Uncontrolled lighting · Plastic skin glaze · Drifting facial symmetry · Missing brand context
+            </p>
+          </div>
+        </div>
+
+        <!-- After layer (clipped) -->
+        <div class="absolute inset-0 overflow-hidden" id="after-layer" style="width: 55%;">
+          <div class="absolute inset-0 w-[896px] h-[480px] bg-plum flex items-center justify-center">
+            <img src="assets/personas/soraia_velt.jpg" alt="Final Editorial Render" class="w-full h-full object-cover object-top" />
+            <div class="absolute top-4 right-4 bg-ink/90 border border-weft px-3 py-1 font-mono text-xs text-weft font-bold">
+              FAMEWOVEN 4K EDITORIAL MASTER ✓
+            </div>
+          </div>
+        </div>
+
+        <!-- Draggable Handle Bar -->
+        <div class="absolute top-0 bottom-0 w-1 bg-weft cursor-ew-resize flex items-center justify-center shadow-lg" id="slider-handle" style="left: 55%;">
+          <div class="w-8 h-8 bg-weft text-ink font-bold text-xs flex items-center justify-center rounded-none shadow">
+            ↔
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SECTION 04: 6 CASE STUDY DOSSIERS ===================== -->
+  <section id="case-studies" class="bg-ink-elevated text-chalk py-24 border-b border-ash/15">
+    <div class="max-w-container mx-auto px-6">
+      <div class="max-w-[700px] mb-16">
+        <span class="font-mono text-xs text-weft uppercase tracking-wider block mb-2">// PROVEN PROOFS</span>
+        <h2 class="text-3xl lg:text-5xl font-bold tracking-tight text-chalk leading-tight mb-4">
+          Six Flagship Launch Dossiers
+        </h2>
+        <p class="text-sm text-ash leading-relaxed">
+          From developer infrastructure launches to custom virtual luxury ambassadors. Plain-language metrics and verifiable client ROI.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- 01: HeyGen -->
+        <article class="bg-ink border border-ash/20 p-6 fw-card flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-4">
+              <img src="assets/logos/heygen.svg" alt="HeyGen" class="h-6 object-contain" />
+              <span class="font-mono text-[10px] bg-weft text-ink px-2 py-0.5 font-bold">AI VIDEO LAUNCH</span>
+            </div>
+            <h3 class="text-xl font-bold text-chalk mb-2">HeyGen Video Model Launch Wave</h3>
+            <p class="text-xs text-ash leading-relaxed mb-4">
+              Synchronized 35 AI video creators with virtual ambassador teasers inside a 48-hour launch window.
+            </p>
+            <div class="space-y-1.5 font-mono text-xs py-3 border-y border-ash/15">
+              <div class="flex justify-between"><span class="text-ash">Verified Views:</span><span class="text-chalk font-bold">412,000+</span></div>
+              <div class="flex justify-between"><span class="text-ash">Return on Ad Spend:</span><span class="text-weft font-bold">3.8x ROAS</span></div>
+              <div class="flex justify-between"><span class="text-ash">Creators Deployed:</span><span class="text-chalk">35 Verified Accounts</span></div>
+            </div>
+          </div>
+          <span class="font-mono text-[11px] text-weft mt-4 block">Paid Partnership Verified ✓</span>
+        </article>
+
+        <!-- 02: Higgsfield -->
+        <article class="bg-ink border border-ash/20 p-6 fw-card flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-4">
+              <img src="assets/logos/higgsfield.svg" alt="Higgsfield" class="h-6 object-contain" />
+              <span class="font-mono text-[10px] bg-weft text-ink px-2 py-0.5 font-bold">48H LAUNCH WAVE</span>
+            </div>
+            <h3 class="text-xl font-bold text-chalk mb-2">Higgsfield Creator Scale Rollout</h3>
+            <p class="text-xs text-ash leading-relaxed mb-4">
+              Turnkey outreach, scheduling, and escrow administration across 28 mobile video and AI creators simultaneously.
+            </p>
+            <div class="space-y-1.5 font-mono text-xs py-3 border-y border-ash/15">
+              <div class="flex justify-between"><span class="text-ash">Launch Window:</span><span class="text-chalk font-bold">48 Hours Strict</span></div>
+              <div class="flex justify-between"><span class="text-ash">Approval Speed:</span><span class="text-weft font-bold">Under 15 Mins / Post</span></div>
+              <div class="flex justify-between"><span class="text-ash">Timeline Domination:</span><span class="text-chalk">12x Viral Quote Boost</span></div>
+            </div>
+          </div>
+          <span class="font-mono text-[11px] text-weft mt-4 block">Synchronized Wave Verified ✓</span>
+        </article>
+
+        <!-- 03: BytePlus -->
+        <article class="bg-ink border border-ash/20 p-6 fw-card flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-4">
+              <img src="assets/logos/byteplus.svg" alt="BytePlus" class="h-6 object-contain" />
+              <span class="font-mono text-[10px] bg-weft text-ink px-2 py-0.5 font-bold">DEV & CLOUD GTM</span>
+            </div>
+            <h3 class="text-xl font-bold text-chalk mb-2">BytePlus Developer Infrastructure GTM</h3>
+            <p class="text-xs text-ash leading-relaxed mb-4">
+              Matched with senior cloud architects and developer creators to explain complex ML pipeline mechanics.
+            </p>
+            <div class="space-y-1.5 font-mono text-xs py-3 border-y border-ash/15">
+              <div class="flex justify-between"><span class="text-ash">Target Audience:</span><span class="text-chalk font-bold">Developers & Founders</span></div>
+              <div class="flex justify-between"><span class="text-ash">Engagement Rate:</span><span class="text-weft font-bold">9.8% ER Benchmark</span></div>
+              <div class="flex justify-between"><span class="text-ash">Deep-Dive Threads:</span><span class="text-chalk">14 Multi-Post Threads</span></div>
+            </div>
+          </div>
+          <span class="font-mono text-[11px] text-weft mt-4 block">Developer Wave Verified ✓</span>
+        </article>
+
+        <!-- 04: Omneky -->
+        <article class="bg-ink border border-ash/20 p-6 fw-card flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-4">
+              <img src="assets/logos/omneky.svg" alt="Omneky" class="h-6 object-contain" />
+              <span class="font-mono text-[10px] bg-weft text-ink px-2 py-0.5 font-bold">MARKETER TARGETING</span>
+            </div>
+            <h3 class="text-xl font-bold text-chalk mb-2">Omneky AI Marketing Acquisition</h3>
+            <p class="text-xs text-ash leading-relaxed mb-4">
+              Targeted marketing executives and venture-backed founders with proof-of-work workflow demonstrations.
+            </p>
+            <div class="space-y-1.5 font-mono text-xs py-3 border-y border-ash/15">
+              <div class="flex justify-between"><span class="text-ash">Lead Quality:</span><span class="text-chalk font-bold">92% ICP Fit</span></div>
+              <div class="flex justify-between"><span class="text-ash">Time to Launch:</span><span class="text-weft font-bold">3 Business Days</span></div>
+              <div class="flex justify-between"><span class="text-ash">Creator Shortlist:</span><span class="text-chalk">Approved in 24h</span></div>
+            </div>
+          </div>
+          <span class="font-mono text-[11px] text-weft mt-4 block">Acquisition Flight Verified ✓</span>
+        </article>
+
+        <!-- 05: Maison Velt -->
+        <article class="bg-ink border border-ash/20 p-6 fw-card flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-4">
+              <span class="font-mono text-sm font-bold text-chalk">MAISON VELT</span>
+              <span class="font-mono text-[10px] bg-plum text-chalk px-2 py-0.5">VIRTUAL AMBASSADOR</span>
+            </div>
+            <h3 class="text-xl font-bold text-chalk mb-2">Maison Velt Luxury Print & Social</h3>
+            <p class="text-xs text-ash leading-relaxed mb-4">
+              Commissioned Soraia Velt as permanent virtual brand ambassador across seasonal fashion lookbooks and print.
+            </p>
+            <div class="space-y-1.5 font-mono text-xs py-3 border-y border-ash/15">
+              <div class="flex justify-between"><span class="text-ash">Production Savings:</span><span class="text-weft font-bold">65% vs Studio Shoot</span></div>
+              <div class="flex justify-between"><span class="text-ash">Deliverable Volume:</span><span class="text-chalk font-bold">40+ 4K Deliverables</span></div>
+              <div class="flex justify-between"><span class="text-ash">Identity Retention:</span><span class="text-weft">100% LoRA Locked</span></div>
+            </div>
+          </div>
+          <span class="font-mono text-[11px] text-weft mt-4 block">4.2x ROAS Commercial Print ✓</span>
+        </article>
+
+        <!-- 06: Aura Derm -->
+        <article class="bg-ink border border-ash/20 p-6 fw-card flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-4">
+              <span class="font-mono text-sm font-bold text-chalk">AURA DERM</span>
+              <span class="font-mono text-[10px] bg-weft text-ink px-2 py-0.5 font-bold">HYBRID 40-WAVE</span>
+            </div>
+            <h3 class="text-xl font-bold text-chalk mb-2">Aura Derm Skincare Muse + Wave</h3>
+            <p class="text-xs text-ash leading-relaxed mb-4">
+              Paired bespoke clean beauty muse Naia Kells with 40 skincare micro-creators on TikTok and Instagram Reels.
+            </p>
+            <div class="space-y-1.5 font-mono text-xs py-3 border-y border-ash/15">
+              <div class="flex justify-between"><span class="text-ash">Total Reach:</span><span class="text-chalk font-bold">1,840,000 Verified</span></div>
+              <div class="flex justify-between"><span class="text-ash">Launch Window:</span><span class="text-weft font-bold">48 Hours Synchronized</span></div>
+              <div class="flex justify-between"><span class="text-ash">Pore Fidelity:</span><span class="text-chalk">Studio Macro Daylight</span></div>
+            </div>
+          </div>
+          <span class="font-mono text-[11px] text-weft mt-4 block">Beauty Wave Verified ✓</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Shared Global Footer -->
+  <footer class="bg-ink text-ash pt-16 pb-12 font-sans text-xs border-t border-ash/10">
+    <div class="max-w-container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+      <div>
+        <span class="font-wordmark font-medium text-2xl text-chalk tracking-tight block mb-2">famewoven</span>
+        <p class="text-xs text-ash">Virtual talent. Human direction. Full-stack AI Influencer & Creative Agency.</p>
+      </div>
+      <div class="space-y-2 font-mono">
+        <span class="text-chalk font-bold block mb-2 uppercase">Platform</span>
+        <a href="talent.html" class="block hover:text-chalk">Virtual Talent</a>
+        <a href="services.html" class="block hover:text-chalk">Services</a>
+        <a href="campaigns.html" class="block text-weft">Campaigns</a>
+      </div>
+      <div class="space-y-2 font-mono">
+        <span class="text-chalk font-bold block mb-2 uppercase">Methodology</span>
+        <a href="how-it-works.html" class="block hover:text-chalk">How It Works</a>
+        <a href="about.html" class="block hover:text-chalk">About</a>
+        <a href="contact.html" class="block hover:text-chalk">Contact</a>
+      </div>
+      <div class="space-y-2 font-mono">
+        <span class="text-chalk font-bold block mb-2 uppercase">Direct</span>
+        <p>hello@famewoven.com</p>
+        <p>+1 (307) 445-3324</p>
+      </div>
+    </div>
+    <div class="max-w-container mx-auto px-6 pt-6 border-t border-ash/10 text-center font-mono text-[11px]">
+      © 2026 FAMEWOVEN (PromptForge LLC). All rights reserved.
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Before/After Comparison Slider interaction
+    const container = document.getElementById('before-after-container');
+    const afterLayer = document.getElementById('after-layer');
+    const handle = document.getElementById('slider-handle');
+
+    if (container && afterLayer && handle) {
+      let isDragging = false;
+
+      function updateSlider(clientX) {
+        const rect = container.getBoundingClientRect();
+        let pos = (clientX - rect.left) / rect.width;
+        pos = Math.max(0.05, Math.min(0.95, pos));
+        const percent = pos * 100;
+        afterLayer.style.width = percent + '%';
+        handle.style.left = percent + '%';
+      }
+
+      container.addEventListener('mousedown', () => isDragging = true);
+      window.addEventListener('mouseup', () => isDragging = false);
+      window.addEventListener('mousemove', (e) => {
+        if (isDragging) updateSlider(e.clientX);
+      });
+
+      container.addEventListener('touchstart', () => isDragging = true);
+      window.addEventListener('touchend', () => isDragging = false);
+      window.addEventListener('touchmove', (e) => {
+        if (isDragging && e.touches[0]) updateSlider(e.touches[0].clientX);
+      });
+    }
+
+    // World toggle for 9-grid inspector
+    const worldBtns = document.querySelectorAll('#feed-world-toggles button');
+    worldBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        worldBtns.forEach(b => {
+          b.classList.remove('bg-weft', 'text-ink', 'font-bold');
+          b.classList.add('bg-ink', 'text-ash');
+        });
+        btn.classList.add('bg-weft', 'text-ink', 'font-bold');
+        btn.classList.remove('bg-ink', 'text-ash');
+
+        const world = btn.dataset.world;
+        const handle = document.getElementById('feed-handle');
+        const title = document.getElementById('feed-title');
+        const avatar = document.getElementById('feed-avatar');
+
+        if (world === 'fashion') {
+          handle.textContent = '@soraia.fw';
+          title.textContent = 'Soraia Velt // Luxury Minimalist';
+          avatar.textContent = 'SV';
+        } else if (world === 'tech') {
+          handle.textContent = '@kaelen.builds';
+          title.textContent = 'Kaelen Vance // AI Architect & Advocate';
+          avatar.textContent = 'KV';
+        } else if (world === 'beauty') {
+          handle.textContent = '@naia.skin';
+          title.textContent = 'Naia Kells // Clean Derm Muse';
+          avatar.textContent = 'NK';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

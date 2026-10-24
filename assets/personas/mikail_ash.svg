@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" fill="none">
+  <defs>
+    <radialGradient id="plumGlow" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#3D263A"/>
+      <stop offset="100%" stop-color="#111311"/>
+    </radialGradient>
+    <linearGradient id="weftAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D1F34A" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#DEFF5E" stop-opacity="0.2"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="800" fill="url(#plumGlow)"/>
+  <!-- Ambient weave grid lines -->
+  <line x1="80" y1="0" x2="80" y2="800" stroke="#A7A59B" stroke-opacity="0.1" stroke-width="1"/>
+  <line x1="520" y1="0" x2="520" y2="800" stroke="#A7A59B" stroke-opacity="0.1" stroke-width="1"/>
+  <line x1="0" y1="200" x2="600" y2="200" stroke="#A7A59B" stroke-opacity="0.1" stroke-width="1"/>
+  <line x1="0" y1="600" x2="600" y2="600" stroke="#A7A59B" stroke-opacity="0.1" stroke-width="1"/>
+  
+  <!-- Silhouette & Lighting -->
+  <path d="M160 800 C160 620, 210 500, 300 500 C390 500, 440 620, 440 800 Z" fill="#181B18"/>
+  <circle cx="300" cy="330" r="140" fill="#291A27" stroke="#A7A59B" stroke-opacity="0.3" stroke-width="2"/>
+  <circle cx="300" cy="330" r="115" fill="#1F151E"/>
+  
+  <!-- Stylized Geometric Facial Features -->
+  <path d="M260 300 C275 285, 325 285, 340 300" stroke="#F1EFE8" stroke-width="3" stroke-linecap="round"/>
+  <line x1="285" y1="315" x2="315" y2="315" stroke="#D1F34A" stroke-width="3"/>
+  <path d="M300 325 V370 H315" stroke="#A7A59B" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M280 405 C295 415, 305 415, 320 405" stroke="#F1EFE8" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Nocturnal Flash & Weft Halo -->
+  <circle cx="300" cy="330" r="170" stroke="url(#weftAccent)" stroke-width="1.5" stroke-dasharray="8 12"/>
+  <rect x="220" y="550" width="160" height="40" rx="4" fill="#111311" stroke="#D1F34A" stroke-width="1.5"/>
+  <text x="300" y="575" font-family="'IBM Plex Mono', monospace" font-size="12" font-weight="700" fill="#D1F34A" text-anchor="middle" letter-spacing="0.15em">PLUM-12 // MIKAIL ASH</text>
+  <text x="300" y="630" font-family="'Space Grotesk', sans-serif" font-size="14" fill="#A7A59B" text-anchor="middle">Nocturnal Flash · Avant-Garde Audio</text>
+</svg>

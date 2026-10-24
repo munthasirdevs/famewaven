@@ -1,0 +1,314 @@
+/* ==========================================================================
+   FAMEWOVEN Design System & Brand Tokens (styles.css)
+   Strict Zero-3D-Hover Policy: 2D Geometric Weave Mechanics Only
+   ========================================================================== */
+
+:root {
+  --fw-ink: #111311;
+  --fw-ink-elevated: #181B18;
+  --fw-ink-card: #141714;
+  --fw-chalk: #F1EFE8;
+  --fw-chalk-muted: #E4E1D6;
+  --fw-weft: #D1F34A;
+  --fw-weft-hover: #DEFF5E;
+  --fw-weft-muted: rgba(209, 243, 74, 0.12);
+  --fw-plum: #291A27;
+  --fw-plum-light: #3D263A;
+  --fw-ash: #A7A59B;
+  --fw-ash-dark: #6E6D64;
+  --fw-border: rgba(167, 165, 155, 0.18);
+  --fw-border-light: rgba(17, 19, 17, 0.12);
+}
+
+html {
+  background-color: var(--fw-ink);
+  color: var(--fw-chalk);
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: var(--fw-ink);
+  color: var(--fw-chalk);
+}
+
+::selection {
+  background-color: var(--fw-weft);
+  color: var(--fw-ink);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: var(--fw-ink);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--fw-ash-dark);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--fw-weft);
+}
+
+/* Exposed Editorial Weave Grid Background */
+.weave-bg-grid {
+  background-size: 64px 64px;
+  background-image:
+    linear-gradient(to right, rgba(167, 165, 155, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(167, 165, 155, 0.06) 1px, transparent 1px);
+}
+
+.weave-bg-grid-chalk {
+  background-size: 64px 64px;
+  background-image:
+    linear-gradient(to right, rgba(17, 19, 17, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(17, 19, 17, 0.05) 1px, transparent 1px);
+}
+
+/* 2D Weave Corner Brackets (Strict Zero-3D-Hover Policy) */
+.fw-card {
+  position: relative;
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.fw-card::before,
+.fw-card::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: var(--fw-weft);
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.fw-card::before {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid var(--fw-weft);
+  border-left: 2px solid var(--fw-weft);
+}
+
+.fw-card::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid var(--fw-weft);
+  border-right: 2px solid var(--fw-weft);
+}
+
+.fw-card:hover::before,
+.fw-card:hover::after,
+.fw-card.is-selected::before,
+.fw-card.is-selected::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Custom Range Slider for Campaign Scale Section */
+input[type="range"].fw-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: rgba(167, 165, 155, 0.25);
+  border-radius: 0;
+  outline: none;
+  transition: background 0.2s;
+}
+
+input[type="range"].fw-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  background: var(--fw-weft);
+  border: 2px solid var(--fw-ink);
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+input[type="range"].fw-slider::-webkit-slider-thumb:hover {
+  background: var(--fw-weft-hover);
+  transform: scale(1.15);
+}
+
+input[type="range"].fw-slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  background: var(--fw-weft);
+  border: 2px solid var(--fw-ink);
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+/* Weft Thread Sweep Button */
+.btn-weft {
+  position: relative;
+  background-color: var(--fw-weft);
+  color: var(--fw-ink);
+  font-weight: 700;
+  transition: all 0.25s ease;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-weft:hover {
+  background-color: var(--fw-chalk);
+  color: var(--fw-ink);
+}
+
+.btn-ghost {
+  position: relative;
+  border: 1px solid rgba(167, 165, 155, 0.35);
+  color: var(--fw-chalk);
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-ghost:hover {
+  border-color: var(--fw-weft);
+  color: var(--fw-weft);
+  background-color: rgba(209, 243, 74, 0.05);
+}
+
+/* Portrait Shutter Frame */
+.portrait-frame {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--fw-plum);
+}
+
+.portrait-frame img {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+}
+
+.portrait-frame:hover img {
+  transform: scale(1.04);
+}
+
+/* Infinite Marquee */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: 200%;
+  animation: marquee 24s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* 2D Magnetic Loupe Cursor (Desktop only) */
+#fw-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  display: none;
+  transition: width 0.25s ease, height 0.25s ease, background-color 0.25s ease, border-radius 0.25s ease;
+}
+
+@media (min-width: 1024px) {
+  #fw-cursor {
+    display: block;
+  }
+}
+
+.cursor-dot {
+  width: 10px;
+  height: 10px;
+  background-color: var(--fw-weft);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.2s ease;
+}
+
+.cursor-ring {
+  width: 38px;
+  height: 38px;
+  border: 1.5px solid var(--fw-chalk);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.2s ease;
+}
+
+#fw-cursor.is-hovering .cursor-ring {
+  width: 54px;
+  height: 54px;
+  border-color: var(--fw-weft);
+}
+
+#fw-cursor.is-inspecting {
+  width: 88px;
+  height: 32px;
+  background-color: var(--fw-weft);
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#fw-cursor.is-inspecting .cursor-dot,
+#fw-cursor.is-inspecting .cursor-ring {
+  display: none;
+}
+
+#fw-cursor.is-inspecting::after {
+  content: 'INSPECT';
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--fw-ink);
+  letter-spacing: 0.1em;
+}
+
+/* Pulse animation */
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.6; }
+}
+
+.pulse-weft {
+  animation: pulse-dot 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Reduced Motion Accessibility Compliance */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  #fw-cursor {
+    display: none !important;
+  }
+  .animate-marquee {
+    animation: none !important;
+    width: 100% !important;
+  }
+}

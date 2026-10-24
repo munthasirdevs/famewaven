@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 40" fill="none">
+  <rect x="4" y="10" width="20" height="20" rx="3" stroke="#F1EFE8" stroke-width="2.5"/>
+  <rect x="10" y="16" width="8" height="8" fill="#F1EFE8"/>
+  <text x="34" y="26" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="19" fill="#F1EFE8" letter-spacing="-0.02em">Omneky</text>
+</svg>

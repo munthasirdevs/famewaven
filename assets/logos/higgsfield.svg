@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 40" fill="none">
+  <circle cx="14" cy="20" r="12" stroke="#F1EFE8" stroke-width="2.5"/>
+  <circle cx="14" cy="20" r="5" fill="#D1F34A"/>
+  <text x="36" y="26" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="19" fill="#F1EFE8" letter-spacing="-0.02em">Higgsfield</text>
+</svg>

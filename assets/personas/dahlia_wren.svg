@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" fill="none">
+  <defs>
+    <radialGradient id="goldenGlow" cx="50%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#3B3524"/>
+      <stop offset="50%" stop-color="#242119"/>
+      <stop offset="100%" stop-color="#111311"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="800" fill="url(#goldenGlow)"/>
+  <!-- Sunlight rays / weave lines -->
+  <line x1="0" y1="100" x2="600" y2="400" stroke="#D1F34A" stroke-opacity="0.1" stroke-width="1.5"/>
+  <line x1="0" y1="200" x2="600" y2="500" stroke="#F1EFE8" stroke-opacity="0.08" stroke-width="1.5"/>
+
+  <!-- Silhouette & Golden-Hour Lighting -->
+  <path d="M180 800 C180 610, 225 500, 300 500 C375 500, 420 610, 420 800 Z" fill="#1C1B18"/>
+  <circle cx="300" cy="320" r="135" fill="#29261E" stroke="#D1F34A" stroke-opacity="0.3" stroke-width="2"/>
+  <circle cx="300" cy="320" r="110" fill="#1E1C16"/>
+
+  <!-- Geometric Features -->
+  <path d="M265 290 C280 280, 320 280, 335 290" stroke="#F1EFE8" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="282" cy="305" r="4.5" fill="#F1EFE8"/>
+  <circle cx="318" cy="305" r="4.5" fill="#F1EFE8"/>
+  <path d="M300 320 V360 H310" stroke="#A7A59B" stroke-width="2" stroke-linecap="round"/>
+  <path d="M285 390 C295 400, 305 400, 315 390" stroke="#D1F34A" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Telemetry Badge -->
+  <rect x="180" y="540" width="240" height="42" rx="4" fill="#111311" stroke="#D1F34A" stroke-width="1.5"/>
+  <text x="300" y="566" font-family="'IBM Plex Mono', monospace" font-size="12" font-weight="700" fill="#D1F34A" text-anchor="middle" letter-spacing="0.12em">CHALK-15 // DAHLIA WREN</text>
+  <text x="300" y="620" font-family="'Space Grotesk', sans-serif" font-size="14" fill="#A7A59B" text-anchor="middle">Sustainable Resort & Architectural Lifestyle · 8K Print Ready</text>
+</svg>

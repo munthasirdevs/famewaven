@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" fill="none">
+  <defs>
+    <radialGradient id="techGlow" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#222B22"/>
+      <stop offset="60%" stop-color="#141914"/>
+      <stop offset="100%" stop-color="#111311"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="800" fill="url(#techGlow)"/>
+  <!-- Architectural grid overlay -->
+  <line x1="120" y1="0" x2="120" y2="800" stroke="#A7A59B" stroke-opacity="0.12" stroke-width="1"/>
+  <line x1="480" y1="0" x2="480" y2="800" stroke="#A7A59B" stroke-opacity="0.12" stroke-width="1"/>
+  <line x1="0" y1="260" x2="600" y2="260" stroke="#A7A59B" stroke-opacity="0.12" stroke-width="1"/>
+  <line x1="0" y1="520" x2="600" y2="520" stroke="#A7A59B" stroke-opacity="0.12" stroke-width="1"/>
+
+  <!-- Silhouette & Architectural Daylight -->
+  <path d="M170 800 C170 600, 220 480, 300 480 C380 480, 430 600, 430 800 Z" fill="#181B18"/>
+  <circle cx="300" cy="310" r="135" fill="#1C211C" stroke="#D1F34A" stroke-opacity="0.4" stroke-width="2"/>
+  <circle cx="300" cy="310" r="110" fill="#161A16"/>
+
+  <!-- Geometric Features -->
+  <path d="M260 280 C275 268, 325 268, 340 280" stroke="#F1EFE8" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="280" cy="295" r="5" fill="#D1F34A"/>
+  <circle cx="320" cy="295" r="5" fill="#D1F34A"/>
+  <path d="M300 310 V350 H310" stroke="#A7A59B" stroke-width="2" stroke-linecap="round"/>
+  <path d="M285 380 C295 388, 305 388, 315 380" stroke="#F1EFE8" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Telemetry Badge -->
+  <rect x="180" y="530" width="240" height="42" rx="4" fill="#111311" stroke="#A7A59B" stroke-opacity="0.3" stroke-width="1.5"/>
+  <text x="300" y="556" font-family="'IBM Plex Mono', monospace" font-size="12" font-weight="700" fill="#F1EFE8" text-anchor="middle" letter-spacing="0.12em">WEFT-07 // ELENA ROSTOVA</text>
+  <text x="300" y="610" font-family="'Space Grotesk', sans-serif" font-size="14" fill="#A7A59B" text-anchor="middle">Cloud Infrastructure & Enterprise Host · 14 Languages</text>
+</svg>
